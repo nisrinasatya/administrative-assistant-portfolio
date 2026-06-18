@@ -603,12 +603,21 @@
             color: #4A3A6A;
         }
 
-        .int-note {
-            font-size: 10.5px;
-            color: var(--gray-mid);
+        /* Full‑width interpreter note row */
+        .int-note-row td {
+            background: #F4F1EB !important;  /* slightly different from off‑white */
+            padding: 0.6rem 1rem;
             font-style: italic;
-            margin-top: 2px;
-            line-height: 1.5;
+            color: var(--gray-mid);
+            font-size: 11px;
+            line-height: 1.6;
+            border-bottom: 1px solid var(--gray-light);
+            border-top: 1px dashed var(--gray-light);
+        }
+        .int-note-row td strong {
+            color: var(--slate);
+            font-style: normal;
+            font-weight: 600;
         }
 
         /* ============================================================
@@ -1231,60 +1240,121 @@
                 <div class="section-label">Interpretation Transcript</div>
                 <table class="dialogue-table">
                     <tr><th style="width:9%">Speaker</th><th style="width:42%">English Utterance</th><th style="width:42%">Indonesian Interpretation</th><th style="width:7%">#</th></tr>
-                    <tr><td><span class="speaker-pill sp-rso">RSO</span></td><td>Good morning, General. Thank you for making time for us today. We have quite a bit to cover regarding the upcoming training cycle.</td><td>Selamat pagi, Bapak Jenderal. Terima kasih telah meluangkan waktu untuk kami hari ini. Kami memiliki cukup banyak hal yang perlu dibahas mengenai siklus pelatihan yang akan datang.</td><td>1</td></tr>
+
+                    <!-- Exchange 1 -->
+                    <tr><td><span class="speaker-pill sp-rso">RSO</span></td><td>Good morning, General. Thank you for making time for us today. We have quite a bit to cover regarding the upcoming training cycle.</td><td>Selamat pagi, Jenderal. Terima kasih telah meluangkan waktu untuk kami hari ini. Kami memiliki cukup banyak hal yang perlu dibahas mengenai siklus pelatihan yang akan datang.</td><td>1</td></tr>
+                    <!-- Exchange 2 -->
                     <tr><td><span class="speaker-pill sp-inp">INP</span></td><td>Sama-sama. Kami juga menantikan kerja sama yang produktif. Ada beberapa hal dari pihak kami yang ingin kami sampaikan.</td><td>Likewise. We are also looking forward to productive cooperation. There are several matters on our side that we would like to raise as well.</td><td>2</td></tr>
+                    <!-- Exchange 3 -->
                     <tr><td><span class="speaker-pill sp-rso">RSO</span></td><td>Of course. We want this to be a two-way conversation. Perhaps we can begin with the participant nomination list for the August course.</td><td>Tentu saja. Kami ingin ini menjadi diskusi dua arah. Mungkin kita bisa mulai dengan daftar nominasi peserta untuk kursus bulan Agustus.</td><td>3</td></tr>
+                    <!-- Exchange 4 -->
                     <tr><td><span class="speaker-pill sp-inp">INP</span></td><td>Baik. Kami telah meninjau daftar tersebut. Secara keseluruhan sudah sesuai, namun ada dua nama yang kami usulkan untuk diganti karena alasan penugasan operasional.</td><td>Very well. We have reviewed the list. It is generally satisfactory; however, there are two names we would like to substitute due to operational assignment reasons.</td><td>4</td></tr>
+                    <!-- Exchange 5 -->
                     <tr><td><span class="speaker-pill sp-ata">ATA</span></td><td>That's certainly manageable. Can you let us know which positions they're in so we can confirm they meet the eligibility criteria?</td><td>Tentu saja hal itu dapat diatur. Bisakah Bapak memberi tahu posisi mereka agar kami dapat mengkonfirmasi bahwa mereka memenuhi kriteria kelayakan?</td><td>5</td></tr>
+                    <!-- Exchange 6 -->
                     <tr><td><span class="speaker-pill sp-inp">INP</span></td><td>Keduanya dari Densus 88, berpangkat Iptu. Pengalaman investigatif mereka sudah memenuhi syarat. Kami akan segera mengirimkan berkas nominasi resmi.</td><td>Both are from Detachment 88, holding the rank of First Inspector. Their investigative experience meets the requirements. We will send the formal nomination files promptly.</td><td>6</td></tr>
-                    <tr><td><span class="speaker-pill sp-int">INT</span><div class="int-note">Note: "Iptu" (Inspektur Polisi Satu) rendered as "First Inspector" — closest English functional equivalent in law enforcement context.</div></td><td></td><td></td><td></td></tr>
+                    <!-- Note after exchange 6 -->
+                    <tr class="int-note-row"><td colspan="4"><strong>INT Note:</strong> "Iptu" (Inspektur Polisi Satu) rendered as "First Inspector" — closest English functional equivalent in law enforcement context.</td></tr>
+
+                    <!-- Exchange 7 -->
                     <tr><td><span class="speaker-pill sp-rso">RSO</span></td><td>Thank you. Now, I'd like to address the interpretation arrangements for the course. We've found in past training cycles that having two interpreters rotating is significantly better for quality.</td><td>Terima kasih. Sekarang, saya ingin membahas pengaturan interpretasi untuk kursus ini. Berdasarkan siklus pelatihan sebelumnya, kami menemukan bahwa memiliki dua juru bahasa yang bergiliran jauh lebih baik bagi kualitas interpretasi.</td><td>7</td></tr>
+                    <!-- Exchange 8 -->
                     <tr><td><span class="speaker-pill sp-inp">INP</span></td><td>Kami setuju. Interpretasi yang akurat sangat krusial, terutama saat instruksi teknis dan sesi taktis. Kesalahan dalam interpretasi dapat berdampak serius pada pemahaman dan keselamatan.</td><td>We agree. Accurate interpretation is absolutely critical, especially during technical instruction and tactical sessions. Errors in interpretation can have serious consequences for understanding and safety.</td><td>8</td></tr>
+                    <!-- Exchange 9 -->
                     <tr><td><span class="speaker-pill sp-ata">ATA</span></td><td>We've already identified two qualified candidates. Both have prior experience with law enforcement training interpretation and are familiar with DS-ATA terminology.</td><td>Kami telah mengidentifikasi dua kandidat yang memenuhi syarat. Keduanya memiliki pengalaman sebelumnya dalam interpretasi pelatihan penegak hukum dan sudah familiar dengan terminologi DS-ATA.</td><td>9</td></tr>
+                    <!-- Exchange 10 -->
                     <tr><td><span class="speaker-pill sp-inp">INP</span></td><td>Bagus sekali. Apakah mereka sudah melalui proses vetting keamanan dari pihak Kedutaan? Kami juga perlu memastikan mereka melalui verifikasi dari sisi Polri.</td><td>Excellent. Have they already gone through the security vetting process from the Embassy's side? We also need to ensure they undergo verification from the Polri side.</td><td>10</td></tr>
+                    <!-- Exchange 11 -->
                     <tr><td><span class="speaker-pill sp-rso">RSO</span></td><td>Yes, both have current Public Trust certifications on file with the Embassy. We're happy to share the documentation with your security division for their records.</td><td>Ya, keduanya memiliki sertifikasi Public Trust yang masih berlaku yang tersimpan di arsip Kedutaan. Kami dengan senang hati akan berbagi dokumentasi tersebut dengan divisi keamanan Bapak untuk catatan mereka.</td><td>11</td></tr>
-                    <tr><td><span class="speaker-pill sp-int">INT</span><div class="int-note">Note: "Public Trust certification" retained in English in the Indonesian interpretation, as this is a specific U.S. government security clearance category with no direct Indonesian equivalent. A brief gloss ("sertifikasi kepercayaan publik") was added internally for context.</div></td><td></td><td></td><td></td></tr>
+                    <!-- Note after exchange 11 -->
+                    <tr class="int-note-row"><td colspan="4"><strong>INT Note:</strong> "Public Trust certification" retained in English in the Indonesian interpretation, as this is a specific U.S. government security clearance category with no direct Indonesian equivalent. A brief gloss ("sertifikasi kepercayaan publik") was added internally for context.</td></tr>
+
+                    <!-- Exchange 12 -->
                     <tr><td><span class="speaker-pill sp-inp">INP</span></td><td>Kami apresiasi transparansi ini. Satu hal lagi — apakah materi teknis kursus akan tersedia dalam versi bahasa Indonesia sebelum kursus dimulai?</td><td>We appreciate this transparency. One more point — will the technical course materials be available in Indonesian before the course begins?</td><td>12</td></tr>
+                    <!-- Exchange 13 -->
                     <tr><td><span class="speaker-pill sp-ata">ATA</span></td><td>Yes, all participant workbooks will be bilingual. We aim to distribute them at least two weeks before the course start date so participants can review the terminology in advance.</td><td>Ya, semua buku kerja peserta akan dalam format dwibahasa. Kami bertujuan mendistribusikannya setidaknya dua minggu sebelum tanggal mulai kursus agar peserta dapat meninjau terminologi terlebih dahulu.</td><td>13</td></tr>
+                    <!-- Exchange 14 -->
                     <tr><td><span class="speaker-pill sp-inp">INP</span></td><td>Sangat membantu. Terminologi teknis dalam bahasa Inggris sering menjadi hambatan. Persiapan awal akan meningkatkan pemahaman dan efektivitas pelatihan secara keseluruhan.</td><td>That is very helpful. English technical terminology is often a barrier. Advance preparation will improve understanding and overall training effectiveness.</td><td>14</td></tr>
+                    <!-- Exchange 15 -->
                     <tr><td><span class="speaker-pill sp-rso">RSO</span></td><td>I agree completely. I want to move to the venue arrangements. Is the Bareskrim training facility confirmed for the August dates?</td><td>Saya sepenuhnya setuju. Saya ingin beralih ke pengaturan venue. Apakah fasilitas pelatihan Bareskrim sudah dikonfirmasi untuk tanggal-tanggal di bulan Agustus?</td><td>15</td></tr>
+                    <!-- Exchange 16 -->
                     <tr><td><span class="speaker-pill sp-inp">INP</span></td><td>Sudah dikonfirmasi. Fasilitas akan sepenuhnya tersedia, termasuk ruang kelas, area simulasi, dan lapangan tembak tertutup untuk sesi latihan tembak.</td><td>It is confirmed. The facility will be fully available, including classrooms, simulation areas, and the indoor range for any firearms training sessions.</td><td>16</td></tr>
+                    <!-- Exchange 17 -->
                     <tr><td><span class="speaker-pill sp-ata">ATA</span></td><td>That's great news. Will the indoor range accommodate the DS-ATA range safety protocol setup, including the required safety lanes and officer positioning?</td><td>Kabar yang sangat baik. Apakah lapangan tembak tertutup tersebut dapat mengakomodasi pengaturan protokol keselamatan lapangan tembak DS-ATA, termasuk jalur keselamatan yang diperlukan dan posisi petugas?</td><td>17</td></tr>
+                    <!-- Exchange 18 -->
                     <tr><td><span class="speaker-pill sp-inp">INP</span></td><td>Kami belum familiar dengan spesifikasi teknis DS-ATA. Apakah mungkin tim teknis Anda melakukan survei fasilitas sebelum kursus dimulai?</td><td>We are not fully familiar with the DS-ATA technical specifications. Would it be possible for your technical team to conduct a facility survey before the course begins?</td><td>18</td></tr>
+                    <!-- Exchange 19 -->
                     <tr><td><span class="speaker-pill sp-rso">RSO</span></td><td>Absolutely. We'll schedule a site visit with our range safety officer for the week of July 21. We'll provide a written assessment within three days of the visit.</td><td>Tentu saja. Kami akan menjadwalkan kunjungan lokasi bersama perwira keselamatan lapangan tembak kami untuk minggu tanggal 21 Juli. Kami akan memberikan penilaian tertulis dalam tiga hari setelah kunjungan.</td><td>19</td></tr>
+                    <!-- Exchange 20 -->
                     <tr><td><span class="speaker-pill sp-inp">INP</span></td><td>Terima kasih. Itu akan sangat membantu koordinasi dari pihak kami. Kami akan pastikan personel yang tepat tersedia untuk menemani tim Anda selama survei.</td><td>Thank you. That will greatly assist coordination on our end. We will ensure the appropriate personnel are available to accompany your team during the survey.</td><td>20</td></tr>
+                    <!-- Exchange 21 -->
                     <tr><td><span class="speaker-pill sp-ata">ATA</span></td><td>I also want to flag that we'll need dedicated parking or vehicle access for the DS-ATA training van during the full course period.</td><td>Saya juga ingin menyampaikan bahwa kami memerlukan parkir khusus atau akses kendaraan untuk van pelatihan DS-ATA selama periode kursus penuh.</td><td>21</td></tr>
+                    <!-- Exchange 22 -->
                     <tr><td><span class="speaker-pill sp-inp">INP</span></td><td>Tidak ada masalah. Kami akan mengalokasikan tempat parkir khusus di area terbatas Bareskrim. Perwira penghubung kami akan mengurus izin akses kendaraan.</td><td>No problem at all. We will allocate a dedicated parking space in the restricted area of Bareskrim. Our liaison officer will handle the vehicle access permits.</td><td>22</td></tr>
+                    <!-- Exchange 23 -->
                     <tr><td><span class="speaker-pill sp-rso">RSO</span></td><td>Perfect. Now, regarding catering — we have forty participants and ten instructors. Is the Bareskrim cafeteria able to accommodate that volume?</td><td>Sempurna. Sekarang, mengenai katering — kami memiliki empat puluh peserta dan sepuluh instruktur. Apakah kafetaria Bareskrim mampu mengakomodasi jumlah tersebut?</td><td>23</td></tr>
+                    <!-- Exchange 24 -->
                     <tr><td><span class="speaker-pill sp-inp">INP</span></td><td>Untuk peserta sebanyak itu, kafetaria kami cukup memadai. Namun untuk instruktur asing, mungkin ada preferensi menu tertentu yang perlu kami akomodasi.</td><td>For that number of participants, our cafeteria is adequate. However, for the international instructors, there may be specific menu preferences we need to accommodate.</td><td>24</td></tr>
-                    <tr><td><span class="speaker-pill sp-int">INT</span><div class="int-note">Note: "Instruktur asing" (foreign instructors) interpreted as "international instructors" — slightly softened phrasing more appropriate in a diplomatic meeting context.</div></td><td></td><td></td><td></td></tr>
+                    <!-- Note after exchange 24 -->
+                    <tr class="int-note-row"><td colspan="4"><strong>INT Note:</strong> "Instruktur asing" (foreign instructors) interpreted as "international instructors" — slightly softened phrasing more appropriate in a diplomatic meeting context.</td></tr>
+
+                    <!-- Exchange 25 -->
                     <tr><td><span class="speaker-pill sp-ata">ATA</span></td><td>We'll provide dietary requirements in advance. Most of our instructors are adaptable, but a couple have specific halal requirements which I understand should not be an issue here.</td><td>Kami akan memberikan persyaratan menu terlebih dahulu. Sebagian besar instruktur kami adaptif, namun beberapa memiliki persyaratan halal khusus, yang saya percaya tidak akan menjadi masalah di sini.</td><td>25</td></tr>
+                    <!-- Exchange 26 -->
                     <tr><td><span class="speaker-pill sp-inp">INP</span></td><td>Sama sekali tidak ada masalah. Seluruh fasilitas katering Bareskrim sudah bersertifikasi halal. Itu bukan kendala.</td><td>Absolutely no issue. All Bareskrim catering facilities are halal-certified. That is not a constraint at all.</td><td>26</td></tr>
+                    <!-- Exchange 27 -->
                     <tr><td><span class="speaker-pill sp-rso">RSO</span></td><td>Excellent. I appreciate the cooperation. Let me shift to the feedback we received from the last training cycle. I want to make sure we address the concerns raised.</td><td>Luar biasa. Saya menghargai kerja sama ini. Izinkan saya beralih ke umpan balik yang kami terima dari siklus pelatihan terakhir. Saya ingin memastikan kami menangani kekhawatiran yang disampaikan.</td><td>27</td></tr>
+                    <!-- Exchange 28 -->
                     <tr><td><span class="speaker-pill sp-inp">INP</span></td><td>Kami juga menerima laporan dari peserta kami. Secara umum positif, namun ada masukan mengenai kecepatan penyampaian materi teknis yang dirasakan terlalu cepat.</td><td>We also received reports from our participants. Generally positive, but there was feedback regarding the pace of technical instruction delivery, which was felt to be too fast.</td><td>28</td></tr>
+                    <!-- Exchange 29 -->
                     <tr><td><span class="speaker-pill sp-ata">ATA</span></td><td>We heard the same. We've already adjusted the pacing for the upcoming course and built in more recap sessions at the end of each technical module.</td><td>Kami juga menerima masukan serupa. Kami sudah menyesuaikan tempo untuk kursus yang akan datang dan menambahkan sesi rekapitulasi di akhir setiap modul teknis.</td><td>29</td></tr>
+                    <!-- Exchange 30 -->
                     <tr><td><span class="speaker-pill sp-inp">INP</span></td><td>Itu langkah yang tepat. Satu masukan lain dari peserta kami: mereka menyarankan agar studi kasus yang digunakan mencerminkan konteks Indonesia lebih banyak, bukan hanya kasus dari Amerika atau Eropa.</td><td>That is the right step. One other piece of feedback from our participants: they suggested the case studies used should reflect Indonesian contexts more — not only cases from the United States or Europe.</td><td>30</td></tr>
+                    <!-- Exchange 31 -->
                     <tr><td><span class="speaker-pill sp-rso">RSO</span></td><td>That's a very valid point. We've been working on incorporating regional case studies. Can Polri assist by providing anonymized case summaries from your operational history?</td><td>Itu poin yang sangat valid. Kami telah berupaya mengintegrasikan studi kasus regional. Apakah Polri dapat membantu dengan menyediakan ringkasan kasus yang dianonimkan dari sejarah operasional Anda?</td><td>31</td></tr>
+                    <!-- Exchange 32 -->
                     <tr><td><span class="speaker-pill sp-inp">INP</span></td><td>Kami terbuka untuk itu, namun perlu melalui proses persetujuan internal. Divisi hukum kami harus meninjau apakah kasus-kasus tertentu dapat dibagikan, bahkan dalam bentuk anonim.</td><td>We are open to that, but it would need to go through an internal approval process. Our legal division would need to review whether specific cases can be shared, even in anonymized form.</td><td>32</td></tr>
+                    <!-- Exchange 33 -->
                     <tr><td><span class="speaker-pill sp-ata">ATA</span></td><td>Understood. We can work within whatever timeline and process Polri requires. Even three or four well-documented cases would significantly enrich the curriculum.</td><td>Dipahami. Kami dapat menyesuaikan dengan jadwal dan proses apa pun yang diperlukan Polri. Bahkan tiga atau empat kasus yang terdokumentasi dengan baik sudah akan sangat memperkaya kurikulum.</td><td>33</td></tr>
+                    <!-- Exchange 34 -->
                     <tr><td><span class="speaker-pill sp-inp">INP</span></td><td>Kami akan upayakan. Target realistis adalah dua kasus untuk kursus Agustus dan dua lagi untuk siklus berikutnya. Kami akan koordinasikan dengan divisi hukum minggu ini.</td><td>We will make the effort. A realistic target would be two cases for the August course and two more for the following cycle. We will coordinate with the legal division this week.</td><td>34</td></tr>
+                    <!-- Exchange 35 -->
                     <tr><td><span class="speaker-pill sp-rso">RSO</span></td><td>That would be wonderful. I want to also briefly address the media relations aspect. There's been some external interest in the DS-ATA program, and we need to ensure a consistent messaging approach.</td><td>Itu akan sangat baik. Saya juga ingin secara singkat membahas aspek hubungan media. Ada beberapa ketertarikan eksternal terhadap program DS-ATA, dan kami perlu memastikan pendekatan pesan yang konsisten.</td><td>35</td></tr>
+                    <!-- Exchange 36 -->
                     <tr><td><span class="speaker-pill sp-inp">INP</span></td><td>Kami memahami kepekaan ini. Dari sisi Polri, segala komunikasi eksternal mengenai kerja sama dengan Kedutaan harus melalui Divisi Humas Polri terlebih dahulu.</td><td>We understand this sensitivity. From the Polri side, all external communication regarding cooperation with the Embassy must go through the Polri Public Relations Division first.</td><td>36</td></tr>
+                    <!-- Exchange 37 -->
                     <tr><td><span class="speaker-pill sp-ata">ATA</span></td><td>That's exactly our approach too. All media inquiries will be routed through the Embassy Public Affairs Section. The key message is bilateral cooperation in professional law enforcement capacity building.</td><td>Itulah pula pendekatan kami. Semua pertanyaan media akan diteruskan melalui Seksi Urusan Publik Kedutaan. Pesan utamanya adalah kerja sama bilateral dalam pengembangan kapasitas penegak hukum profesional.</td><td>37</td></tr>
+                    <!-- Exchange 38 -->
                     <tr><td><span class="speaker-pill sp-inp">INP</span></td><td>Setuju. Framing yang tepat sangat penting untuk memastikan program ini dipahami sebagai kemitraan yang setara, bukan sebagai bantuan satu arah.</td><td>Agreed. The right framing is very important to ensure the program is understood as an equal partnership, not as one-way assistance.</td><td>38</td></tr>
-                    <tr><td><span class="speaker-pill sp-int">INT</span><div class="int-note">Note: "Bantuan satu arah" (one-directional assistance) was interpreted as "one-way assistance" to preserve the diplomatic nuance — the General is gently pushing back against a dependency framing. The interpreter maintained the indirect, face-saving register appropriate between senior officials.</div></td><td></td><td></td><td></td></tr>
+                    <!-- Note after exchange 38 -->
+                    <tr class="int-note-row"><td colspan="4"><strong>INT Note:</strong> "Bantuan satu arah" (one-directional assistance) was interpreted as "one-way assistance" to preserve the diplomatic nuance — the General is gently pushing back against a dependency framing. The interpreter maintained the indirect, face‑saving register appropriate between senior officials.</td></tr>
+
+                    <!-- Exchange 39 -->
                     <tr><td><span class="speaker-pill sp-rso">RSO</span></td><td>I completely agree, and I want to assure you that's exactly how we see it. This is a partnership built on mutual respect and shared security objectives.</td><td>Saya sepenuhnya setuju, dan saya ingin memastikan bahwa itulah cara kami memandangnya. Ini adalah kemitraan yang dibangun atas dasar saling menghormati dan tujuan keamanan bersama.</td><td>39</td></tr>
+                    <!-- Exchange 40 -->
                     <tr><td><span class="speaker-pill sp-inp">INP</span></td><td>Terima kasih atas pernyataan itu. Hal tersebut penting bagi kami secara institusional maupun secara personal.</td><td>Thank you for that statement. It matters to us both institutionally and personally.</td><td>40</td></tr>
+                    <!-- Exchange 41 -->
                     <tr><td><span class="speaker-pill sp-ata">ATA</span></td><td>One last operational item — we need to finalize the emergency protocols for the course. Specifically, who is the medical officer on call and what is the evacuation procedure if a training incident occurs?</td><td>Satu hal operasional terakhir — kami perlu menyelesaikan protokol darurat untuk kursus ini. Khususnya, siapa dokter yang bertugas dan apa prosedur evakuasi jika terjadi insiden selama pelatihan?</td><td>41</td></tr>
+                    <!-- Exchange 42 -->
                     <tr><td><span class="speaker-pill sp-inp">INP</span></td><td>Bareskrim memiliki tenaga medis organik yang bertugas setiap hari. Untuk evakuasi darurat, kami menggunakan jalur langsung ke RS Polri Kramat Jati — waktu tempuh sekitar 15 menit.</td><td>Bareskrim has an organic medical officer on duty every day. For emergency evacuation, we use the direct route to RS Polri Kramat Jati — approximately 15 minutes' travel time.</td><td>42</td></tr>
-                    <tr><td><span class="speaker-pill sp-int">INT</span><div class="int-note">Note: "Tenaga medis organik" (organic medical personnel) — a Polri/military administrative term for in-house, institutionally assigned medical staff as opposed to contracted external providers. Interpreted as "organic medical officer" to preserve the technical register.</div></td><td></td><td></td><td></td></tr>
+                    <!-- Note after exchange 42 -->
+                    <tr class="int-note-row"><td colspan="4"><strong>INT Note:</strong> "Tenaga medis organik" (organic medical personnel) — a Polri/military administrative term for in‑house, institutionally assigned medical staff as opposed to contracted external providers. Interpreted as "organic medical officer" to preserve the technical register.</td></tr>
+
+                    <!-- Exchange 43 -->
                     <tr><td><span class="speaker-pill sp-rso">RSO</span></td><td>Excellent. We'll add RS Polri to our emergency contacts list. I'd also like to request a written emergency response plan from Bareskrim for Embassy records.</td><td>Luar biasa. Kami akan menambahkan RS Polri ke daftar kontak darurat kami. Saya juga ingin meminta rencana respons darurat tertulis dari Bareskrim untuk arsip Kedutaan.</td><td>43</td></tr>
+                    <!-- Exchange 44 -->
                     <tr><td><span class="speaker-pill sp-inp">INP</span></td><td>Bisa kami siapkan. Kami akan mengirimkan dokumen tersebut dalam tiga hari kerja. Apakah format standar Bareskrim dapat diterima, atau ada format khusus yang Kedutaan perlukan?</td><td>We can prepare that. We will send the document within three business days. Is the standard Bareskrim format acceptable, or does the Embassy require a specific format?</td><td>44</td></tr>
+                    <!-- Exchange 45 -->
                     <tr><td><span class="speaker-pill sp-ata">ATA</span></td><td>The standard Bareskrim format is perfectly fine. We just need it to cover the key elements — chain of command, medical response, and communication protocols in an emergency.</td><td>Format standar Bareskrim sangat baik. Kami hanya perlu dokumen itu mencakup elemen-elemen utama — rantai komando, respons medis, dan protokol komunikasi dalam keadaan darurat.</td><td>45</td></tr>
+                    <!-- Exchange 46 -->
                     <tr><td><span class="speaker-pill sp-inp">INP</span></td><td>Dipahami. Kami akan pastikan ketiga elemen tersebut tercakup secara eksplisit. Jika ada pertanyaan tambahan dari tim Anda, perwira penghubung kami siap dihubungi.</td><td>Understood. We will ensure all three elements are covered explicitly. If your team has additional questions, our liaison officer is available to be contacted.</td><td>46</td></tr>
+                    <!-- Exchange 47 -->
                     <tr><td><span class="speaker-pill sp-rso">RSO</span></td><td>Thank you, General. I think we've covered all major agenda items. Unless there's anything else from your side, I'd like to propose we conclude and follow up by email within the week.</td><td>Terima kasih, Jenderal. Saya rasa kami telah membahas semua poin agenda utama. Kecuali ada hal lain dari pihak Bapak, saya ingin mengusulkan agar kita mengakhiri pertemuan dan menindaklanjuti melalui email dalam minggu ini.</td><td>47</td></tr>
+                    <!-- Exchange 48 -->
                     <tr><td><span class="speaker-pill sp-inp">INP</span></td><td>Satu hal terakhir dari sisi kami — kami ingin mengusulkan agar di akhir kursus ada sesi informal antara instruktur DS-ATA dan perwira senior Polri. Bukan sesi formal, hanya untuk mempererat hubungan.</td><td>One final point from our side — we would like to propose that at the end of the course there be an informal session between the DS-ATA instructors and senior Polri officers. Not a formal session, just to strengthen the relationship.</td><td>48</td></tr>
+                    <!-- Exchange 49 -->
                     <tr><td><span class="speaker-pill sp-rso">RSO</span></td><td>I think that's a wonderful idea and very much in the spirit of what we're trying to build together. We'll work it into the final day schedule.</td><td>Saya rasa itu ide yang luar biasa dan sangat mencerminkan semangat dari apa yang ingin kita bangun bersama. Kami akan memasukkannya ke dalam jadwal hari terakhir.</td><td>49</td></tr>
+                    <!-- Exchange 50 -->
                     <tr><td><span class="speaker-pill sp-inp">INP</span></td><td>Terima kasih. Kami menantikan kursus yang sukses dan kerja sama yang berkelanjutan. Semoga pertemuan hari ini menjadi pondasi yang kuat.</td><td>Thank you. We look forward to a successful course and continued cooperation. May today's meeting serve as a strong foundation.</td><td>50</td></tr>
                 </table>
 
