@@ -1,516 +1,1317 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DS-ATA Portfolio — Nisrina Satyaningrum</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:ital,wght@0,400;0,500;0,600;1,400&family=IBM+Plex+Serif:ital,wght@0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
+    <style>
+        /* ============================================================
+           CSS VARIABLES — DS-ATA Diplomatic Palette
+           ============================================================ */
+        :root {
+            --navy: #0D1B2A;
+            --slate: #1B3A5C;
+            --gold: #C9A84C;
+            --gold-light: #E8D5A3;
+            --gold-pale: #F5EDD6;
+            --off-white: #F8F6F1;
+            --gray-mid: #5C6B7A;
+            --gray-light: #D4D8DD;
+            --gray-pale: #EBEBE8;
+            --white: #FFFFFF;
+            --shadow-sm: 0 2px 6px rgba(13, 27, 42, 0.06);
+            --shadow-md: 0 6px 20px rgba(13, 27, 42, 0.08);
+            --shadow-lg: 0 12px 40px rgba(13, 27, 42, 0.10);
+            --radius: 6px;
+            --radius-lg: 10px;
+            --font-sans: 'IBM Plex Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+            --font-serif: 'IBM Plex Serif', 'Times New Roman', Georgia, serif;
+            --transition: 0.2s ease;
+        }
 
-<style>
-*{box-sizing:border-box;margin:0;padding:0}
-body{font-family:var(--font-sans)}
-.portfolio-wrap{display:flex;gap:0;min-height:600px;border:0.5px solid var(--color-border-tertiary);border-radius:var(--border-radius-lg);overflow:hidden}
-.sidebar{width:220px;flex-shrink:0;background:var(--color-background-secondary);border-right:0.5px solid var(--color-border-tertiary);padding:1rem 0}
-.sidebar-title{font-size:11px;font-weight:500;color:var(--color-text-tertiary);letter-spacing:.08em;text-transform:uppercase;padding:0 1rem .75rem}
-.nav-item{display:block;width:100%;text-align:left;background:none;border:none;padding:.65rem 1rem;font-size:13px;color:var(--color-text-secondary);cursor:pointer;border-left:2px solid transparent;line-height:1.35}
-.nav-item:hover{background:var(--color-background-primary);color:var(--color-text-primary)}
-.nav-item.active{background:var(--color-background-primary);color:var(--color-text-primary);border-left-color:#B8860B;font-weight:500}
-.nav-label{font-size:10px;color:var(--color-text-tertiary);display:block;margin-top:2px}
-.main{flex:1;overflow-y:auto;max-height:680px;padding:1.5rem}
-.project-section{display:none}
-.project-section.active{display:block}
-.doc-header{border-left:3px solid #B8860B;padding:.75rem 1rem;background:var(--color-background-secondary);border-radius:0 var(--border-radius-md) var(--border-radius-md) 0;margin-bottom:1.5rem}
-.doc-ref{font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:var(--color-text-tertiary);font-weight:500}
-.doc-title{font-size:18px;font-weight:500;color:var(--color-text-primary);margin:.25rem 0 .35rem;font-family:var(--font-serif)}
-.doc-badges{display:flex;gap:6px;flex-wrap:wrap}
-.badge{font-size:11px;padding:2px 8px;border-radius:4px;font-weight:500}
-.badge-amber{background:#FEF3C7;color:#92400E}
-.badge-blue{background:var(--color-background-info);color:var(--color-text-info)}
-.badge-teal{background:#D1FAE5;color:#065F46}
-.section-label{font-size:10px;font-weight:500;letter-spacing:.08em;text-transform:uppercase;color:var(--color-text-tertiary);margin:1.5rem 0 .5rem}
-.doc-block{background:var(--color-background-primary);border:0.5px solid var(--color-border-tertiary);border-radius:var(--border-radius-md);padding:1rem;margin-bottom:1rem;font-size:13px;line-height:1.7;color:var(--color-text-primary)}
-.doc-block p{margin-bottom:.75rem}
-.doc-block p:last-child{margin-bottom:0}
-.doc-block h4{font-size:12px;font-weight:500;text-transform:uppercase;letter-spacing:.06em;color:var(--color-text-secondary);margin:1rem 0 .35rem;padding-top:.5rem;border-top:0.5px solid var(--color-border-tertiary)}
-.doc-block h4:first-child{margin-top:0;padding-top:0;border-top:none}
-.side-by-side{display:grid;grid-template-columns:1fr 1fr;gap:1px;background:var(--color-border-tertiary);border:0.5px solid var(--color-border-tertiary);border-radius:var(--border-radius-md);overflow:hidden;margin-bottom:1rem}
-.sbs-col{background:var(--color-background-primary);padding:.75rem;font-size:12px;line-height:1.6}
-.sbs-col h5{font-size:10px;font-weight:500;text-transform:uppercase;letter-spacing:.07em;color:var(--color-text-tertiary);margin-bottom:.5rem;padding-bottom:.35rem;border-bottom:0.5px solid var(--color-border-tertiary)}
-.sbs-row{display:contents}
-.term-table{width:100%;border-collapse:collapse;font-size:12px;margin-bottom:1rem}
-.term-table th{background:var(--color-background-secondary);font-size:10px;font-weight:500;text-transform:uppercase;letter-spacing:.06em;color:var(--color-text-secondary);padding:.5rem .75rem;text-align:left;border-bottom:0.5px solid var(--color-border-tertiary)}
-.term-table td{padding:.45rem .75rem;border-bottom:0.5px solid var(--color-border-tertiary);color:var(--color-text-primary);vertical-align:top;line-height:1.5}
-.term-table tr:last-child td{border-bottom:none}
-.term-table td:first-child{font-weight:500;width:40%}
-.term-table td:nth-child(2){color:var(--color-text-secondary);width:35%}
-.term-table td:nth-child(3){color:var(--color-text-tertiary);font-size:11px;width:25%}
-.note-block{background:var(--color-background-secondary);border-left:3px solid var(--color-border-secondary);border-radius:0 var(--border-radius-md) var(--border-radius-md) 0;padding:.75rem 1rem;font-size:13px;line-height:1.65;color:var(--color-text-secondary);margin-bottom:.75rem}
-.note-block strong{color:var(--color-text-primary);font-weight:500}
-.overview-grid{display:grid;grid-template-columns:1fr 1fr;gap:.75rem;margin-bottom:1.5rem}
-.meta-card{background:var(--color-background-secondary);border-radius:var(--border-radius-md);padding:.75rem 1rem;font-size:12px}
-.meta-card .label{font-size:10px;font-weight:500;text-transform:uppercase;letter-spacing:.07em;color:var(--color-text-tertiary);margin-bottom:.3rem}
-.meta-card .value{color:var(--color-text-primary);line-height:1.45}
-.dialogue-table{width:100%;border-collapse:collapse;font-size:12px;margin-bottom:1rem}
-.dialogue-table th{background:var(--color-background-secondary);font-size:10px;font-weight:500;text-transform:uppercase;letter-spacing:.06em;color:var(--color-text-secondary);padding:.5rem .75rem;text-align:left;border-bottom:0.5px solid var(--color-border-tertiary)}
-.dialogue-table td{padding:.5rem .75rem;border-bottom:0.5px solid var(--color-border-tertiary);vertical-align:top;line-height:1.55;font-size:12px;color:var(--color-text-primary)}
-.dialogue-table tr:last-child td{border-bottom:none}
-.speaker-pill{display:inline-block;font-size:10px;font-weight:500;padding:1px 7px;border-radius:3px;margin-bottom:2px}
-.sp-rso{background:#DBEAFE;color:#1E40AF}
-.sp-ata{background:#D1FAE5;color:#065F46}
-.sp-inp{background:#FEF3C7;color:#92400E}
-.sp-int{background:#EDE9FE;color:#5B21B6}
-.int-note{font-size:11px;color:var(--color-text-tertiary);font-style:italic;margin-top:3px}
-</style>
+        /* ============================================================
+           RESET & BASE
+           ============================================================ */
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
 
-<h2 class="sr-only">DS-ATA Representative Projects Portfolio — Nisrina Satyaningrum</h2>
+        body {
+            font-family: var(--font-sans);
+            background: var(--off-white);
+            color: var(--navy);
+            line-height: 1.6;
+            padding: 2rem 1.5rem;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
 
-<div class="portfolio-wrap">
-<nav class="sidebar">
-  <div class="sidebar-title">Portfolio Projects</div>
-  <button class="nav-item active" onclick="show('p1',this)">
-    DS-ATA/01
-    <span class="nav-label">Training Memorandum</span>
-  </button>
-  <button class="nav-item" onclick="show('p2',this)">
-    DS-ATA/02
-    <span class="nav-label">Meeting Summary Report</span>
-  </button>
-  <button class="nav-item" onclick="show('p3',this)">
-    DS-ATA/03
-    <span class="nav-label">Security News Report</span>
-  </button>
-  <button class="nav-item" onclick="show('p4',this)">
-    DS-ATA/04
-    <span class="nav-label">Course Announcement</span>
-  </button>
-  <button class="nav-item" onclick="show('p5',this)">
-    DS-ATA/05
-    <span class="nav-label">Interpretation Simulation</span>
-  </button>
-</nav>
+        /* ============================================================
+           MAIN CONTAINER — Card with shadow
+           ============================================================ */
+        .portfolio-wrap {
+            max-width: 1280px;
+            width: 100%;
+            background: var(--white);
+            border-radius: var(--radius-lg);
+            box-shadow: var(--shadow-lg);
+            overflow: hidden;
+            display: flex;
+            flex-direction: row;
+            min-height: 720px;
+            border: 1px solid var(--gray-light);
+        }
 
-<div class="main">
+        /* ============================================================
+           SIDEBAR — Navy with gold accents
+           ============================================================ */
+        .sidebar {
+            width: 240px;
+            flex-shrink: 0;
+            background: var(--navy);
+            padding: 1.5rem 0 1rem 0;
+            display: flex;
+            flex-direction: column;
+            border-right: 2px solid var(--gold);
+        }
 
-<!-- PROJECT 1 -->
-<div id="p1" class="project-section active">
-  <div class="doc-header">
-    <div class="doc-ref">DS-ATA / Project 01 · Administrative Translation</div>
-    <div class="doc-title">Counterterrorism Tactical Operations Training Memorandum</div>
-    <div class="doc-badges">
-      <span class="badge badge-amber">Written Translation</span>
-      <span class="badge badge-blue">Legal/Operational Document</span>
-      <span class="badge badge-teal">EN → ID</span>
-    </div>
-  </div>
+        .sidebar-brand {
+            padding: 0 1.25rem 1.25rem 1.25rem;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.07);
+            margin-bottom: 0.75rem;
+        }
 
-  <div class="overview-grid">
-    <div class="meta-card"><div class="label">Document Type</div><div class="value">Internal Memorandum — Training Notice</div></div>
-    <div class="meta-card"><div class="label">Issuing Body</div><div class="value">U.S. Embassy Jakarta, DS-ATA Program Office</div></div>
-    <div class="meta-card"><div class="label">Recipient</div><div class="value">Indonesian National Police (POLRI) Participants</div></div>
-    <div class="meta-card"><div class="label">Word Count</div><div class="value">~820 words (EN) · ~870 words (ID)</div></div>
-  </div>
+        .sidebar-brand .title {
+            font-family: var(--font-serif);
+            font-size: 13px;
+            font-weight: 600;
+            color: var(--gold);
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+        }
 
-  <div class="section-label">English Source Document</div>
-  <div class="doc-block">
-    <h4>Memorandum</h4>
-    <p><strong>TO:</strong> Commanding Officers, Detachment 88 Anti-Terror Unit (Densus 88); Mobile Brigade Corps (Brimob) Regional Commanders<br>
-    <strong>FROM:</strong> DS-ATA Program Office, U.S. Embassy Jakarta<br>
-    <strong>DATE:</strong> June 2026<br>
-    <strong>SUBJECT:</strong> Counterterrorism Tactical Operations Training — Course Notification and Participant Preparation Requirements</p>
-    <h4>Purpose</h4>
-    <p>This memorandum provides official notification of an upcoming Counterterrorism Tactical Operations Training (CTOT) course to be conducted under the auspices of the U.S. Department of State Diplomatic Security Antiterrorism Assistance (DS-ATA) Program. The course is offered in coordination with the Indonesian National Police (Polri) in support of bilateral law enforcement cooperation objectives.</p>
-    <h4>Scope</h4>
-    <p>This training is applicable to sworn law enforcement personnel holding the rank of Inspector (Inspektur) or above, currently assigned to counterterrorism, tactical response, or special operations units. Personnel must be physically active on duty and hold valid security clearances at the appropriate level. The training will be conducted in Jakarta and shall not exceed fifteen (15) working days in duration.</p>
-    <h4>Training Objectives</h4>
-    <p>Upon successful completion of this course, participants will demonstrate proficiency in: (1) threat assessment and target analysis in complex, high-density environments; (2) tactical entry, room clearance, and hostage rescue procedures in accordance with internationally recognized standards; (3) command-and-control communications protocols during multi-agency joint operations; (4) use-of-force doctrine consistent with applicable Indonesian law and international human rights standards; and (5) post-incident documentation and evidence preservation procedures.</p>
-    <h4>Course Components</h4>
-    <p>The curriculum comprises classroom instruction (40%), practical exercises (45%), and evaluations (15%). Subject matter experts from the U.S. Department of State and contracted law enforcement training specialists will deliver instruction in English, with consecutive interpretation provided throughout all sessions. Curriculum materials, including technical reference guides and case studies, will be distributed in bilingual format.</p>
-    <h4>Participant Responsibilities</h4>
-    <p>Nominating units are responsible for ensuring that all designated participants: submit completed pre-course documentation packages no later than fourteen (14) calendar days prior to the course commencement date; undergo and pass a mandatory pre-participation medical examination; maintain a minimum 90% attendance rate across all scheduled sessions; and adhere to all conduct, uniform, and equipment requirements as specified in Annex A of this memorandum.</p>
-    <h4>Safety Requirements</h4>
-    <p>All live-fire exercises will be conducted in strict accordance with DS-ATA Range Safety Protocols. Participants must successfully complete a weapon familiarization and safety qualification assessment prior to engagement in any live-fire activity. The U.S. Embassy retains the authority to remove any participant from live-fire exercises based on demonstrated safety deficiencies, without prejudice to continued participation in non-live-fire components of the course.</p>
-    <h4>Certification</h4>
-    <p>Participants who satisfy all attendance, practical, and written assessment requirements will receive a Certificate of Course Completion jointly issued by the U.S. Embassy Jakarta DS-ATA Program and the Indonesian National Police Training Division (Lemdiklat Polri). Certificates will be dispatched to nominating units within thirty (30) business days of course conclusion.</p>
-    <h4>Points of Contact</h4>
-    <p>For logistical inquiries: DS-ATA Program Coordinator, U.S. Embassy Jakarta — [program.email@example.com]<br>
-    For police-side coordination: Lemdiklat Polri Liaison Officer — [liaison@lemdiklat.polri.go.id]</p>
-  </div>
+        .sidebar-brand .sub {
+            font-size: 10px;
+            color: rgba(255, 255, 255, 0.5);
+            letter-spacing: 0.04em;
+            margin-top: 2px;
+        }
 
-  <div class="section-label">Indonesian Translation</div>
-  <div class="doc-block">
-    <h4>Memorandum</h4>
-    <p><strong>KEPADA:</strong> Komandan Satuan, Detasemen Khusus 88 Anti Teror (Densus 88); Komandan Regional Korps Brigade Mobil (Brimob)<br>
-    <strong>DARI:</strong> Kantor Program DS-ATA, Kedutaan Besar Amerika Serikat Jakarta<br>
-    <strong>TANGGAL:</strong> Juni 2026<br>
-    <strong>PERIHAL:</strong> Pelatihan Operasi Taktis Kontraterorisme — Pemberitahuan Kursus dan Persyaratan Persiapan Peserta</p>
-    <h4>Tujuan</h4>
-    <p>Memorandum ini merupakan pemberitahuan resmi mengenai penyelenggaraan Pelatihan Operasi Taktis Kontraterorisme (CTOT) yang akan dilaksanakan di bawah naungan Program Bantuan Antiterorisme Keamanan Diplomatik Departemen Luar Negeri Amerika Serikat (DS-ATA). Kursus ini diselenggarakan berkoordinasi dengan Kepolisian Negara Republik Indonesia (Polri) dalam rangka mendukung tujuan kerja sama penegakan hukum bilateral.</p>
-    <h4>Lingkup</h4>
-    <p>Pelatihan ini diperuntukkan bagi personel penegak hukum yang berpangkat Inspektur atau di atasnya, yang saat ini bertugas di satuan kontraterorisme, satuan respons taktis, atau satuan operasi khusus. Personel harus berstatus aktif bertugas dan memiliki izin keamanan yang masih berlaku sesuai tingkatan yang dipersyaratkan. Pelatihan akan dilaksanakan di Jakarta dan tidak melebihi lima belas (15) hari kerja.</p>
-    <h4>Tujuan Pelatihan</h4>
-    <p>Setelah berhasil menyelesaikan kursus ini, peserta akan menunjukkan kemampuan dalam: (1) penilaian ancaman dan analisis sasaran di lingkungan padat yang kompleks; (2) prosedur masuk taktis, pembersihan ruangan, dan penyelamatan sandera sesuai standar internasional yang diakui; (3) protokol komunikasi komando dan kendali dalam operasi gabungan multi-instansi; (4) doktrin penggunaan kekuatan yang sesuai dengan hukum Indonesia yang berlaku dan standar hak asasi manusia internasional; serta (5) prosedur dokumentasi pasca-insiden dan pelestarian barang bukti.</p>
-    <h4>Komponen Kursus</h4>
-    <p>Kurikulum terdiri atas instruksi di kelas (40%), latihan praktik (45%), dan evaluasi (15%). Instruktur ahli dari Departemen Luar Negeri Amerika Serikat dan spesialis pelatihan penegak hukum yang dikontrak akan menyampaikan materi dalam bahasa Inggris, dengan interpretasi konsekutif yang disediakan selama seluruh sesi berlangsung. Materi kurikulum, termasuk panduan referensi teknis dan studi kasus, akan didistribusikan dalam format dwibahasa.</p>
-    <h4>Tanggung Jawab Peserta</h4>
-    <p>Satuan penominasi bertanggung jawab memastikan seluruh peserta yang ditunjuk: menyerahkan berkas dokumentasi pra-kursus yang telah dilengkapi paling lambat empat belas (14) hari kalender sebelum tanggal dimulainya kursus; menjalani dan lulus pemeriksaan kesehatan wajib pra-keikutsertaan; mempertahankan tingkat kehadiran minimal 90% di seluruh sesi yang dijadwalkan; serta mematuhi seluruh persyaratan tata tertib, seragam, dan perlengkapan sebagaimana tercantum dalam Lampiran A memorandum ini.</p>
-    <h4>Persyaratan Keselamatan</h4>
-    <p>Seluruh latihan tembak langsung akan dilaksanakan sesuai Protokol Keselamatan Lapangan Tembak DS-ATA. Peserta wajib menyelesaikan dan lulus penilaian kualifikasi pengenalan dan keselamatan senjata sebelum mengikuti kegiatan tembak langsung apa pun. Kedutaan Besar Amerika Serikat berwenang untuk memindahkan peserta dari latihan tembak langsung berdasarkan kekurangan keselamatan yang teridentifikasi, tanpa mengurangi hak peserta untuk melanjutkan komponen kursus yang tidak melibatkan tembak langsung.</p>
-    <h4>Sertifikasi</h4>
-    <p>Peserta yang memenuhi seluruh persyaratan kehadiran, penilaian praktik, dan penilaian tertulis akan menerima Sertifikat Penyelesaian Kursus yang diterbitkan bersama oleh Program DS-ATA Kedutaan Besar Amerika Serikat Jakarta dan Lembaga Pendidikan dan Pelatihan Polri (Lemdiklat Polri). Sertifikat akan dikirimkan kepada satuan penominasi dalam waktu tiga puluh (30) hari kerja setelah kursus berakhir.</p>
-    <h4>Narahubung</h4>
-    <p>Pertanyaan logistik: Koordinator Program DS-ATA, Kedutaan Besar AS Jakarta — [program.email@example.com]<br>
-    Koordinasi dari sisi kepolisian: Perwira Penghubung Lemdiklat Polri — [liaison@lemdiklat.polri.go.id]</p>
-  </div>
+        .sidebar-nav {
+            flex: 1;
+            overflow-y: auto;
+            padding: 0 0.5rem;
+        }
 
-  <div class="section-label">Side-by-Side View (Key Sections)</div>
-  <div class="side-by-side">
-    <div class="sbs-col"><h5>English</h5><p>Upon successful completion of this course, participants will demonstrate proficiency in threat assessment and target analysis in complex, high-density environments, tactical entry, room clearance, and hostage rescue procedures in accordance with internationally recognized standards.</p></div>
-    <div class="sbs-col"><h5>Indonesian</h5><p>Setelah berhasil menyelesaikan kursus ini, peserta akan menunjukkan kemampuan dalam penilaian ancaman dan analisis sasaran di lingkungan padat yang kompleks, prosedur masuk taktis, pembersihan ruangan, dan penyelamatan sandera sesuai standar internasional yang diakui.</p></div>
-    <div class="sbs-col"><p>The U.S. Embassy retains the authority to remove any participant from live-fire exercises based on demonstrated safety deficiencies, without prejudice to continued participation in non-live-fire components.</p></div>
-    <div class="sbs-col"><p>Kedutaan Besar Amerika Serikat berwenang untuk memindahkan peserta dari latihan tembak langsung berdasarkan kekurangan keselamatan yang teridentifikasi, tanpa mengurangi hak peserta untuk melanjutkan komponen kursus yang tidak melibatkan tembak langsung.</p></div>
-  </div>
+        .sidebar-title {
+            font-size: 9px;
+            font-weight: 600;
+            letter-spacing: 0.15em;
+            text-transform: uppercase;
+            color: rgba(255, 255, 255, 0.3);
+            padding: 0 0.75rem 0.6rem 0.75rem;
+        }
 
-  <div class="section-label">Terminology Table (20 Terms)</div>
-  <table class="term-table">
-    <tr><th>English Term</th><th>Indonesian Equivalent</th><th>Register/Notes</th></tr>
-    <tr><td>Antiterrorism Assistance</td><td>Bantuan Antiterorisme</td><td>Official DS-ATA nomenclature</td></tr>
-    <tr><td>Counterterrorism Tactical Operations</td><td>Operasi Taktis Kontraterorisme</td><td>Polri-aligned term</td></tr>
-    <tr><td>Detachment 88 (Densus 88)</td><td>Detasemen Khusus 88</td><td>Formal name retained</td></tr>
-    <tr><td>Mobile Brigade Corps</td><td>Korps Brigade Mobil (Brimob)</td><td>Official Polri designation</td></tr>
-    <tr><td>Threat Assessment</td><td>Penilaian Ancaman</td><td>Standard law enforcement usage</td></tr>
-    <tr><td>Target Analysis</td><td>Analisis Sasaran</td><td>Military/police register</td></tr>
-    <tr><td>Tactical Entry</td><td>Masuk Taktis</td><td>Procedural training term</td></tr>
-    <tr><td>Room Clearance</td><td>Pembersihan Ruangan</td><td>Direct operational equivalent</td></tr>
-    <tr><td>Hostage Rescue</td><td>Penyelamatan Sandera</td><td>Standard Polri terminology</td></tr>
-    <tr><td>Command-and-Control</td><td>Komando dan Kendali</td><td>Retains military structure</td></tr>
-    <tr><td>Use-of-Force Doctrine</td><td>Doktrin Penggunaan Kekuatan</td><td>Avoids "kekerasan" (violence)</td></tr>
-    <tr><td>Security Clearance</td><td>Izin Keamanan</td><td>Government administrative term</td></tr>
-    <tr><td>Live-Fire Exercise</td><td>Latihan Tembak Langsung</td><td>Range safety standard term</td></tr>
-    <tr><td>Certificate of Course Completion</td><td>Sertifikat Penyelesaian Kursus</td><td>Formal credentialing language</td></tr>
-    <tr><td>Nominating Unit</td><td>Satuan Penominasi</td><td>Administrative HR term</td></tr>
-    <tr><td>Bilateral Law Enforcement Cooperation</td><td>Kerja Sama Penegakan Hukum Bilateral</td><td>Diplomatic register</td></tr>
-    <tr><td>Post-Incident Documentation</td><td>Dokumentasi Pasca-Insiden</td><td>Forensic/procedural term</td></tr>
-    <tr><td>Evidence Preservation</td><td>Pelestarian Barang Bukti</td><td>Legal/investigative register</td></tr>
-    <tr><td>Subject Matter Expert</td><td>Instruktur Ahli</td><td>Adapted for clarity in ID context</td></tr>
-    <tr><td>Lemdiklat Polri</td><td>Lembaga Pendidikan dan Pelatihan Polri</td><td>Full form provided on first use</td></tr>
-  </table>
+        .nav-item {
+            display: block;
+            width: 100%;
+            text-align: left;
+            background: none;
+            border: none;
+            padding: 0.6rem 0.75rem;
+            border-radius: var(--radius);
+            font-family: var(--font-sans);
+            font-size: 12.5px;
+            font-weight: 400;
+            color: rgba(255, 255, 255, 0.65);
+            cursor: pointer;
+            transition: var(--transition);
+            line-height: 1.3;
+            position: relative;
+        }
 
-  <div class="section-label">Translator Notes</div>
-  <div class="note-block"><strong>Register:</strong> The source text operates in formal U.S. government memorandum register. The translation matches this with Indonesian administrative-bureaucratic register, consistent with Permendiknas and Permen-type documents, using constructions like "diperuntukkan bagi" and "bertanggung jawab memastikan" rather than conversational equivalents.</div>
-  <div class="note-block"><strong>Use-of-force terminology:</strong> "Use-of-force doctrine" was rendered as "doktrin penggunaan kekuatan" rather than "kekerasan" (violence) or "kekuatan fisik," as the latter carry negative connotations in Indonesian public discourse. "Penggunaan kekuatan" is the standard Polri operational term.</div>
-  <div class="note-block"><strong>Institutional names:</strong> All Polri unit names (Densus 88, Brimob, Lemdiklat) were retained in their official Indonesian forms. The English gloss was provided in parentheses on first occurrence for the Embassy-side readership of the bilingual document.</div>
-  <div class="note-block"><strong>Sentence structure:</strong> Long compound sentences in the source (e.g., the Training Objectives paragraph) were maintained as enumerated lists in translation rather than broken into shorter sentences, preserving the official parallel structure expected in Indonesian legal and institutional writing.</div>
-</div>
+        .nav-item:hover {
+            background: rgba(255, 255, 255, 0.06);
+            color: #fff;
+        }
 
-<!-- PROJECT 2 -->
-<div id="p2" class="project-section">
-  <div class="doc-header">
-    <div class="doc-ref">DS-ATA / Project 02 · Administrative Communication</div>
-    <div class="doc-title">Meeting Summary and Coordination Report</div>
-    <div class="doc-badges">
-      <span class="badge badge-amber">Written Translation</span>
-      <span class="badge badge-blue">Institutional Report</span>
-      <span class="badge badge-teal">EN → ID</span>
-    </div>
-  </div>
+        .nav-item.active {
+            background: rgba(201, 168, 76, 0.15);
+            color: #fff;
+            font-weight: 500;
+        }
 
-  <div class="overview-grid">
-    <div class="meta-card"><div class="label">Document Type</div><div class="value">Coordination Meeting Summary</div></div>
-    <div class="meta-card"><div class="label">Parties</div><div class="value">RSO, DS-ATA Program Office, Polri</div></div>
-    <div class="meta-card"><div class="label">Classification</div><div class="value">Unclassified / For Official Use</div></div>
-    <div class="meta-card"><div class="label">Word Count</div><div class="value">~900 words (EN) · ~950 words (ID)</div></div>
-  </div>
+        .nav-item.active::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 20%;
+            height: 60%;
+            width: 3px;
+            background: var(--gold);
+            border-radius: 0 2px 2px 0;
+        }
 
-  <div class="section-label">English Source Document</div>
-  <div class="doc-block">
-    <h4>Meeting Background</h4>
-    <p>A tri-party coordination meeting was convened on June 10, 2026, at the U.S. Embassy Jakarta Regional Security Office conference room. The purpose of the meeting was to finalize operational and logistical arrangements for the upcoming Advanced Crisis Negotiation Course (ACNC) scheduled for August 2026, and to address unresolved coordination items from the previous quarter's training cycle.</p>
-    <h4>Participants</h4>
-    <p>Regional Security Officer, U.S. Embassy Jakarta (Chair); DS-ATA Program Coordinator, U.S. Embassy Jakarta; DS-ATA Training Specialist (TDY), Washington D.C.; Deputy Director for Cooperation, Polri Lemdiklat; Head of Training Operations, Polri Detachment 88; Polri Liaison Officer to the Embassy; Consecutive Interpreter (present throughout all sessions).</p>
-    <h4>Discussion Topics</h4>
-    <p>The meeting addressed four primary agenda items. First, the parties reviewed participant nomination procedures, noting delays in the submission of pre-course medical clearance documentation by nominating units in three regional commands. DS-ATA and Polri agreed to implement a unified online submission portal for all pre-course documentation effective the following training cycle. Second, the parties discussed the integration of newly developed scenario-based modules into the ACNC curriculum, including urban crisis simulation, media relations during active incidents, and inter-agency communication protocols. Third, venue and logistics arrangements for the August course were confirmed, including billeting, ground transportation, and catering requirements for forty (40) participants and ten (10) instructors. Fourth, the parties reviewed feedback from the preceding Tactical Communications Training course, identifying three areas for curriculum refinement: pacing of technical instruction sessions, adequacy of simultaneous interpretation logistics, and diversity of scenario case studies to reflect Indonesian regional contexts.</p>
-    <h4>Operational Concerns</h4>
-    <p>The Polri Detachment 88 representative raised a concern regarding the overlap of the proposed ACNC schedule with a pre-existing Polri internal training commitment affecting two of the nominated participants. DS-ATA confirmed that, subject to the RSO's approval, the course schedule could accommodate a one-day delayed start for the affected participants without compromising overall course integrity. A formal schedule adjustment request is to be submitted by Polri Lemdiklat within five (5) business days.</p>
-    <h4>Resource Requirements</h4>
-    <p>The following resources were confirmed as required for the August ACNC: forty (40) participant workbooks in bilingual format; ten (10) instructor guide copies; two (2) dedicated consecutive interpreters for the full duration of the course; audio-visual equipment including two projectors and one wireless microphone system; and access to a scenario simulation facility within a thirty-minute driving radius of the Embassy.</p>
-    <h4>Course Schedule</h4>
-    <p>The Advanced Crisis Negotiation Course is scheduled for August 11–22, 2026 (ten working days). Day 1: Orientation, administrative briefings, safety briefing. Days 2–4: Foundational theory — negotiation frameworks, behavioral assessment, stakeholder communication. Days 5–7: Scenario-based practical exercises (Phase I — low-complexity scenarios). Days 8–9: Scenario-based practical exercises (Phase II — high-complexity, multi-party scenarios). Day 10: Written assessment, course evaluations, certificate ceremony.</p>
-    <h4>Action Items</h4>
-    <p>Polri Lemdiklat: Submit formal schedule adjustment request by June 17. All nominating units: Complete pre-course documentation submission via new portal by July 28. DS-ATA Coordinator: Confirm interpreter procurement and AV equipment delivery by July 15. RSO: Approve adjusted schedule and issue formal course authorization by July 1.</p>
-    <h4>Follow-Up Plans</h4>
-    <p>A follow-up coordination call is scheduled for July 5, 2026, to confirm the status of all action items prior to the documentation submission deadline. Meeting minutes will be distributed to all participants within three (3) business days of this meeting. The DS-ATA Program Coordinator will serve as the primary point of contact for any intervening issues.</p>
-  </div>
+        .nav-item .nav-label {
+            display: block;
+            font-size: 10px;
+            font-weight: 400;
+            color: rgba(255, 255, 255, 0.35);
+            margin-top: 1px;
+            letter-spacing: 0.02em;
+        }
 
-  <div class="section-label">Indonesian Translation</div>
-  <div class="doc-block">
-    <h4>Latar Belakang Pertemuan</h4>
-    <p>Pertemuan koordinasi tiga pihak diselenggarakan pada 10 Juni 2026 di ruang konferensi Kantor Keamanan Regional Kedutaan Besar Amerika Serikat Jakarta. Tujuan pertemuan ini adalah untuk menyelesaikan pengaturan operasional dan logistik bagi penyelenggaraan Kursus Negosiasi Krisis Lanjutan (ACNC) yang dijadwalkan pada Agustus 2026, sekaligus menyelesaikan butir-butir koordinasi yang belum tuntas dari siklus pelatihan kuartal sebelumnya.</p>
-    <h4>Peserta</h4>
-    <p>Perwira Keamanan Regional, Kedutaan Besar AS Jakarta (Ketua); Koordinator Program DS-ATA, Kedutaan Besar AS Jakarta; Spesialis Pelatihan DS-ATA (Tugas Sementara/TDY), Washington D.C.; Wakil Direktur Bidang Kerja Sama, Lemdiklat Polri; Kepala Operasi Pelatihan, Densus 88 Polri; Perwira Penghubung Polri di Kedutaan; Juru Bahasa Konsekutif (hadir sepanjang seluruh sesi).</p>
-    <h4>Topik Pembahasan</h4>
-    <p>Pertemuan membahas empat agenda utama. Pertama, para pihak meninjau prosedur penominasian peserta, mencatat adanya keterlambatan penyerahan dokumentasi izin medis pra-kursus oleh satuan penominasi dari tiga komando regional. DS-ATA dan Polri sepakat untuk menerapkan portal pengiriman daring terpadu bagi seluruh dokumentasi pra-kursus mulai siklus pelatihan berikutnya. Kedua, para pihak mendiskusikan integrasi modul berbasis skenario yang baru dikembangkan ke dalam kurikulum ACNC, mencakup simulasi krisis perkotaan, hubungan media selama insiden aktif, dan protokol komunikasi antar-instansi. Ketiga, pengaturan venue dan logistik untuk kursus Agustus dikonfirmasi, termasuk akomodasi, transportasi darat, dan kebutuhan katering bagi empat puluh (40) peserta dan sepuluh (10) instruktur. Keempat, para pihak meninjau umpan balik dari kursus Pelatihan Komunikasi Taktis sebelumnya, mengidentifikasi tiga bidang penyempurnaan kurikulum: tempo sesi instruksi teknis, kecukupan logistik interpretasi konsekutif, dan keberagaman studi kasus skenario untuk mencerminkan konteks regional Indonesia.</p>
-    <h4>Kendala Operasional</h4>
-    <p>Perwakilan Densus 88 Polri menyampaikan kekhawatiran mengenai tumpang tindih jadwal ACNC yang diusulkan dengan komitmen pelatihan internal Polri yang sudah ada sebelumnya, yang berdampak pada dua peserta yang telah dinominasikan. DS-ATA mengkonfirmasi bahwa, dengan persetujuan Perwira Keamanan Regional, jadwal kursus dapat mengakomodasi penundaan awal satu hari bagi peserta yang bersangkutan tanpa mengganggu integritas kursus secara keseluruhan. Permintaan penyesuaian jadwal resmi harus diajukan oleh Lemdiklat Polri dalam waktu lima (5) hari kerja.</p>
-    <h4>Kebutuhan Sumber Daya</h4>
-    <p>Sumber daya berikut dikonfirmasi diperlukan untuk ACNC Agustus: empat puluh (40) buku kerja peserta dalam format dwibahasa; sepuluh (10) salinan panduan instruktur; dua (2) juru bahasa konsekutif khusus selama durasi penuh kursus; peralatan audio-visual termasuk dua proyektor dan satu sistem mikrofon nirkabel; serta akses ke fasilitas simulasi skenario dalam radius berkendara tiga puluh menit dari Kedutaan.</p>
-    <h4>Jadwal Kursus</h4>
-    <p>Kursus Negosiasi Krisis Lanjutan dijadwalkan pada 11–22 Agustus 2026 (sepuluh hari kerja). Hari ke-1: Orientasi, pengarahan administratif, pengarahan keselamatan. Hari ke-2 s.d. 4: Teori dasar — kerangka negosiasi, penilaian perilaku, komunikasi pemangku kepentingan. Hari ke-5 s.d. 7: Latihan praktik berbasis skenario (Fase I — skenario kompleksitas rendah). Hari ke-8 s.d. 9: Latihan praktik berbasis skenario (Fase II — skenario kompleksitas tinggi, multi-pihak). Hari ke-10: Penilaian tertulis, evaluasi kursus, upacara pemberian sertifikat.</p>
-    <h4>Butir Tindak Lanjut</h4>
-    <p>Lemdiklat Polri: Menyerahkan permintaan penyesuaian jadwal resmi paling lambat 17 Juni. Seluruh satuan penominasi: Menyelesaikan pengiriman dokumentasi pra-kursus melalui portal baru paling lambat 28 Juli. Koordinator DS-ATA: Mengkonfirmasi pengadaan juru bahasa dan pengiriman peralatan AV paling lambat 15 Juli. Perwira Keamanan Regional: Menyetujui jadwal yang disesuaikan dan menerbitkan otorisasi kursus resmi paling lambat 1 Juli.</p>
-    <h4>Rencana Tindak Lanjut</h4>
-    <p>Panggilan koordinasi tindak lanjut dijadwalkan pada 5 Juli 2026 untuk mengkonfirmasi status seluruh butir tindak lanjut sebelum batas waktu pengiriman dokumentasi. Risalah pertemuan akan didistribusikan kepada seluruh peserta dalam waktu tiga (3) hari kerja sejak pertemuan ini. Koordinator Program DS-ATA akan bertindak sebagai narahubung utama untuk setiap permasalahan yang muncul di antara waktu tersebut.</p>
-  </div>
+        .nav-item.active .nav-label {
+            color: rgba(255, 255, 255, 0.55);
+        }
 
-  <div class="section-label">Terminology Table</div>
-  <table class="term-table">
-    <tr><th>English Term</th><th>Indonesian Equivalent</th><th>Notes</th></tr>
-    <tr><td>Regional Security Officer (RSO)</td><td>Perwira Keamanan Regional</td><td>Embassy security title</td></tr>
-    <tr><td>Advanced Crisis Negotiation Course</td><td>Kursus Negosiasi Krisis Lanjutan</td><td>Full course name retained</td></tr>
-    <tr><td>Scenario-based Module</td><td>Modul Berbasis Skenario</td><td>Training pedagogy term</td></tr>
-    <tr><td>Urban Crisis Simulation</td><td>Simulasi Krisis Perkotaan</td><td>Operational exercise term</td></tr>
-    <tr><td>Behavioral Assessment</td><td>Penilaian Perilaku</td><td>Psychology/negotiation register</td></tr>
-    <tr><td>Media Relations</td><td>Hubungan Media</td><td>Communications field term</td></tr>
-    <tr><td>Inter-agency Communication</td><td>Komunikasi Antar-instansi</td><td>Indonesian gov standard</td></tr>
-    <tr><td>Billeting</td><td>Akomodasi</td><td>"Billeting" has no exact ID equiv.</td></tr>
-    <tr><td>Course Integrity</td><td>Integritas Kursus</td><td>Quality assurance term</td></tr>
-    <tr><td>Schedule Adjustment Request</td><td>Permintaan Penyesuaian Jadwal</td><td>Formal administrative phrasing</td></tr>
-    <tr><td>Workbook</td><td>Buku Kerja</td><td>Standard education term</td></tr>
-    <tr><td>Wireless Microphone System</td><td>Sistem Mikrofon Nirkabel</td><td>Technical equipment term</td></tr>
-    <tr><td>Negotiation Framework</td><td>Kerangka Negosiasi</td><td>Crisis management register</td></tr>
-    <tr><td>Stakeholder Communication</td><td>Komunikasi Pemangku Kepentingan</td><td>Management/gov terminology</td></tr>
-    <tr><td>Certificate Ceremony</td><td>Upacara Pemberian Sertifikat</td><td>"Upacara" carries official weight</td></tr>
-    <tr><td>Tri-party Coordination</td><td>Koordinasi Tiga Pihak</td><td>Diplomatic/legal usage</td></tr>
-    <tr><td>Temporary Duty (TDY)</td><td>Tugas Sementara (TDY)</td><td>Acronym retained for Embassy use</td></tr>
-    <tr><td>Meeting Minutes</td><td>Risalah Pertemuan</td><td>Formal Indonesian official term</td></tr>
-    <tr><td>Point of Contact</td><td>Narahubung</td><td>Indonesian gov standard</td></tr>
-    <tr><td>Pre-course Medical Clearance</td><td>Izin Medis Pra-kursus</td><td>Administrative/medical term</td></tr>
-  </table>
+        .sidebar-footer {
+            padding: 1rem 1.25rem 0 1.25rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.06);
+            margin-top: 0.5rem;
+            font-size: 9px;
+            color: rgba(255, 255, 255, 0.25);
+            letter-spacing: 0.04em;
+            text-transform: uppercase;
+        }
 
-  <div class="section-label">Translator Notes</div>
-  <div class="note-block"><strong>"Billeting":</strong> This military-administrative term has no single-word Indonesian equivalent in civilian government usage. "Akomodasi" (accommodation) was selected as the closest functional equivalent, consistent with how Lemdiklat Polri training documents refer to lodging arrangements.</div>
-  <div class="note-block"><strong>Action Items section:</strong> The source uses imperative constructions for each party's action item. Indonesian formal writing typically uses infinitive-nominal constructions ("Menyerahkan…") rather than direct imperatives, which would carry an inappropriate commanding tone between institutional equals.</div>
-  <div class="note-block"><strong>"Risalah pertemuan":</strong> The Indonesian term "risalah" carries a stronger sense of official formality than the English "minutes." This choice reflects the institutional gravity of RSO–Polri coordination documents, which are treated as semi-official records within both organizations.</div>
-</div>
+        /* ============================================================
+           MAIN CONTENT AREA
+           ============================================================ */
+        .main {
+            flex: 1;
+            overflow-y: auto;
+            max-height: 820px;
+            padding: 2rem 2.25rem 2.5rem 2.25rem;
+            background: var(--off-white);
+        }
 
-<!-- PROJECT 3 -->
-<div id="p3" class="project-section">
-  <div class="doc-header">
-    <div class="doc-ref">DS-ATA / Project 03 · News Translation</div>
-    <div class="doc-title">Security Awareness News Monitoring Report</div>
-    <div class="doc-badges">
-      <span class="badge badge-amber">News Translation</span>
-      <span class="badge badge-blue">Public Safety / Cybersecurity</span>
-      <span class="badge badge-teal">EN → ID</span>
-    </div>
-  </div>
+        .project-section {
+            display: none;
+            animation: fadeIn 0.3s ease;
+        }
 
-  <div class="section-label">English Source Article</div>
-  <div class="doc-block">
-    <h4>Ransomware Attacks on Critical Infrastructure: Southeast Asia in the Crosshairs</h4>
-    <p><em>Security Monitoring Report — For Official Awareness Distribution</em></p>
-    <p>Cybersecurity analysts across Southeast Asia have raised alarms over a significant uptick in ransomware attacks targeting critical infrastructure sectors, including public utilities, transportation networks, and government data systems. In the past eighteen months, documented incidents in the region have increased by an estimated 42 percent, with threat actors increasingly prioritizing entities whose operational continuity is essential to national security and public safety.</p>
-    <p>Indonesian institutions have not been immune to this trend. A number of government agencies and state-owned enterprise networks reported suspicious activity consistent with initial-stage ransomware deployment in the first quarter of 2026, though full-scale encryption attacks were mitigated in most documented cases through rapid incident response protocols. Cybersecurity agencies have noted that threat actors are leveraging publicly known vulnerabilities in widely deployed enterprise software, combined with social engineering techniques targeting government employees with administrative access to critical systems.</p>
-    <p>Law enforcement agencies, including Polri's Cyber Crime Unit (Dittipidsiber), have intensified coordination with international partners including INTERPOL's Cybercrime Directorate and the U.S. Federal Bureau of Investigation to attribute attacks and disrupt threat actor infrastructure. Three suspects connected to a regional ransomware syndicate were apprehended in early 2026 following a joint operation conducted under the ASEAN Cybercrime Operations Desk framework.</p>
-    <p>Cybersecurity experts emphasize that the primary vulnerability vector for government institutions remains human error: specifically, employees clicking on phishing links, using unsecured personal devices on institutional networks, or failing to apply software patches in a timely manner. Security awareness training programs targeting government personnel at all levels are identified as the most cost-effective mitigation measure against ransomware risk.</p>
-    <p>DS-ATA and the Embassy Regional Security Office recommend the following immediate measures for all Embassy-affiliated personnel and Indonesian government partners: enable multi-factor authentication on all institutional accounts; report any suspicious email activity to the Embassy IT Security Officer within one hour of detection; do not connect personal devices to Embassy or Embassy-affiliated networks; and participate in the upcoming Embassy-hosted Security Awareness Briefing scheduled for July 2026.</p>
-  </div>
+        .project-section.active {
+            display: block;
+        }
 
-  <div class="section-label">Indonesian Translation</div>
-  <div class="doc-block">
-    <h4>Serangan Ransomware terhadap Infrastruktur Kritis: Asia Tenggara dalam Bidikan</h4>
-    <p><em>Laporan Pemantauan Keamanan — Untuk Distribusi Kesadaran Resmi</em></p>
-    <p>Para analis keamanan siber di seluruh Asia Tenggara telah membunyikan alarm atas lonjakan signifikan serangan ransomware yang menyasar sektor infrastruktur kritis, termasuk utilitas publik, jaringan transportasi, dan sistem data pemerintahan. Dalam delapan belas bulan terakhir, insiden yang terdokumentasi di kawasan ini meningkat sekitar 42 persen, dengan pelaku ancaman yang semakin memprioritaskan entitas yang keberlangsungan operasionalnya sangat penting bagi keamanan nasional dan keselamatan publik.</p>
-    <p>Institusi-institusi Indonesia tidak luput dari tren ini. Sejumlah lembaga pemerintah dan jaringan perusahaan BUMN melaporkan aktivitas mencurigakan yang konsisten dengan tahap awal penerapan ransomware pada kuartal pertama 2026, meskipun serangan enkripsi skala penuh berhasil diantisipasi di sebagian besar kasus yang terdokumentasi melalui protokol respons insiden yang cepat. Badan-badan keamanan siber mencatat bahwa pelaku ancaman memanfaatkan kerentanan yang sudah diketahui publik dalam perangkat lunak korporat yang banyak digunakan, dikombinasikan dengan teknik rekayasa sosial yang menyasar pegawai pemerintah dengan akses administratif ke sistem-sistem kritis.</p>
-    <p>Instansi penegak hukum, termasuk Direktorat Tindak Pidana Siber Polri (Dittipidsiber), telah mengintensifkan koordinasi dengan mitra internasional termasuk Direktorat Kejahatan Siber INTERPOL dan Biro Investigasi Federal Amerika Serikat untuk mengidentifikasi pelaku dan melumpuhkan infrastruktur ancaman. Tiga tersangka yang terkait dengan sindikat ransomware regional ditangkap pada awal 2026 menyusul operasi gabungan yang dilaksanakan dalam kerangka ASEAN Cybercrime Operations Desk.</p>
-    <p>Para pakar keamanan siber menekankan bahwa vektor kerentanan utama bagi institusi pemerintah tetap berupa kesalahan manusia: secara spesifik, pegawai yang mengklik tautan phishing, menggunakan perangkat pribadi yang tidak aman pada jaringan institusional, atau gagal menerapkan pembaruan perangkat lunak tepat waktu. Program pelatihan kesadaran keamanan yang menyasar personel pemerintah di semua tingkatan diidentifikasi sebagai langkah mitigasi paling efektif dari segi biaya terhadap risiko ransomware.</p>
-    <p>DS-ATA dan Kantor Keamanan Regional Kedutaan merekomendasikan langkah-langkah segera berikut bagi seluruh personel yang berafiliasi dengan Kedutaan dan mitra pemerintah Indonesia: aktifkan autentikasi multi-faktor pada semua akun institusional; laporkan aktivitas email mencurigakan kepada Petugas Keamanan TI Kedutaan dalam waktu satu jam setelah terdeteksi; jangan menghubungkan perangkat pribadi ke jaringan Kedutaan atau jaringan yang terafiliasi dengan Kedutaan; dan ikuti Pengarahan Kesadaran Keamanan yang diselenggarakan Kedutaan yang dijadwalkan pada Juli 2026.</p>
-  </div>
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(6px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
 
-  <div class="section-label">Terminology Table</div>
-  <table class="term-table">
-    <tr><th>English Term</th><th>Indonesian Equivalent</th><th>Notes</th></tr>
-    <tr><td>Ransomware Attack</td><td>Serangan Ransomware</td><td>Loanword retained (no standard ID equiv.)</td></tr>
-    <tr><td>Critical Infrastructure</td><td>Infrastruktur Kritis</td><td>BSSN official terminology</td></tr>
-    <tr><td>Threat Actor</td><td>Pelaku Ancaman</td><td>Cybersecurity field term</td></tr>
-    <tr><td>Encryption Attack</td><td>Serangan Enkripsi</td><td>Technical/cybersecurity</td></tr>
-    <tr><td>Incident Response Protocol</td><td>Protokol Respons Insiden</td><td>BSSN/CSIRT standard term</td></tr>
-    <tr><td>Social Engineering</td><td>Rekayasa Sosial</td><td>Established ID cybersecurity term</td></tr>
-    <tr><td>Phishing</td><td>Phishing</td><td>Loanword; no functional ID replacement</td></tr>
-    <tr><td>Multi-factor Authentication</td><td>Autentikasi Multi-faktor</td><td>Technical standard term</td></tr>
-    <tr><td>Software Patch</td><td>Pembaruan Perangkat Lunak</td><td>More accessible than "patch"</td></tr>
-    <tr><td>Cybercrime Directorate (INTERPOL)</td><td>Direktorat Kejahatan Siber (INTERPOL)</td><td>Official institutional name</td></tr>
-    <tr><td>Attribution</td><td>Identifikasi Pelaku</td><td>Adapted; "atribusi" less understood</td></tr>
-    <tr><td>Security Awareness Training</td><td>Pelatihan Kesadaran Keamanan</td><td>DS-ATA program term</td></tr>
-    <tr><td>Mitigation Measure</td><td>Langkah Mitigasi</td><td>Risk management register</td></tr>
-    <tr><td>Operational Continuity</td><td>Keberlangsungan Operasional</td><td>Business/gov continuity term</td></tr>
-    <tr><td>State-owned Enterprise</td><td>BUMN (Badan Usaha Milik Negara)</td><td>Standard Indonesian acronym</td></tr>
-  </table>
+        /* ============================================================
+           CLASSIFIED DOCUMENT HEADER — Gold rule + project ref
+           ============================================================ */
+        .doc-header {
+            background: var(--white);
+            border-left: 4px solid var(--gold);
+            border-radius: 0 var(--radius) var(--radius) 0;
+            padding: 1rem 1.5rem;
+            margin-bottom: 1.75rem;
+            box-shadow: var(--shadow-sm);
+            display: flex;
+            flex-wrap: wrap;
+            align-items: flex-start;
+            justify-content: space-between;
+        }
 
-  <div class="section-label">Translator Notes</div>
-  <div class="note-block"><strong>Loanwords in cybersecurity:</strong> Terms like "ransomware," "phishing," and "malware" are retained as loanwords rather than translated. Indonesian cybersecurity authorities (BSSN) use these terms in official communications, and attempting to translate them would create unfamiliar neologisms that could confuse specialist readers.</div>
-  <div class="note-block"><strong>"Attribution":</strong> The cybersecurity term "to attribute attacks" (to link attacks to specific actors) was rendered as "mengidentifikasi pelaku" (to identify perpetrators) rather than the direct loan "atribusi," which is understood within technical circles but less accessible in a document intended for broader government distribution.</div>
-  <div class="note-block"><strong>Dittipidsiber:</strong> The official Indonesian name and acronym were used in place of the English gloss on first occurrence in the Indonesian version, as Indonesian readers would recognize the Indonesian designation more readily. The English version retains the English gloss with the Indonesian acronym in parentheses.</div>
-</div>
+        .doc-header-left {
+            display: flex;
+            flex-direction: column;
+            gap: 0.15rem;
+        }
 
-<!-- PROJECT 4 -->
-<div id="p4" class="project-section">
-  <div class="doc-header">
-    <div class="doc-ref">DS-ATA / Project 04 · Administrative Translation</div>
-    <div class="doc-title">Participant Course Announcement</div>
-    <div class="doc-badges">
-      <span class="badge badge-amber">Written Translation</span>
-      <span class="badge badge-blue">Official Notice</span>
-      <span class="badge badge-teal">EN → ID</span>
-    </div>
-  </div>
+        .doc-ref {
+            font-size: 10px;
+            font-weight: 500;
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+            color: var(--gray-mid);
+        }
 
-  <div class="section-label">English Source Document</div>
-  <div class="doc-block">
-    <h4>Official Course Announcement</h4>
-    <p><strong>Course:</strong> Advanced Investigative Interview Techniques (AIIT)<br>
-    <strong>Hosted by:</strong> DS-ATA Program, U.S. Embassy Jakarta, in coordination with Polri Criminal Investigation Division (Bareskrim)<br>
-    <strong>Date:</strong> September 15–19, 2026<br>
-    <strong>Venue:</strong> Bareskrim Training Center, Jakarta Selatan</p>
-    <h4>Eligibility Requirements</h4>
-    <p>This course is open to active Polri investigators holding the rank of Second Lieutenant (Ipda) through Lieutenant Colonel (AKBP), currently assigned to criminal investigation units at the provincial or national level. Nominees must have a minimum of two (2) years of investigative experience and must not have attended an AIIT-equivalent course within the preceding three years. Nominees with English proficiency at a conversational level or above are strongly encouraged; however, consecutive interpretation will be provided throughout the course.</p>
-    <h4>Schedule</h4>
-    <p>Day 1 (Monday, September 15): Administrative registration, course orientation, and introduction to interview frameworks. Day 2 (Tuesday, September 16): Cognitive interview techniques and memory enhancement protocols. Day 3 (Wednesday, September 17): Behavioral analysis, deception detection, and statement analysis. Day 4 (Thursday, September 18): Practical interview simulations with role players; peer and instructor feedback sessions. Day 5 (Friday, September 19): Written assessment, course review, certificate presentation ceremony (16:00 WIB).</p>
-    <h4>Venue and Logistics</h4>
-    <p>The course will be held at the Bareskrim Training Center, Jl. Trunojoyo No. 3, Jakarta Selatan. Participants from outside the Greater Jakarta area are eligible to apply for subsidized billeting at the Bareskrim Guest Facilities. Requests for billeting must be submitted with the pre-course documentation package. Ground transportation from the Bareskrim complex to the course venue will be arranged for all registered participants.</p>
-    <h4>Dress Code</h4>
-    <p>Participants are required to wear the Class B service uniform (PDL) for all practical exercise sessions. Business attire or Class A service uniform is required for the certificate presentation ceremony. Civilian participants, if any, are required to wear professional business attire throughout the course duration.</p>
-    <h4>Required Documents</h4>
-    <p>Participants must submit the following to their nominating unit's administrative office no later than August 29, 2026: completed DS-ATA Course Registration Form (Form DS-ATA/REG-2026); valid institutional ID and copy of most recent rank certificate; pre-course medical clearance from an authorized medical officer; and written approval from immediate supervisor. Incomplete submissions will not be processed.</p>
-    <h4>Attendance Policy</h4>
-    <p>Attendance at all scheduled sessions is mandatory. Participants who accumulate absences exceeding 10% of total course hours will be administratively withdrawn and will not be eligible for certification. Exceptions for medical emergencies must be documented and approved by the DS-ATA Program Coordinator no later than 24 hours after the missed session.</p>
-    <h4>Safety Reminders</h4>
-    <p>Personal firearms are not permitted inside the training facility. All participants are required to secure their service weapons at the Bareskrim armory upon arrival. The use of recording devices during instruction sessions is prohibited without prior written authorization from the DS-ATA Program Coordinator. Participants are reminded to adhere to all Embassy and Bareskrim facility security protocols at all times.</p>
-  </div>
+        .doc-ref .gold {
+            color: var(--gold);
+            font-weight: 600;
+        }
 
-  <div class="section-label">Indonesian Translation</div>
-  <div class="doc-block">
-    <h4>Pengumuman Kursus Resmi</h4>
-    <p><strong>Kursus:</strong> Teknik Wawancara Investigatif Lanjutan (AIIT)<br>
-    <strong>Penyelenggara:</strong> Program DS-ATA, Kedutaan Besar AS Jakarta, bekerja sama dengan Badan Reserse Kriminal Polri (Bareskrim)<br>
-    <strong>Tanggal:</strong> 15–19 September 2026<br>
-    <strong>Tempat:</strong> Pusat Pelatihan Bareskrim, Jakarta Selatan</p>
-    <h4>Persyaratan Kelayakan</h4>
-    <p>Kursus ini terbuka bagi penyidik Polri aktif berpangkat Inspektur Polisi Dua (Ipda) hingga Ajun Komisaris Besar Polisi (AKBP), yang saat ini bertugas di satuan reserse kriminal tingkat provinsi atau nasional. Peserta yang dinominasikan harus memiliki pengalaman penyidikan minimal dua (2) tahun dan tidak boleh pernah mengikuti kursus setara AIIT dalam tiga tahun terakhir. Peserta dengan kemampuan bahasa Inggris tingkat percakapan atau di atasnya sangat dianjurkan; namun demikian, interpretasi konsekutif akan disediakan selama kursus berlangsung.</p>
-    <h4>Jadwal</h4>
-    <p>Hari ke-1 (Senin, 15 September): Pendaftaran administratif, orientasi kursus, dan pengantar kerangka wawancara. Hari ke-2 (Selasa, 16 September): Teknik wawancara kognitif dan protokol peningkatan memori. Hari ke-3 (Rabu, 17 September): Analisis perilaku, deteksi kebohongan, dan analisis pernyataan. Hari ke-4 (Kamis, 18 September): Simulasi wawancara praktik dengan pemeran; sesi umpan balik rekan dan instruktur. Hari ke-5 (Jumat, 19 September): Penilaian tertulis, tinjauan kursus, upacara penyerahan sertifikat (pukul 16.00 WIB).</p>
-    <h4>Venue dan Logistik</h4>
-    <p>Kursus akan diselenggarakan di Pusat Pelatihan Bareskrim, Jl. Trunojoyo No. 3, Jakarta Selatan. Peserta dari luar wilayah Jabodetabek berhak mengajukan permohonan akomodasi bersubsidi di Fasilitas Tamu Bareskrim. Permohonan akomodasi harus disertakan dalam paket dokumentasi pra-kursus. Transportasi darat dari kompleks Bareskrim ke venue kursus akan disediakan bagi seluruh peserta yang terdaftar.</p>
-    <h4>Ketentuan Pakaian</h4>
-    <p>Peserta wajib mengenakan Pakaian Dinas Lapangan (PDL) untuk seluruh sesi latihan praktik. Pakaian dinas harian atau PDH wajib dikenakan pada upacara penyerahan sertifikat. Peserta sipil, apabila ada, wajib mengenakan pakaian bisnis formal selama durasi kursus berlangsung.</p>
-    <h4>Dokumen yang Diperlukan</h4>
-    <p>Peserta wajib menyerahkan dokumen berikut kepada kantor administrasi satuan penominasi paling lambat 29 Agustus 2026: Formulir Pendaftaran Kursus DS-ATA yang telah dilengkapi (Formulir DS-ATA/REG-2026); KTA institusional yang masih berlaku beserta salinan surat keterangan pangkat terkini; surat izin medis pra-kursus dari perwira medis yang berwenang; dan persetujuan tertulis dari atasan langsung. Berkas yang tidak lengkap tidak akan diproses.</p>
-    <h4>Kebijakan Kehadiran</h4>
-    <p>Kehadiran di seluruh sesi yang dijadwalkan bersifat wajib. Peserta yang mengakumulasi ketidakhadiran melebihi 10% dari total jam kursus akan ditarik secara administratif dan tidak berhak mendapatkan sertifikasi. Pengecualian untuk kondisi darurat medis harus didokumentasikan dan mendapat persetujuan dari Koordinator Program DS-ATA paling lambat 24 jam setelah sesi yang terlewat.</p>
-    <h4>Pengingat Keselamatan</h4>
-    <p>Senjata api pribadi tidak diperkenankan di dalam fasilitas pelatihan. Seluruh peserta wajib menyimpan senjata dinas mereka di gudang senjata Bareskrim setibanya di lokasi. Penggunaan perangkat perekam selama sesi instruksi dilarang tanpa otorisasi tertulis sebelumnya dari Koordinator Program DS-ATA. Peserta diingatkan untuk mematuhi seluruh protokol keamanan fasilitas Kedutaan dan Bareskrim setiap saat.</p>
-  </div>
+        .doc-title {
+            font-family: var(--font-serif);
+            font-size: 20px;
+            font-weight: 500;
+            color: var(--navy);
+            line-height: 1.3;
+            margin: 0.1rem 0 0.2rem 0;
+        }
 
-  <div class="section-label">Terminology Notes</div>
-  <div class="note-block"><strong>Rank system adaptation:</strong> Indonesian police ranks (Ipda, AKBP) were retained in their Indonesian acronym forms with the full name provided on first occurrence. The English source provided English-language equivalents which were replaced in the Indonesian translation with the official Indonesian rank designations, as Indonesian readers would not recognize the English-translated rank names.</div>
-  <div class="note-block"><strong>Dress code:</strong> "Class B service uniform" was rendered as "Pakaian Dinas Lapangan (PDL)" and "Class A" as "PDH" (Pakaian Dinas Harian), consistent with official Polri uniform regulations (Peraturan Kapolri), as these are the recognized Indonesian designations for the equivalent uniform classes.</div>
-  <div class="note-block"><strong>"Billeting" again:</strong> As in Project 2, "billeting" was rendered as "akomodasi" (accommodation). "Subsidi akomodasi" was used rather than "billeting bersubsidi" to avoid an awkward loanword compound.</div>
-</div>
+        .doc-badges {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 6px;
+            margin-top: 0.3rem;
+        }
 
-<!-- PROJECT 5 -->
-<div id="p5" class="project-section">
-  <div class="doc-header">
-    <div class="doc-ref">DS-ATA / Project 05 · Consecutive Interpretation</div>
-    <div class="doc-title">Consecutive Interpretation Simulation Transcript</div>
-    <div class="doc-badges">
-      <span class="badge badge-amber">Consecutive Interpretation</span>
-      <span class="badge badge-blue">RSO · DS-ATA · Polri</span>
-      <span class="badge badge-teal">EN ⇄ ID</span>
-    </div>
-  </div>
+        .badge {
+            font-size: 10px;
+            font-weight: 500;
+            padding: 2px 10px;
+            border-radius: 20px;
+            letter-spacing: 0.03em;
+            text-transform: uppercase;
+            background: var(--gray-pale);
+            color: var(--gray-mid);
+        }
 
-  <div class="overview-grid">
-    <div class="meta-card"><div class="label">Scenario</div><div class="value">Pre-training coordination meeting</div></div>
-    <div class="meta-card"><div class="label">Setting</div><div class="value">RSO Conference Room, U.S. Embassy Jakarta</div></div>
-    <div class="meta-card"><div class="label">Participants</div><div class="value">RSO, DS-ATA Coordinator, Polri General, Interpreter</div></div>
-    <div class="meta-card"><div class="label">Exchanges</div><div class="value">50 consecutive interpretation exchanges</div></div>
-  </div>
+        .badge-amber {
+            background: var(--gold-pale);
+            color: #7A631F;
+        }
 
-  <div class="section-label">Legend</div>
-  <div style="display:flex;gap:8px;flex-wrap:wrap;margin-bottom:1rem">
-    <span class="speaker-pill sp-rso">RSO — Regional Security Officer</span>
-    <span class="speaker-pill sp-ata">ATA — DS-ATA Coordinator</span>
-    <span class="speaker-pill sp-inp">INP — Polri General</span>
-    <span class="speaker-pill sp-int">INT — Interpreter Note</span>
-  </div>
+        .badge-blue {
+            background: #E4EDF5;
+            color: var(--slate);
+        }
 
-  <div class="section-label">Interpretation Transcript</div>
-  <table class="dialogue-table">
-    <tr><th style="width:10%">Speaker</th><th style="width:42%">English Utterance</th><th style="width:42%">Indonesian Interpretation</th><th style="width:6%">#</th></tr>
-    <tr><td><span class="speaker-pill sp-rso">RSO</span></td><td>Good morning, General. Thank you for making time for us today. We have quite a bit to cover regarding the upcoming training cycle.</td><td>Selamat pagi, Jenderal. Terima kasih telah meluangkan waktu untuk kami hari ini. Kami memiliki cukup banyak hal yang perlu dibahas mengenai siklus pelatihan yang akan datang.</td><td>1</td></tr>
-    <tr><td><span class="speaker-pill sp-inp">INP</span></td><td>Sama-sama. Kami juga menantikan kerja sama yang produktif. Ada beberapa hal dari pihak kami yang ingin kami sampaikan.</td><td>Likewise. We are also looking forward to productive cooperation. There are several matters on our side that we would like to raise as well.</td><td>2</td></tr>
-    <tr><td><span class="speaker-pill sp-rso">RSO</span></td><td>Of course. We want this to be a two-way conversation. Perhaps we can begin with the participant nomination list for the August course.</td><td>Tentu saja. Kami ingin ini menjadi diskusi dua arah. Mungkin kita bisa mulai dengan daftar nominasi peserta untuk kursus bulan Agustus.</td><td>3</td></tr>
-    <tr><td><span class="speaker-pill sp-inp">INP</span></td><td>Baik. Kami telah meninjau daftar tersebut. Secara keseluruhan sudah sesuai, namun ada dua nama yang kami usulkan untuk diganti karena alasan penugasan operasional.</td><td>Very well. We have reviewed the list. It is generally satisfactory; however, there are two names we would like to substitute due to operational assignment reasons.</td><td>4</td></tr>
-    <tr><td><span class="speaker-pill sp-ata">ATA</span></td><td>That's certainly manageable. Can you let us know which positions they're in so we can confirm they meet the eligibility criteria?</td><td>Tentu saja hal itu dapat diatur. Bisakah Bapak memberi tahu posisi mereka agar kami dapat mengkonfirmasi bahwa mereka memenuhi kriteria kelayakan?</td><td>5</td></tr>
-    <tr><td><span class="speaker-pill sp-inp">INP</span></td><td>Keduanya dari Densus 88, berpangkat Iptu. Pengalaman investigatif mereka sudah memenuhi syarat. Kami akan segera mengirimkan berkas nominasi resmi.</td><td>Both are from Detachment 88, holding the rank of First Inspector. Their investigative experience meets the requirements. We will send the formal nomination files promptly.</td><td>6</td></tr>
-    <tr><td><span class="speaker-pill sp-int">INT</span><div class="int-note">Note: "Iptu" (Inspektur Polisi Satu) rendered as "First Inspector" — closest English functional equivalent in law enforcement context.</div></td><td></td><td></td><td></td></tr>
-    <tr><td><span class="speaker-pill sp-rso">RSO</span></td><td>Thank you. Now, I'd like to address the interpretation arrangements for the course. We've found in past training cycles that having two interpreters rotating is significantly better for quality.</td><td>Terima kasih. Sekarang, saya ingin membahas pengaturan interpretasi untuk kursus ini. Berdasarkan siklus pelatihan sebelumnya, kami menemukan bahwa memiliki dua juru bahasa yang bergiliran jauh lebih baik bagi kualitas interpretasi.</td><td>7</td></tr>
-    <tr><td><span class="speaker-pill sp-inp">INP</span></td><td>Kami setuju. Interpretasi yang akurat sangat krusial, terutama saat instruksi teknis dan sesi taktis. Kesalahan dalam interpretasi dapat berdampak serius pada pemahaman dan keselamatan.</td><td>We agree. Accurate interpretation is absolutely critical, especially during technical instruction and tactical sessions. Errors in interpretation can have serious consequences for understanding and safety.</td><td>8</td></tr>
-    <tr><td><span class="speaker-pill sp-ata">ATA</span></td><td>We've already identified two qualified candidates. Both have prior experience with law enforcement training interpretation and are familiar with DS-ATA terminology.</td><td>Kami telah mengidentifikasi dua kandidat yang memenuhi syarat. Keduanya memiliki pengalaman sebelumnya dalam interpretasi pelatihan penegak hukum dan sudah familiar dengan terminologi DS-ATA.</td><td>9</td></tr>
-    <tr><td><span class="speaker-pill sp-inp">INP</span></td><td>Bagus sekali. Apakah mereka sudah melalui proses vetting keamanan dari pihak Kedutaan? Kami juga perlu memastikan mereka melalui verifikasi dari sisi Polri.</td><td>Excellent. Have they already gone through the security vetting process from the Embassy's side? We also need to ensure they undergo verification from the Polri side.</td><td>10</td></tr>
-    <tr><td><span class="speaker-pill sp-rso">RSO</span></td><td>Yes, both have current Public Trust certifications on file with the Embassy. We're happy to share the documentation with your security division for their records.</td><td>Ya, keduanya memiliki sertifikasi Public Trust yang masih berlaku yang tersimpan di arsip Kedutaan. Kami dengan senang hati akan berbagi dokumentasi tersebut dengan divisi keamanan Bapak untuk catatan mereka.</td><td>11</td></tr>
-    <tr><td><span class="speaker-pill sp-int">INT</span><div class="int-note">Note: "Public Trust certification" retained in English in the Indonesian interpretation, as this is a specific U.S. government security clearance category with no direct Indonesian equivalent. A brief gloss ("sertifikasi kepercayaan publik") was added internally for context.</div></td><td></td><td></td><td></td></tr>
-    <tr><td><span class="speaker-pill sp-inp">INP</span></td><td>Kami apresiasi transparansi ini. Satu hal lagi — apakah materi teknis kursus akan tersedia dalam versi bahasa Indonesia sebelum kursus dimulai?</td><td>We appreciate this transparency. One more point — will the technical course materials be available in Indonesian before the course begins?</td><td>12</td></tr>
-    <tr><td><span class="speaker-pill sp-ata">ATA</span></td><td>Yes, all participant workbooks will be bilingual. We aim to distribute them at least two weeks before the course start date so participants can review the terminology in advance.</td><td>Ya, semua buku kerja peserta akan dalam format dwibahasa. Kami bertujuan mendistribusikannya setidaknya dua minggu sebelum tanggal mulai kursus agar peserta dapat meninjau terminologi terlebih dahulu.</td><td>13</td></tr>
-    <tr><td><span class="speaker-pill sp-inp">INP</span></td><td>Sangat membantu. Terminologi teknis dalam bahasa Inggris sering menjadi hambatan. Persiapan awal akan meningkatkan pemahaman dan efektivitas pelatihan secara keseluruhan.</td><td>That is very helpful. English technical terminology is often a barrier. Advance preparation will improve understanding and overall training effectiveness.</td><td>14</td></tr>
-    <tr><td><span class="speaker-pill sp-rso">RSO</span></td><td>I agree completely. I want to move to the venue arrangements. Is the Bareskrim training facility confirmed for the August dates?</td><td>Saya sepenuhnya setuju. Saya ingin beralih ke pengaturan venue. Apakah fasilitas pelatihan Bareskrim sudah dikonfirmasi untuk tanggal-tanggal di bulan Agustus?</td><td>15</td></tr>
-    <tr><td><span class="speaker-pill sp-inp">INP</span></td><td>Sudah dikonfirmasi. Fasilitas akan sepenuhnya tersedia, termasuk ruang kelas, area simulasi, dan lapangan tembak tertutup untuk sesi latihan tembak.</td><td>It is confirmed. The facility will be fully available, including classrooms, simulation areas, and the indoor range for any firearms training sessions.</td><td>16</td></tr>
-    <tr><td><span class="speaker-pill sp-ata">ATA</span></td><td>That's great news. Will the indoor range accommodate the DS-ATA range safety protocol setup, including the required safety lanes and officer positioning?</td><td>Kabar yang sangat baik. Apakah lapangan tembak tertutup tersebut dapat mengakomodasi pengaturan protokol keselamatan lapangan tembak DS-ATA, termasuk jalur keselamatan yang diperlukan dan posisi petugas?</td><td>17</td></tr>
-    <tr><td><span class="speaker-pill sp-inp">INP</span></td><td>Kami belum familiar dengan spesifikasi teknis DS-ATA. Apakah mungkin tim teknis Anda melakukan survei fasilitas sebelum kursus dimulai?</td><td>We are not fully familiar with the DS-ATA technical specifications. Would it be possible for your technical team to conduct a facility survey before the course begins?</td><td>18</td></tr>
-    <tr><td><span class="speaker-pill sp-rso">RSO</span></td><td>Absolutely. We'll schedule a site visit with our range safety officer for the week of July 21. We'll provide a written assessment within three days of the visit.</td><td>Tentu saja. Kami akan menjadwalkan kunjungan lokasi bersama perwira keselamatan lapangan tembak kami untuk minggu tanggal 21 Juli. Kami akan memberikan penilaian tertulis dalam tiga hari setelah kunjungan.</td><td>19</td></tr>
-    <tr><td><span class="speaker-pill sp-inp">INP</span></td><td>Terima kasih. Itu akan sangat membantu koordinasi dari pihak kami. Kami akan pastikan personel yang tepat tersedia untuk menemani tim Anda selama survei.</td><td>Thank you. That will greatly assist coordination on our end. We will ensure the appropriate personnel are available to accompany your team during the survey.</td><td>20</td></tr>
-    <tr><td><span class="speaker-pill sp-ata">ATA</span></td><td>I also want to flag that we'll need dedicated parking or vehicle access for the DS-ATA training van during the full course period.</td><td>Saya juga ingin menyampaikan bahwa kami memerlukan parkir khusus atau akses kendaraan untuk van pelatihan DS-ATA selama periode kursus penuh.</td><td>21</td></tr>
-    <tr><td><span class="speaker-pill sp-inp">INP</span></td><td>Tidak ada masalah. Kami akan mengalokasikan tempat parkir khusus di area terbatas Bareskrim. Perwira penghubung kami akan mengurus izin akses kendaraan.</td><td>No problem at all. We will allocate a dedicated parking space in the restricted area of Bareskrim. Our liaison officer will handle the vehicle access permits.</td><td>22</td></tr>
-    <tr><td><span class="speaker-pill sp-rso">RSO</span></td><td>Perfect. Now, regarding catering — we have forty participants and ten instructors. Is the Bareskrim cafeteria able to accommodate that volume?</td><td>Sempurna. Sekarang, mengenai katering — kami memiliki empat puluh peserta dan sepuluh instruktur. Apakah kafetaria Bareskrim mampu mengakomodasi jumlah tersebut?</td><td>23</td></tr>
-    <tr><td><span class="speaker-pill sp-inp">INP</span></td><td>Untuk peserta sebanyak itu, kafetaria kami cukup memadai. Namun untuk instruktur asing, mungkin ada preferensi menu tertentu yang perlu kami akomodasi.</td><td>For that number of participants, our cafeteria is adequate. However, for the international instructors, there may be specific menu preferences we need to accommodate.</td><td>24</td></tr>
-    <tr><td><span class="speaker-pill sp-int">INT</span><div class="int-note">Note: "Instruktur asing" (foreign instructors) interpreted as "international instructors" — slightly softened phrasing more appropriate in a diplomatic meeting context.</div></td><td></td><td></td><td></td></tr>
-    <tr><td><span class="speaker-pill sp-ata">ATA</span></td><td>We'll provide dietary requirements in advance. Most of our instructors are adaptable, but a couple have specific halal requirements which I understand should not be an issue here.</td><td>Kami akan memberikan persyaratan menu terlebih dahulu. Sebagian besar instruktur kami adaptif, namun beberapa memiliki persyaratan halal khusus, yang saya percaya tidak akan menjadi masalah di sini.</td><td>25</td></tr>
-    <tr><td><span class="speaker-pill sp-inp">INP</span></td><td>Sama sekali tidak ada masalah. Seluruh fasilitas katering Bareskrim sudah bersertifikasi halal. Itu bukan kendala.</td><td>Absolutely no issue. All Bareskrim catering facilities are halal-certified. That is not a constraint at all.</td><td>26</td></tr>
-    <tr><td><span class="speaker-pill sp-rso">RSO</span></td><td>Excellent. I appreciate the cooperation. Let me shift to the feedback we received from the last training cycle. I want to make sure we address the concerns raised.</td><td>Luar biasa. Saya menghargai kerja sama ini. Izinkan saya beralih ke umpan balik yang kami terima dari siklus pelatihan terakhir. Saya ingin memastikan kami menangani kekhawatiran yang disampaikan.</td><td>27</td></tr>
-    <tr><td><span class="speaker-pill sp-inp">INP</span></td><td>Kami juga menerima laporan dari peserta kami. Secara umum positif, namun ada masukan mengenai kecepatan penyampaian materi teknis yang dirasakan terlalu cepat.</td><td>We also received reports from our participants. Generally positive, but there was feedback regarding the pace of technical instruction delivery, which was felt to be too fast.</td><td>28</td></tr>
-    <tr><td><span class="speaker-pill sp-ata">ATA</span></td><td>We heard the same. We've already adjusted the pacing for the upcoming course and built in more recap sessions at the end of each technical module.</td><td>Kami juga menerima masukan serupa. Kami sudah menyesuaikan tempo untuk kursus yang akan datang dan menambahkan sesi rekapitulasi di akhir setiap modul teknis.</td><td>29</td></tr>
-    <tr><td><span class="speaker-pill sp-inp">INP</span></td><td>Itu langkah yang tepat. Satu masukan lain dari peserta kami: mereka menyarankan agar studi kasus yang digunakan mencerminkan konteks Indonesia lebih banyak, bukan hanya kasus dari Amerika atau Eropa.</td><td>That is the right step. One other piece of feedback from our participants: they suggested the case studies used should reflect Indonesian contexts more — not only cases from the United States or Europe.</td><td>30</td></tr>
-    <tr><td><span class="speaker-pill sp-rso">RSO</span></td><td>That's a very valid point. We've been working on incorporating regional case studies. Can Polri assist by providing anonymized case summaries from your operational history?</td><td>Itu poin yang sangat valid. Kami telah berupaya mengintegrasikan studi kasus regional. Apakah Polri dapat membantu dengan menyediakan ringkasan kasus yang dianonimkan dari sejarah operasional Anda?</td><td>31</td></tr>
-    <tr><td><span class="speaker-pill sp-inp">INP</span></td><td>Kami terbuka untuk itu, namun perlu melalui proses persetujuan internal. Divisi hukum kami harus meninjau apakah kasus-kasus tertentu dapat dibagikan, bahkan dalam bentuk anonim.</td><td>We are open to that, but it would need to go through an internal approval process. Our legal division would need to review whether specific cases can be shared, even in anonymized form.</td><td>32</td></tr>
-    <tr><td><span class="speaker-pill sp-ata">ATA</span></td><td>Understood. We can work within whatever timeline and process Polri requires. Even three or four well-documented cases would significantly enrich the curriculum.</td><td>Dipahami. Kami dapat menyesuaikan dengan jadwal dan proses apa pun yang diperlukan Polri. Bahkan tiga atau empat kasus yang terdokumentasi dengan baik sudah akan sangat memperkaya kurikulum.</td><td>33</td></tr>
-    <tr><td><span class="speaker-pill sp-inp">INP</span></td><td>Kami akan upayakan. Target realistis adalah dua kasus untuk kursus Agustus dan dua lagi untuk siklus berikutnya. Kami akan koordinasikan dengan divisi hukum minggu ini.</td><td>We will make the effort. A realistic target would be two cases for the August course and two more for the following cycle. We will coordinate with the legal division this week.</td><td>34</td></tr>
-    <tr><td><span class="speaker-pill sp-rso">RSO</span></td><td>That would be wonderful. I want to also briefly address the media relations aspect. There's been some external interest in the DS-ATA program, and we need to ensure a consistent messaging approach.</td><td>Itu akan sangat baik. Saya juga ingin secara singkat membahas aspek hubungan media. Ada beberapa ketertarikan eksternal terhadap program DS-ATA, dan kami perlu memastikan pendekatan pesan yang konsisten.</td><td>35</td></tr>
-    <tr><td><span class="speaker-pill sp-inp">INP</span></td><td>Kami memahami kepekaan ini. Dari sisi Polri, segala komunikasi eksternal mengenai kerja sama dengan Kedutaan harus melalui Divisi Humas Polri terlebih dahulu.</td><td>We understand this sensitivity. From the Polri side, all external communication regarding cooperation with the Embassy must go through the Polri Public Relations Division first.</td><td>36</td></tr>
-    <tr><td><span class="speaker-pill sp-ata">ATA</span></td><td>That's exactly our approach too. All media inquiries will be routed through the Embassy Public Affairs Section. The key message is bilateral cooperation in professional law enforcement capacity building.</td><td>Itulah pula pendekatan kami. Semua pertanyaan media akan diteruskan melalui Seksi Urusan Publik Kedutaan. Pesan utamanya adalah kerja sama bilateral dalam pengembangan kapasitas penegak hukum profesional.</td><td>37</td></tr>
-    <tr><td><span class="speaker-pill sp-inp">INP</span></td><td>Setuju. Framing yang tepat sangat penting untuk memastikan program ini dipahami sebagai kemitraan yang setara, bukan sebagai bantuan satu arah.</td><td>Agreed. The right framing is very important to ensure the program is understood as an equal partnership, not as one-way assistance.</td><td>38</td></tr>
-    <tr><td><span class="speaker-pill sp-int">INT</span><div class="int-note">Note: "Bantuan satu arah" (one-directional assistance) was interpreted as "one-way assistance" to preserve the diplomatic nuance — the General is gently pushing back against a dependency framing. The interpreter maintained the indirect, face-saving register appropriate between senior officials.</div></td><td></td><td></td><td></td></tr>
-    <tr><td><span class="speaker-pill sp-rso">RSO</span></td><td>I completely agree, and I want to assure you that's exactly how we see it. This is a partnership built on mutual respect and shared security objectives.</td><td>Saya sepenuhnya setuju, dan saya ingin memastikan bahwa itulah cara kami memandangnya. Ini adalah kemitraan yang dibangun atas dasar saling menghormati dan tujuan keamanan bersama.</td><td>39</td></tr>
-    <tr><td><span class="speaker-pill sp-inp">INP</span></td><td>Terima kasih atas pernyataan itu. Hal tersebut penting bagi kami secara institusional maupun secara personal.</td><td>Thank you for that statement. It matters to us both institutionally and personally.</td><td>40</td></tr>
-    <tr><td><span class="speaker-pill sp-ata">ATA</span></td><td>One last operational item — we need to finalize the emergency protocols for the course. Specifically, who is the medical officer on call and what is the evacuation procedure if a training incident occurs?</td><td>Satu hal operasional terakhir — kami perlu menyelesaikan protokol darurat untuk kursus ini. Khususnya, siapa dokter yang bertugas dan apa prosedur evakuasi jika terjadi insiden selama pelatihan?</td><td>41</td></tr>
-    <tr><td><span class="speaker-pill sp-inp">INP</span></td><td>Bareskrim memiliki tenaga medis organik yang bertugas setiap hari. Untuk evakuasi darurat, kami menggunakan jalur langsung ke RS Polri Kramat Jati — waktu tempuh sekitar 15 menit.</td><td>Bareskrim has an organic medical officer on duty every day. For emergency evacuation, we use the direct route to RS Polri Kramat Jati — approximately 15 minutes' travel time.</td><td>42</td></tr>
-    <tr><td><span class="speaker-pill sp-int">INT</span><div class="int-note">Note: "Tenaga medis organik" (organic medical personnel) — a Polri/military administrative term for in-house, institutionally assigned medical staff as opposed to contracted external providers. Interpreted as "organic medical officer" to preserve the technical register.</div></td><td></td><td></td><td></td></tr>
-    <tr><td><span class="speaker-pill sp-rso">RSO</span></td><td>Excellent. We'll add RS Polri to our emergency contacts list. I'd also like to request a written emergency response plan from Bareskrim for Embassy records.</td><td>Luar biasa. Kami akan menambahkan RS Polri ke daftar kontak darurat kami. Saya juga ingin meminta rencana respons darurat tertulis dari Bareskrim untuk arsip Kedutaan.</td><td>43</td></tr>
-    <tr><td><span class="speaker-pill sp-inp">INP</span></td><td>Bisa kami siapkan. Kami akan mengirimkan dokumen tersebut dalam tiga hari kerja. Apakah format standar Bareskrim dapat diterima, atau ada format khusus yang Kedutaan perlukan?</td><td>We can prepare that. We will send the document within three business days. Is the standard Bareskrim format acceptable, or does the Embassy require a specific format?</td><td>44</td></tr>
-    <tr><td><span class="speaker-pill sp-ata">ATA</span></td><td>The standard Bareskrim format is perfectly fine. We just need it to cover the key elements — chain of command, medical response, and communication protocols in an emergency.</td><td>Format standar Bareskrim sangat baik. Kami hanya perlu dokumen itu mencakup elemen-elemen utama — rantai komando, respons medis, dan protokol komunikasi dalam keadaan darurat.</td><td>45</td></tr>
-    <tr><td><span class="speaker-pill sp-inp">INP</span></td><td>Dipahami. Kami akan pastikan ketiga elemen tersebut tercakup secara eksplisit. Jika ada pertanyaan tambahan dari tim Anda, perwira penghubung kami siap dihubungi.</td><td>Understood. We will ensure all three elements are covered explicitly. If your team has additional questions, our liaison officer is available to be contacted.</td><td>46</td></tr>
-    <tr><td><span class="speaker-pill sp-rso">RSO</span></td><td>Thank you, General. I think we've covered all major agenda items. Unless there's anything else from your side, I'd like to propose we conclude and follow up by email within the week.</td><td>Terima kasih, Jenderal. Saya rasa kami telah membahas semua poin agenda utama. Kecuali ada hal lain dari pihak Bapak, saya ingin mengusulkan agar kita mengakhiri pertemuan dan menindaklanjuti melalui email dalam minggu ini.</td><td>47</td></tr>
-    <tr><td><span class="speaker-pill sp-inp">INP</span></td><td>Satu hal terakhir dari sisi kami — kami ingin mengusulkan agar di akhir kursus ada sesi informal antara instruktur DS-ATA dan perwira senior Polri. Bukan sesi formal, hanya untuk mempererat hubungan.</td><td>One final point from our side — we would like to propose that at the end of the course there be an informal session between the DS-ATA instructors and senior Polri officers. Not a formal session, just to strengthen the relationship.</td><td>48</td></tr>
-    <tr><td><span class="speaker-pill sp-rso">RSO</span></td><td>I think that's a wonderful idea and very much in the spirit of what we're trying to build together. We'll work it into the final day schedule.</td><td>Saya rasa itu ide yang luar biasa dan sangat mencerminkan semangat dari apa yang ingin kita bangun bersama. Kami akan memasukkannya ke dalam jadwal hari terakhir.</td><td>49</td></tr>
-    <tr><td><span class="speaker-pill sp-inp">INP</span></td><td>Terima kasih. Kami menantikan kursus yang sukses dan kerja sama yang berkelanjutan. Semoga pertemuan hari ini menjadi pondasi yang kuat.</td><td>Thank you. We look forward to a successful course and continued cooperation. May today's meeting serve as a strong foundation.</td><td>50</td></tr>
-  </table>
+        .badge-teal {
+            background: #E0F0EC;
+            color: #1F6B5C;
+        }
 
-  <div class="section-label">Interpretation Notes — Key Challenges</div>
-  <div class="note-block"><strong>Rank rendering (Exchange 6):</strong> "Iptu" (Inspektur Polisi Satu) has no standard English translation. "First Inspector" was used as a functional equivalent consistent with how DS-ATA training documents have previously described Polri ranks to American personnel. A parenthetical gloss would be added in any written transcript.</div>
-  <div class="note-block"><strong>Face-saving register (Exchange 38):</strong> The General's use of "bantuan satu arah" (one-directional assistance) is a diplomatically indirect way of pushing back against a donor-recipient framing. The interpreter preserved the diplomatic indirectness of the original, avoiding over-literalism that might have sharpened the critique beyond what was intended.</div>
-  <div class="note-block"><strong>"Instruktur asing" → "international instructors" (Exchange 24):</strong> The Indonesian "asing" (foreign/alien) carries a stronger othering connotation than "international." In a diplomatic setting between institutional equals, "international instructors" is the contextually appropriate rendering.</div>
-  <div class="note-block"><strong>Consecutive vs. simultaneous (general):</strong> In consecutive interpretation, complete units of meaning — not individual sentences — are the unit of interpretation. Several exchanges above involve multi-sentence utterances that were held in memory and rendered as coherent wholes, using note-taking conventions for key figures, names, and action items.</div>
-</div>
+        .doc-header-right {
+            text-align: right;
+            margin-top: 0.2rem;
+        }
 
-</div>
-</div>
+        .doc-header-right .classification {
+            font-size: 9px;
+            font-weight: 600;
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+            color: var(--gray-mid);
+            border: 1px solid var(--gray-light);
+            padding: 1px 10px;
+            border-radius: 20px;
+            display: inline-block;
+        }
 
-<script>
-function show(id, btn) {
-  document.querySelectorAll('.project-section').forEach(s => s.classList.remove('active'));
-  document.querySelectorAll('.nav-item').forEach(b => b.classList.remove('active'));
-  document.getElementById(id).classList.add('active');
-  btn.classList.add('active');
-}
-</script>
+        .doc-header-right .classification .gold {
+            color: var(--gold);
+        }
+
+        /* ============================================================
+           OVERVIEW GRID — Metadata cards
+           ============================================================ */
+        .overview-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 0.75rem;
+            margin-bottom: 1.75rem;
+        }
+
+        .meta-card {
+            background: var(--white);
+            border-radius: var(--radius);
+            padding: 0.7rem 1rem;
+            box-shadow: var(--shadow-sm);
+            border: 1px solid var(--gray-light);
+        }
+
+        .meta-card .label {
+            font-size: 9px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+            color: var(--gray-mid);
+            margin-bottom: 0.2rem;
+        }
+
+        .meta-card .value {
+            font-size: 13px;
+            font-weight: 400;
+            color: var(--navy);
+            line-height: 1.4;
+        }
+
+        /* ============================================================
+           SECTION LABELS
+           ============================================================ */
+        .section-label {
+            font-size: 9px;
+            font-weight: 600;
+            letter-spacing: 0.14em;
+            text-transform: uppercase;
+            color: var(--gray-mid);
+            margin: 2rem 0 0.65rem 0;
+            padding-bottom: 0.35rem;
+            border-bottom: 1px solid var(--gray-light);
+        }
+
+        .section-label:first-of-type {
+            margin-top: 0;
+        }
+
+        /* ============================================================
+           DOCUMENT BLOCKS — Source / Translation
+           ============================================================ */
+        .doc-block {
+            background: var(--white);
+            border: 1px solid var(--gray-light);
+            border-radius: var(--radius);
+            padding: 1.25rem 1.5rem;
+            margin-bottom: 1.25rem;
+            font-size: 13px;
+            line-height: 1.75;
+            color: var(--navy);
+            box-shadow: var(--shadow-sm);
+        }
+
+        .doc-block p {
+            margin-bottom: 0.75rem;
+        }
+        .doc-block p:last-child {
+            margin-bottom: 0;
+        }
+
+        .doc-block h4 {
+            font-family: var(--font-serif);
+            font-size: 13px;
+            font-weight: 600;
+            color: var(--slate);
+            margin: 1.25rem 0 0.4rem 0;
+            padding-top: 0.5rem;
+            border-top: 1px solid var(--gray-pale);
+            letter-spacing: 0.02em;
+        }
+
+        .doc-block h4:first-child {
+            margin-top: 0;
+            padding-top: 0;
+            border-top: none;
+        }
+
+        .doc-block strong {
+            color: var(--navy);
+            font-weight: 600;
+        }
+
+        /* ============================================================
+           SIDE-BY-SIDE TRANSLATION TABLE
+           ============================================================ */
+        .side-by-side {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 0;
+            background: var(--gray-light);
+            border: 1px solid var(--gray-light);
+            border-radius: var(--radius);
+            overflow: hidden;
+            margin-bottom: 1.25rem;
+            box-shadow: var(--shadow-sm);
+        }
+
+        .sbs-col {
+            background: var(--white);
+            padding: 1rem 1.25rem;
+            font-size: 12.5px;
+            line-height: 1.7;
+            color: var(--navy);
+        }
+
+        .sbs-col:first-child {
+            border-right: 1px solid var(--gray-light);
+        }
+
+        .sbs-col h5 {
+            font-family: var(--font-serif);
+            font-size: 10px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+            color: var(--gray-mid);
+            margin-bottom: 0.6rem;
+            padding-bottom: 0.3rem;
+            border-bottom: 1px solid var(--gray-pale);
+        }
+
+        .sbs-col p {
+            margin-bottom: 0.6rem;
+        }
+        .sbs-col p:last-child {
+            margin-bottom: 0;
+        }
+
+        /* ============================================================
+           TERMINOLOGY TABLE
+           ============================================================ */
+        .term-table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 12px;
+            margin-bottom: 1.25rem;
+            background: var(--white);
+            border-radius: var(--radius);
+            overflow: hidden;
+            box-shadow: var(--shadow-sm);
+            border: 1px solid var(--gray-light);
+        }
+
+        .term-table th {
+            background: var(--navy);
+            color: #fff;
+            font-size: 9px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            padding: 0.6rem 1rem;
+            text-align: left;
+        }
+
+        .term-table td {
+            padding: 0.5rem 1rem;
+            border-bottom: 1px solid var(--gray-pale);
+            color: var(--navy);
+            vertical-align: top;
+            line-height: 1.5;
+        }
+
+        .term-table tr:last-child td {
+            border-bottom: none;
+        }
+
+        .term-table tr:nth-child(even) td {
+            background: var(--off-white);
+        }
+
+        .term-table td:first-child {
+            font-weight: 500;
+            width: 38%;
+        }
+
+        .term-table td:nth-child(2) {
+            color: var(--slate);
+            width: 37%;
+        }
+
+        .term-table td:nth-child(3) {
+            color: var(--gray-mid);
+            font-size: 10.5px;
+            width: 25%;
+        }
+
+        /* ============================================================
+           TRANSLATOR NOTES
+           ============================================================ */
+        .note-block {
+            background: var(--white);
+            border-left: 3px solid var(--gold);
+            border-radius: 0 var(--radius) var(--radius) 0;
+            padding: 0.75rem 1.25rem;
+            font-size: 12.5px;
+            line-height: 1.7;
+            color: var(--slate);
+            margin-bottom: 0.75rem;
+            box-shadow: var(--shadow-sm);
+            border: 1px solid var(--gray-light);
+            border-left-width: 4px;
+        }
+
+        .note-block strong {
+            color: var(--navy);
+            font-weight: 600;
+        }
+
+        /* ============================================================
+           DIALOGUE TABLE (Interpretation)
+           ============================================================ */
+        .dialogue-table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 12px;
+            margin-bottom: 1.25rem;
+            background: var(--white);
+            border-radius: var(--radius);
+            overflow: hidden;
+            box-shadow: var(--shadow-sm);
+            border: 1px solid var(--gray-light);
+        }
+
+        .dialogue-table th {
+            background: var(--slate);
+            color: #fff;
+            font-size: 9px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            padding: 0.5rem 0.75rem;
+            text-align: left;
+        }
+
+        .dialogue-table td {
+            padding: 0.5rem 0.75rem;
+            border-bottom: 1px solid var(--gray-pale);
+            vertical-align: top;
+            line-height: 1.55;
+            font-size: 12px;
+            color: var(--navy);
+        }
+
+        .dialogue-table tr:last-child td {
+            border-bottom: none;
+        }
+
+        .dialogue-table tr:nth-child(even) td {
+            background: var(--off-white);
+        }
+
+        .speaker-pill {
+            display: inline-block;
+            font-size: 9px;
+            font-weight: 600;
+            padding: 1px 8px;
+            border-radius: 3px;
+            letter-spacing: 0.04em;
+            text-transform: uppercase;
+        }
+
+        .sp-rso {
+            background: #D4E2F0;
+            color: #1A3A5C;
+        }
+        .sp-ata {
+            background: #D4EDE8;
+            color: #1A5C4A;
+        }
+        .sp-inp {
+            background: #F5EDD6;
+            color: #7A631F;
+        }
+        .sp-int {
+            background: #E8E0F0;
+            color: #4A3A6A;
+        }
+
+        .int-note {
+            font-size: 10.5px;
+            color: var(--gray-mid);
+            font-style: italic;
+            margin-top: 2px;
+            line-height: 1.5;
+        }
+
+        /* ============================================================
+           LEGEND for dialogue
+           ============================================================ */
+        .legend-wrap {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-bottom: 1.25rem;
+            padding: 0.5rem 0.75rem;
+            background: var(--white);
+            border-radius: var(--radius);
+            border: 1px solid var(--gray-light);
+            box-shadow: var(--shadow-sm);
+        }
+
+        .legend-wrap .speaker-pill {
+            font-size: 9px;
+        }
+
+        /* ============================================================
+           UTILITY
+           ============================================================ */
+        .sr-only {
+            position: absolute;
+            width: 1px;
+            height: 1px;
+            padding: 0;
+            margin: -1px;
+            overflow: hidden;
+            clip: rect(0, 0, 0, 0);
+            border: 0;
+        }
+
+        /* ============================================================
+           RESPONSIVE
+           ============================================================ */
+        @media (max-width: 820px) {
+            body {
+                padding: 1rem;
+            }
+            .portfolio-wrap {
+                flex-direction: column;
+                border-radius: var(--radius-lg);
+                min-height: auto;
+            }
+            .sidebar {
+                width: 100%;
+                flex-direction: row;
+                flex-wrap: wrap;
+                padding: 0.75rem 1rem;
+                border-right: none;
+                border-bottom: 2px solid var(--gold);
+            }
+            .sidebar-brand {
+                padding: 0;
+                border-bottom: none;
+                margin-bottom: 0;
+                flex: 1;
+            }
+            .sidebar-brand .title {
+                font-size: 12px;
+            }
+            .sidebar-brand .sub {
+                font-size: 9px;
+            }
+            .sidebar-nav {
+                display: flex;
+                flex-wrap: wrap;
+                gap: 2px;
+                padding: 0;
+                flex: 1 1 100%;
+                margin-top: 0.5rem;
+            }
+            .sidebar-title {
+                display: none;
+            }
+            .nav-item {
+                padding: 0.4rem 0.6rem;
+                font-size: 11px;
+                border-radius: var(--radius);
+                flex: 0 1 auto;
+                width: auto;
+            }
+            .nav-item.active::before {
+                display: none;
+            }
+            .nav-item .nav-label {
+                font-size: 9px;
+                display: inline;
+                margin-left: 4px;
+                color: rgba(255, 255, 255, 0.4);
+            }
+            .sidebar-footer {
+                display: none;
+            }
+            .main {
+                max-height: none;
+                padding: 1.25rem 1.25rem 1.75rem 1.25rem;
+            }
+            .doc-title {
+                font-size: 17px;
+            }
+            .doc-header {
+                flex-direction: column;
+            }
+            .doc-header-right {
+                text-align: left;
+                margin-top: 0.5rem;
+            }
+            .side-by-side {
+                grid-template-columns: 1fr;
+            }
+            .sbs-col:first-child {
+                border-right: none;
+                border-bottom: 1px solid var(--gray-light);
+            }
+            .overview-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+            .term-table td,
+            .term-table th {
+                padding: 0.4rem 0.6rem;
+                font-size: 11px;
+            }
+            .dialogue-table td,
+            .dialogue-table th {
+                padding: 0.4rem 0.5rem;
+                font-size: 11px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .overview-grid {
+                grid-template-columns: 1fr;
+            }
+            .doc-block {
+                padding: 0.9rem 1rem;
+                font-size: 12px;
+            }
+            .doc-header {
+                padding: 0.75rem 1rem;
+            }
+        }
+
+        /* ============================================================
+           SCROLLBAR STYLING (optional polish)
+           ============================================================ */
+        .main::-webkit-scrollbar {
+            width: 5px;
+        }
+        .main::-webkit-scrollbar-track {
+            background: var(--gray-pale);
+        }
+        .main::-webkit-scrollbar-thumb {
+            background: var(--gray-light);
+            border-radius: 10px;
+        }
+        .main::-webkit-scrollbar-thumb:hover {
+            background: var(--gray-mid);
+        }
+
+        .sidebar-nav::-webkit-scrollbar {
+            width: 3px;
+        }
+        .sidebar-nav::-webkit-scrollbar-track {
+            background: transparent;
+        }
+        .sidebar-nav::-webkit-scrollbar-thumb {
+            background: rgba(255, 255, 255, 0.15);
+            border-radius: 10px;
+        }
+    </style>
+</head>
+<body>
+
+    <h2 class="sr-only">DS-ATA Representative Projects Portfolio — Nisrina Satyaningrum</h2>
+
+    <div class="portfolio-wrap">
+
+        <!-- ============================================================
+        SIDEBAR
+        ============================================================ -->
+        <nav class="sidebar" aria-label="Project navigation">
+            <div class="sidebar-brand">
+                <div class="title">DS-ATA</div>
+                <div class="sub">Nisrina Satyaningrum · Portfolio</div>
+            </div>
+            <div class="sidebar-nav">
+                <div class="sidebar-title">Projects</div>
+                <button class="nav-item active" onclick="show('p1',this)">
+                    DS-ATA/01
+                    <span class="nav-label">Training Memo</span>
+                </button>
+                <button class="nav-item" onclick="show('p2',this)">
+                    DS-ATA/02
+                    <span class="nav-label">Meeting Summary</span>
+                </button>
+                <button class="nav-item" onclick="show('p3',this)">
+                    DS-ATA/03
+                    <span class="nav-label">Security News</span>
+                </button>
+                <button class="nav-item" onclick="show('p4',this)">
+                    DS-ATA/04
+                    <span class="nav-label">Course Announcement</span>
+                </button>
+                <button class="nav-item" onclick="show('p5',this)">
+                    DS-ATA/05
+                    <span class="nav-label">Interpretation</span>
+                </button>
+            </div>
+            <div class="sidebar-footer">U.S. Embassy Jakarta · 2026</div>
+        </nav>
+
+        <!-- ============================================================
+        MAIN CONTENT
+        ============================================================ -->
+        <div class="main">
+
+            <!-- ==========================================================
+            PROJECT 1 — Training Memorandum
+            ========================================================== -->
+            <div id="p1" class="project-section active">
+
+                <!-- HEADER -->
+                <div class="doc-header">
+                    <div class="doc-header-left">
+                        <div class="doc-ref"><span class="gold">●</span> DS-ATA / Project 01 · Administrative Translation</div>
+                        <div class="doc-title">Counterterrorism Tactical Operations Training Memorandum</div>
+                        <div class="doc-badges">
+                            <span class="badge badge-amber">Written Translation</span>
+                            <span class="badge badge-blue">Legal/Operational</span>
+                            <span class="badge badge-teal">EN → ID</span>
+                        </div>
+                    </div>
+                    <div class="doc-header-right">
+                        <span class="classification"><span class="gold">◆</span> UNCLASSIFIED / FOR OFFICIAL USE</span>
+                    </div>
+                </div>
+
+                <!-- OVERVIEW -->
+                <div class="overview-grid">
+                    <div class="meta-card"><div class="label">Document Type</div><div class="value">Internal Memorandum — Training Notice</div></div>
+                    <div class="meta-card"><div class="label">Issuing Body</div><div class="value">U.S. Embassy Jakarta, DS-ATA Program Office</div></div>
+                    <div class="meta-card"><div class="label">Recipient</div><div class="value">Indonesian National Police (POLRI) Participants</div></div>
+                    <div class="meta-card"><div class="label">Word Count</div><div class="value">~820 words (EN) · ~870 words (ID)</div></div>
+                </div>
+
+                <!-- SOURCE -->
+                <div class="section-label">English Source Document</div>
+                <div class="doc-block">
+                    <h4>Memorandum</h4>
+                    <p><strong>TO:</strong> Commanding Officers, Detachment 88 Anti-Terror Unit (Densus 88); Mobile Brigade Corps (Brimob) Regional Commanders<br>
+                        <strong>FROM:</strong> DS-ATA Program Office, U.S. Embassy Jakarta<br>
+                        <strong>DATE:</strong> June 2026<br>
+                        <strong>SUBJECT:</strong> Counterterrorism Tactical Operations Training — Course Notification and Participant Preparation Requirements</p>
+                    <h4>Purpose</h4>
+                    <p>This memorandum provides official notification of an upcoming Counterterrorism Tactical Operations Training (CTOT) course to be conducted under the auspices of the U.S. Department of State Diplomatic Security Antiterrorism Assistance (DS-ATA) Program. The course is offered in coordination with the Indonesian National Police (Polri) in support of bilateral law enforcement cooperation objectives.</p>
+                    <h4>Scope</h4>
+                    <p>This training is applicable to sworn law enforcement personnel holding the rank of Inspector (Inspektur) or above, currently assigned to counterterrorism, tactical response, or special operations units. Personnel must be physically active on duty and hold valid security clearances at the appropriate level. The training will be conducted in Jakarta and shall not exceed fifteen (15) working days in duration.</p>
+                    <h4>Training Objectives</h4>
+                    <p>Upon successful completion of this course, participants will demonstrate proficiency in: (1) threat assessment and target analysis in complex, high-density environments; (2) tactical entry, room clearance, and hostage rescue procedures in accordance with internationally recognized standards; (3) command-and-control communications protocols during multi-agency joint operations; (4) use-of-force doctrine consistent with applicable Indonesian law and international human rights standards; and (5) post-incident documentation and evidence preservation procedures.</p>
+                    <h4>Course Components</h4>
+                    <p>The curriculum comprises classroom instruction (40%), practical exercises (45%), and evaluations (15%). Subject matter experts from the U.S. Department of State and contracted law enforcement training specialists will deliver instruction in English, with consecutive interpretation provided throughout all sessions. Curriculum materials, including technical reference guides and case studies, will be distributed in bilingual format.</p>
+                    <h4>Participant Responsibilities</h4>
+                    <p>Nominating units are responsible for ensuring that all designated participants: submit completed pre-course documentation packages no later than fourteen (14) calendar days prior to the course commencement date; undergo and pass a mandatory pre-participation medical examination; maintain a minimum 90% attendance rate across all scheduled sessions; and adhere to all conduct, uniform, and equipment requirements as specified in Annex A of this memorandum.</p>
+                    <h4>Safety Requirements</h4>
+                    <p>All live-fire exercises will be conducted in strict accordance with DS-ATA Range Safety Protocols. Participants must successfully complete a weapon familiarization and safety qualification assessment prior to engagement in any live-fire activity. The U.S. Embassy retains the authority to remove any participant from live-fire exercises based on demonstrated safety deficiencies, without prejudice to continued participation in non-live-fire components of the course.</p>
+                    <h4>Certification</h4>
+                    <p>Participants who satisfy all attendance, practical, and written assessment requirements will receive a Certificate of Course Completion jointly issued by the U.S. Embassy Jakarta DS-ATA Program and the Indonesian National Police Training Division (Lemdiklat Polri). Certificates will be dispatched to nominating units within thirty (30) business days of course conclusion.</p>
+                    <h4>Points of Contact</h4>
+                    <p>For logistical inquiries: DS-ATA Program Coordinator, U.S. Embassy Jakarta — [program.email@example.com]<br>
+                        For police-side coordination: Lemdiklat Polri Liaison Officer — [liaison@lemdiklat.polri.go.id]</p>
+                </div>
+
+                <!-- TRANSLATION -->
+                <div class="section-label">Indonesian Translation</div>
+                <div class="doc-block">
+                    <h4>Memorandum</h4>
+                    <p><strong>KEPADA:</strong> Komandan Satuan, Detasemen Khusus 88 Anti Teror (Densus 88); Komandan Regional Korps Brigade Mobil (Brimob)<br>
+                        <strong>DARI:</strong> Kantor Program DS-ATA, Kedutaan Besar Amerika Serikat Jakarta<br>
+                        <strong>TANGGAL:</strong> Juni 2026<br>
+                        <strong>PERIHAL:</strong> Pelatihan Operasi Taktis Kontraterorisme — Pemberitahuan Kursus dan Persyaratan Persiapan Peserta</p>
+                    <h4>Tujuan</h4>
+                    <p>Memorandum ini merupakan pemberitahuan resmi mengenai penyelenggaraan Pelatihan Operasi Taktis Kontraterorisme (CTOT) yang akan dilaksanakan di bawah naungan Program Bantuan Antiterorisme Keamanan Diplomatik Departemen Luar Negeri Amerika Serikat (DS-ATA). Kursus ini diselenggarakan berkoordinasi dengan Kepolisian Negara Republik Indonesia (Polri) dalam rangka mendukung tujuan kerja sama penegakan hukum bilateral.</p>
+                    <h4>Lingkup</h4>
+                    <p>Pelatihan ini diperuntukkan bagi personel penegak hukum yang berpangkat Inspektur atau di atasnya, yang saat ini bertugas di satuan kontraterorisme, satuan respons taktis, atau satuan operasi khusus. Personel harus berstatus aktif bertugas dan memiliki izin keamanan yang masih berlaku sesuai tingkatan yang dipersyaratkan. Pelatihan akan dilaksanakan di Jakarta dan tidak melebihi lima belas (15) hari kerja.</p>
+                    <h4>Tujuan Pelatihan</h4>
+                    <p>Setelah berhasil menyelesaikan kursus ini, peserta akan menunjukkan kemampuan dalam: (1) penilaian ancaman dan analisis sasaran di lingkungan padat yang kompleks; (2) prosedur masuk taktis, pembersihan ruangan, dan penyelamatan sandera sesuai standar internasional yang diakui; (3) protokol komunikasi komando dan kendali dalam operasi gabungan multi-instansi; (4) doktrin penggunaan kekuatan yang sesuai dengan hukum Indonesia yang berlaku dan standar hak asasi manusia internasional; serta (5) prosedur dokumentasi pasca-insiden dan pelestarian barang bukti.</p>
+                    <h4>Komponen Kursus</h4>
+                    <p>Kurikulum terdiri atas instruksi di kelas (40%), latihan praktik (45%), dan evaluasi (15%). Instruktur ahli dari Departemen Luar Negeri Amerika Serikat dan spesialis pelatihan penegak hukum yang dikontrak akan menyampaikan materi dalam bahasa Inggris, dengan interpretasi konsekutif yang disediakan selama seluruh sesi berlangsung. Materi kurikulum, termasuk panduan referensi teknis dan studi kasus, akan didistribusikan dalam format dwibahasa.</p>
+                    <h4>Tanggung Jawab Peserta</h4>
+                    <p>Satuan penominasi bertanggung jawab memastikan seluruh peserta yang ditunjuk: menyerahkan berkas dokumentasi pra-kursus yang telah dilengkapi paling lambat empat belas (14) hari kalender sebelum tanggal dimulainya kursus; menjalani dan lulus pemeriksaan kesehatan wajib pra-keikutsertaan; mempertahankan tingkat kehadiran minimal 90% di seluruh sesi yang dijadwalkan; serta mematuhi seluruh persyaratan tata tertib, seragam, dan perlengkapan sebagaimana tercantum dalam Lampiran A memorandum ini.</p>
+                    <h4>Persyaratan Keselamatan</h4>
+                    <p>Seluruh latihan tembak langsung akan dilaksanakan sesuai Protokol Keselamatan Lapangan Tembak DS-ATA. Peserta wajib menyelesaikan dan lulus penilaian kualifikasi pengenalan dan keselamatan senjata sebelum mengikuti kegiatan tembak langsung apa pun. Kedutaan Besar Amerika Serikat berwenang untuk memindahkan peserta dari latihan tembak langsung berdasarkan kekurangan keselamatan yang teridentifikasi, tanpa mengurangi hak peserta untuk melanjutkan komponen kursus yang tidak melibatkan tembak langsung.</p>
+                    <h4>Sertifikasi</h4>
+                    <p>Peserta yang memenuhi seluruh persyaratan kehadiran, penilaian praktik, dan penilaian tertulis akan menerima Sertifikat Penyelesaian Kursus yang diterbitkan bersama oleh Program DS-ATA Kedutaan Besar Amerika Serikat Jakarta dan Lembaga Pendidikan dan Pelatihan Polri (Lemdiklat Polri). Sertifikat akan dikirimkan kepada satuan penominasi dalam waktu tiga puluh (30) hari kerja setelah kursus berakhir.</p>
+                    <h4>Narahubung</h4>
+                    <p>Pertanyaan logistik: Koordinator Program DS-ATA, Kedutaan Besar AS Jakarta — [program.email@example.com]<br>
+                        Koordinasi dari sisi kepolisian: Perwira Penghubung Lemdiklat Polri — [liaison@lemdiklat.polri.go.id]</p>
+                </div>
+
+                <!-- SIDE-BY-SIDE -->
+                <div class="section-label">Side-by-Side View (Key Sections)</div>
+                <div class="side-by-side">
+                    <div class="sbs-col"><h5>English</h5><p>Upon successful completion of this course, participants will demonstrate proficiency in threat assessment and target analysis in complex, high-density environments, tactical entry, room clearance, and hostage rescue procedures in accordance with internationally recognized standards.</p></div>
+                    <div class="sbs-col"><h5>Indonesian</h5><p>Setelah berhasil menyelesaikan kursus ini, peserta akan menunjukkan kemampuan dalam penilaian ancaman dan analisis sasaran di lingkungan padat yang kompleks, prosedur masuk taktis, pembersihan ruangan, dan penyelamatan sandera sesuai standar internasional yang diakui.</p></div>
+                    <div class="sbs-col"><p>The U.S. Embassy retains the authority to remove any participant from live-fire exercises based on demonstrated safety deficiencies, without prejudice to continued participation in non-live-fire components.</p></div>
+                    <div class="sbs-col"><p>Kedutaan Besar Amerika Serikat berwenang untuk memindahkan peserta dari latihan tembak langsung berdasarkan kekurangan keselamatan yang teridentifikasi, tanpa mengurangi hak peserta untuk melanjutkan komponen kursus yang tidak melibatkan tembak langsung.</p></div>
+                </div>
+
+                <!-- TERMINOLOGY -->
+                <div class="section-label">Terminology Table (20 Terms)</div>
+                <table class="term-table">
+                    <tr><th>English Term</th><th>Indonesian Equivalent</th><th>Register / Notes</th></tr>
+                    <tr><td>Antiterrorism Assistance</td><td>Bantuan Antiterorisme</td><td>Official DS-ATA nomenclature</td></tr>
+                    <tr><td>Counterterrorism Tactical Operations</td><td>Operasi Taktis Kontraterorisme</td><td>Polri-aligned term</td></tr>
+                    <tr><td>Detachment 88 (Densus 88)</td><td>Detasemen Khusus 88</td><td>Formal name retained</td></tr>
+                    <tr><td>Mobile Brigade Corps</td><td>Korps Brigade Mobil (Brimob)</td><td>Official Polri designation</td></tr>
+                    <tr><td>Threat Assessment</td><td>Penilaian Ancaman</td><td>Standard law enforcement usage</td></tr>
+                    <tr><td>Target Analysis</td><td>Analisis Sasaran</td><td>Military/police register</td></tr>
+                    <tr><td>Tactical Entry</td><td>Masuk Taktis</td><td>Procedural training term</td></tr>
+                    <tr><td>Room Clearance</td><td>Pembersihan Ruangan</td><td>Direct operational equivalent</td></tr>
+                    <tr><td>Hostage Rescue</td><td>Penyelamatan Sandera</td><td>Standard Polri terminology</td></tr>
+                    <tr><td>Command-and-Control</td><td>Komando dan Kendali</td><td>Retains military structure</td></tr>
+                    <tr><td>Use-of-Force Doctrine</td><td>Doktrin Penggunaan Kekuatan</td><td>Avoids "kekerasan" (violence)</td></tr>
+                    <tr><td>Security Clearance</td><td>Izin Keamanan</td><td>Government administrative term</td></tr>
+                    <tr><td>Live-Fire Exercise</td><td>Latihan Tembak Langsung</td><td>Range safety standard term</td></tr>
+                    <tr><td>Certificate of Course Completion</td><td>Sertifikat Penyelesaian Kursus</td><td>Formal credentialing language</td></tr>
+                    <tr><td>Nominating Unit</td><td>Satuan Penominasi</td><td>Administrative HR term</td></tr>
+                    <tr><td>Bilateral Law Enforcement Cooperation</td><td>Kerja Sama Penegakan Hukum Bilateral</td><td>Diplomatic register</td></tr>
+                    <tr><td>Post-Incident Documentation</td><td>Dokumentasi Pasca-Insiden</td><td>Forensic/procedural term</td></tr>
+                    <tr><td>Evidence Preservation</td><td>Pelestarian Barang Bukti</td><td>Legal/investigative register</td></tr>
+                    <tr><td>Subject Matter Expert</td><td>Instruktur Ahli</td><td>Adapted for clarity in ID context</td></tr>
+                    <tr><td>Lemdiklat Polri</td><td>Lembaga Pendidikan dan Pelatihan Polri</td><td>Full form provided on first use</td></tr>
+                </table>
+
+                <!-- NOTES -->
+                <div class="section-label">Translator Notes</div>
+                <div class="note-block"><strong>Register:</strong> The source text operates in formal U.S. government memorandum register. The translation matches this with Indonesian administrative-bureaucratic register, consistent with Permendiknas and Permen-type documents, using constructions like "diperuntukkan bagi" and "bertanggung jawab memastikan" rather than conversational equivalents.</div>
+                <div class="note-block"><strong>Use-of-force terminology:</strong> "Use-of-force doctrine" was rendered as "doktrin penggunaan kekuatan" rather than "kekerasan" (violence) or "kekuatan fisik," as the latter carry negative connotations in Indonesian public discourse. "Penggunaan kekuatan" is the standard Polri operational term.</div>
+                <div class="note-block"><strong>Institutional names:</strong> All Polri unit names (Densus 88, Brimob, Lemdiklat) were retained in their official Indonesian forms. The English gloss was provided in parentheses on first occurrence for the Embassy-side readership of the bilingual document.</div>
+                <div class="note-block"><strong>Sentence structure:</strong> Long compound sentences in the source (e.g., the Training Objectives paragraph) were maintained as enumerated lists in translation rather than broken into shorter sentences, preserving the official parallel structure expected in Indonesian legal and institutional writing.</div>
+            </div>
+
+            <!-- ==========================================================
+            PROJECT 2 — Meeting Summary Report
+            ========================================================== -->
+            <div id="p2" class="project-section">
+
+                <div class="doc-header">
+                    <div class="doc-header-left">
+                        <div class="doc-ref"><span class="gold">●</span> DS-ATA / Project 02 · Administrative Communication</div>
+                        <div class="doc-title">Meeting Summary and Coordination Report</div>
+                        <div class="doc-badges">
+                            <span class="badge badge-amber">Written Translation</span>
+                            <span class="badge badge-blue">Institutional Report</span>
+                            <span class="badge badge-teal">EN → ID</span>
+                        </div>
+                    </div>
+                    <div class="doc-header-right">
+                        <span class="classification"><span class="gold">◆</span> UNCLASSIFIED / FOR OFFICIAL USE</span>
+                    </div>
+                </div>
+
+                <div class="overview-grid">
+                    <div class="meta-card"><div class="label">Document Type</div><div class="value">Coordination Meeting Summary</div></div>
+                    <div class="meta-card"><div class="label">Parties</div><div class="value">RSO, DS-ATA Program Office, Polri</div></div>
+                    <div class="meta-card"><div class="label">Classification</div><div class="value">Unclassified / For Official Use</div></div>
+                    <div class="meta-card"><div class="label">Word Count</div><div class="value">~900 words (EN) · ~950 words (ID)</div></div>
+                </div>
+
+                <div class="section-label">English Source Document</div>
+                <div class="doc-block">
+                    <h4>Meeting Background</h4>
+                    <p>A tri-party coordination meeting was convened on June 10, 2026, at the U.S. Embassy Jakarta Regional Security Office conference room. The purpose of the meeting was to finalize operational and logistical arrangements for the upcoming Advanced Crisis Negotiation Course (ACNC) scheduled for August 2026, and to address unresolved coordination items from the previous quarter's training cycle.</p>
+                    <h4>Participants</h4>
+                    <p>Regional Security Officer, U.S. Embassy Jakarta (Chair); DS-ATA Program Coordinator, U.S. Embassy Jakarta; DS-ATA Training Specialist (TDY), Washington D.C.; Deputy Director for Cooperation, Polri Lemdiklat; Head of Training Operations, Polri Detachment 88; Polri Liaison Officer to the Embassy; Consecutive Interpreter (present throughout all sessions).</p>
+                    <h4>Discussion Topics</h4>
+                    <p>The meeting addressed four primary agenda items. First, the parties reviewed participant nomination procedures, noting delays in the submission of pre-course medical clearance documentation by nominating units in three regional commands. DS-ATA and Polri agreed to implement a unified online submission portal for all pre-course documentation effective the following training cycle. Second, the parties discussed the integration of newly developed scenario-based modules into the ACNC curriculum, including urban crisis simulation, media relations during active incidents, and inter-agency communication protocols. Third, venue and logistics arrangements for the August course were confirmed, including billeting, ground transportation, and catering requirements for forty (40) participants and ten (10) instructors. Fourth, the parties reviewed feedback from the preceding Tactical Communications Training course, identifying three areas for curriculum refinement: pacing of technical instruction sessions, adequacy of simultaneous interpretation logistics, and diversity of scenario case studies to reflect Indonesian regional contexts.</p>
+                    <h4>Operational Concerns</h4>
+                    <p>The Polri Detachment 88 representative raised a concern regarding the overlap of the proposed ACNC schedule with a pre-existing Polri internal training commitment affecting two of the nominated participants. DS-ATA confirmed that, subject to the RSO's approval, the course schedule could accommodate a one-day delayed start for the affected participants without compromising overall course integrity. A formal schedule adjustment request is to be submitted by Polri Lemdiklat within five (5) business days.</p>
+                    <h4>Resource Requirements</h4>
+                    <p>The following resources were confirmed as required for the August ACNC: forty (40) participant workbooks in bilingual format; ten (10) instructor guide copies; two (2) dedicated consecutive interpreters for the full duration of the course; audio-visual equipment including two projectors and one wireless microphone system; and access to a scenario simulation facility within a thirty-minute driving radius of the Embassy.</p>
+                    <h4>Course Schedule</h4>
+                    <p>The Advanced Crisis Negotiation Course is scheduled for August 11–22, 2026 (ten working days). Day 1: Orientation, administrative briefings, safety briefing. Days 2–4: Foundational theory — negotiation frameworks, behavioral assessment, stakeholder communication. Days 5–7: Scenario-based practical exercises (Phase I — low-complexity scenarios). Days 8–9: Scenario-based practical exercises (Phase II — high-complexity, multi-party scenarios). Day 10: Written assessment, course evaluations, certificate ceremony.</p>
+                    <h4>Action Items</h4>
+                    <p>Polri Lemdiklat: Submit formal schedule adjustment request by June 17. All nominating units: Complete pre-course documentation submission via new portal by July 28. DS-ATA Coordinator: Confirm interpreter procurement and AV equipment delivery by July 15. RSO: Approve adjusted schedule and issue formal course authorization by July 1.</p>
+                    <h4>Follow-Up Plans</h4>
+                    <p>A follow-up coordination call is scheduled for July 5, 2026, to confirm the status of all action items prior to the documentation submission deadline. Meeting minutes will be distributed to all participants within three (3) business days of this meeting. The DS-ATA Program Coordinator will serve as the primary point of contact for any intervening issues.</p>
+                </div>
+
+                <div class="section-label">Indonesian Translation</div>
+                <div class="doc-block">
+                    <h4>Latar Belakang Pertemuan</h4>
+                    <p>Pertemuan koordinasi tiga pihak diselenggarakan pada 10 Juni 2026 di ruang konferensi Kantor Keamanan Regional Kedutaan Besar Amerika Serikat Jakarta. Tujuan pertemuan ini adalah untuk menyelesaikan pengaturan operasional dan logistik bagi penyelenggaraan Kursus Negosiasi Krisis Lanjutan (ACNC) yang dijadwalkan pada Agustus 2026, sekaligus menyelesaikan butir-butir koordinasi yang belum tuntas dari siklus pelatihan kuartal sebelumnya.</p>
+                    <h4>Peserta</h4>
+                    <p>Perwira Keamanan Regional, Kedutaan Besar AS Jakarta (Ketua); Koordinator Program DS-ATA, Kedutaan Besar AS Jakarta; Spesialis Pelatihan DS-ATA (Tugas Sementara/TDY), Washington D.C.; Wakil Direktur Bidang Kerja Sama, Lemdiklat Polri; Kepala Operasi Pelatihan, Densus 88 Polri; Perwira Penghubung Polri di Kedutaan; Juru Bahasa Konsekutif (hadir sepanjang seluruh sesi).</p>
+                    <h4>Topik Pembahasan</h4>
+                    <p>Pertemuan membahas empat agenda utama. Pertama, para pihak meninjau prosedur penominasian peserta, mencatat adanya keterlambatan penyerahan dokumentasi izin medis pra-kursus oleh satuan penominasi dari tiga komando regional. DS-ATA dan Polri sepakat untuk menerapkan portal pengiriman daring terpadu bagi seluruh dokumentasi pra-kursus mulai siklus pelatihan berikutnya. Kedua, para pihak mendiskusikan integrasi modul berbasis skenario yang baru dikembangkan ke dalam kurikulum ACNC, mencakup simulasi krisis perkotaan, hubungan media selama insiden aktif, dan protokol komunikasi antar-instansi. Ketiga, pengaturan venue dan logistik untuk kursus Agustus dikonfirmasi, termasuk akomodasi, transportasi darat, dan kebutuhan katering bagi empat puluh (40) peserta dan sepuluh (10) instruktur. Keempat, para pihak meninjau umpan balik dari kursus Pelatihan Komunikasi Taktis sebelumnya, mengidentifikasi tiga bidang penyempurnaan kurikulum: tempo sesi instruksi teknis, kecukupan logistik interpretasi konsekutif, dan keberagaman studi kasus skenario untuk mencerminkan konteks regional Indonesia.</p>
+                    <h4>Kendala Operasional</h4>
+                    <p>Perwakilan Densus 88 Polri menyampaikan kekhawatiran mengenai tumpang tindih jadwal ACNC yang diusulkan dengan komitmen pelatihan internal Polri yang sudah ada sebelumnya, yang berdampak pada dua peserta yang telah dinominasikan. DS-ATA mengkonfirmasi bahwa, dengan persetujuan Perwira Keamanan Regional, jadwal kursus dapat mengakomodasi penundaan awal satu hari bagi peserta yang bersangkutan tanpa mengganggu integritas kursus secara keseluruhan. Permintaan penyesuaian jadwal resmi harus diajukan oleh Lemdiklat Polri dalam waktu lima (5) hari kerja.</p>
+                    <h4>Kebutuhan Sumber Daya</h4>
+                    <p>Sumber daya berikut dikonfirmasi diperlukan untuk ACNC Agustus: empat puluh (40) buku kerja peserta dalam format dwibahasa; sepuluh (10) salinan panduan instruktur; dua (2) juru bahasa konsekutif khusus selama durasi penuh kursus; peralatan audio-visual termasuk dua proyektor dan satu sistem mikrofon nirkabel; serta akses ke fasilitas simulasi skenario dalam radius berkendara tiga puluh menit dari Kedutaan.</p>
+                    <h4>Jadwal Kursus</h4>
+                    <p>Kursus Negosiasi Krisis Lanjutan dijadwalkan pada 11–22 Agustus 2026 (sepuluh hari kerja). Hari ke-1: Orientasi, pengarahan administratif, pengarahan keselamatan. Hari ke-2 s.d. 4: Teori dasar — kerangka negosiasi, penilaian perilaku, komunikasi pemangku kepentingan. Hari ke-5 s.d. 7: Latihan praktik berbasis skenario (Fase I — skenario kompleksitas rendah). Hari ke-8 s.d. 9: Latihan praktik berbasis skenario (Fase II — skenario kompleksitas tinggi, multi-pihak). Hari ke-10: Penilaian tertulis, evaluasi kursus, upacara pemberian sertifikat.</p>
+                    <h4>Butir Tindak Lanjut</h4>
+                    <p>Lemdiklat Polri: Menyerahkan permintaan penyesuaian jadwal resmi paling lambat 17 Juni. Seluruh satuan penominasi: Menyelesaikan pengiriman dokumentasi pra-kursus melalui portal baru paling lambat 28 Juli. Koordinator DS-ATA: Mengkonfirmasi pengadaan juru bahasa dan pengiriman peralatan AV paling lambat 15 Juli. Perwira Keamanan Regional: Menyetujui jadwal yang disesuaikan dan menerbitkan otorisasi kursus resmi paling lambat 1 Juli.</p>
+                    <h4>Rencana Tindak Lanjut</h4>
+                    <p>Panggilan koordinasi tindak lanjut dijadwalkan pada 5 Juli 2026 untuk mengkonfirmasi status seluruh butir tindak lanjut sebelum batas waktu pengiriman dokumentasi. Risalah pertemuan akan didistribusikan kepada seluruh peserta dalam waktu tiga (3) hari kerja sejak pertemuan ini. Koordinator Program DS-ATA akan bertindak sebagai narahubung utama untuk setiap permasalahan yang muncul di antara waktu tersebut.</p>
+                </div>
+
+                <div class="section-label">Terminology Table</div>
+                <table class="term-table">
+                    <tr><th>English Term</th><th>Indonesian Equivalent</th><th>Notes</th></tr>
+                    <tr><td>Regional Security Officer (RSO)</td><td>Perwira Keamanan Regional</td><td>Embassy security title</td></tr>
+                    <tr><td>Advanced Crisis Negotiation Course</td><td>Kursus Negosiasi Krisis Lanjutan</td><td>Full course name retained</td></tr>
+                    <tr><td>Scenario-based Module</td><td>Modul Berbasis Skenario</td><td>Training pedagogy term</td></tr>
+                    <tr><td>Urban Crisis Simulation</td><td>Simulasi Krisis Perkotaan</td><td>Operational exercise term</td></tr>
+                    <tr><td>Behavioral Assessment</td><td>Penilaian Perilaku</td><td>Psychology/negotiation register</td></tr>
+                    <tr><td>Media Relations</td><td>Hubungan Media</td><td>Communications field term</td></tr>
+                    <tr><td>Inter-agency Communication</td><td>Komunikasi Antar-instansi</td><td>Indonesian gov standard</td></tr>
+                    <tr><td>Billeting</td><td>Akomodasi</td><td>"Billeting" has no exact ID equiv.</td></tr>
+                    <tr><td>Course Integrity</td><td>Integritas Kursus</td><td>Quality assurance term</td></tr>
+                    <tr><td>Schedule Adjustment Request</td><td>Permintaan Penyesuaian Jadwal</td><td>Formal administrative phrasing</td></tr>
+                    <tr><td>Workbook</td><td>Buku Kerja</td><td>Standard education term</td></tr>
+                    <tr><td>Wireless Microphone System</td><td>Sistem Mikrofon Nirkabel</td><td>Technical equipment term</td></tr>
+                    <tr><td>Negotiation Framework</td><td>Kerangka Negosiasi</td><td>Crisis management register</td></tr>
+                    <tr><td>Stakeholder Communication</td><td>Komunikasi Pemangku Kepentingan</td><td>Management/gov terminology</td></tr>
+                    <tr><td>Certificate Ceremony</td><td>Upacara Pemberian Sertifikat</td><td>"Upacara" carries official weight</td></tr>
+                    <tr><td>Tri-party Coordination</td><td>Koordinasi Tiga Pihak</td><td>Diplomatic/legal usage</td></tr>
+                    <tr><td>Temporary Duty (TDY)</td><td>Tugas Sementara (TDY)</td><td>Acronym retained for Embassy use</td></tr>
+                    <tr><td>Meeting Minutes</td><td>Risalah Pertemuan</td><td>Formal Indonesian official term</td></tr>
+                    <tr><td>Point of Contact</td><td>Narahubung</td><td>Indonesian gov standard</td></tr>
+                    <tr><td>Pre-course Medical Clearance</td><td>Izin Medis Pra-kursus</td><td>Administrative/medical term</td></tr>
+                </table>
+
+                <div class="section-label">Translator Notes</div>
+                <div class="note-block"><strong>"Billeting":</strong> This military-administrative term has no single-word Indonesian equivalent in civilian government usage. "Akomodasi" (accommodation) was selected as the closest functional equivalent, consistent with how Lemdiklat Polri training documents refer to lodging arrangements.</div>
+                <div class="note-block"><strong>Action Items section:</strong> The source uses imperative constructions for each party's action item. Indonesian formal writing typically uses infinitive-nominal constructions ("Menyerahkan…") rather than direct imperatives, which would carry an inappropriate commanding tone between institutional equals.</div>
+                <div class="note-block"><strong>"Risalah pertemuan":</strong> The Indonesian term "risalah" carries a stronger sense of official formality than the English "minutes." This choice reflects the institutional gravity of RSO–Polri coordination documents, which are treated as semi-official records within both organizations.</div>
+            </div>
+
+            <!-- ==========================================================
+            PROJECT 3 — Security News Report
+            ========================================================== -->
+            <div id="p3" class="project-section">
+
+                <div class="doc-header">
+                    <div class="doc-header-left">
+                        <div class="doc-ref"><span class="gold">●</span> DS-ATA / Project 03 · News Translation</div>
+                        <div class="doc-title">Security Awareness News Monitoring Report</div>
+                        <div class="doc-badges">
+                            <span class="badge badge-amber">News Translation</span>
+                            <span class="badge badge-blue">Public Safety / Cybersecurity</span>
+                            <span class="badge badge-teal">EN → ID</span>
+                        </div>
+                    </div>
+                    <div class="doc-header-right">
+                        <span class="classification"><span class="gold">◆</span> UNCLASSIFIED / FOR OFFICIAL USE</span>
+                    </div>
+                </div>
+
+                <div class="section-label">English Source Article</div>
+                <div class="doc-block">
+                    <h4>Ransomware Attacks on Critical Infrastructure: Southeast Asia in the Crosshairs</h4>
+                    <p><em>Security Monitoring Report — For Official Awareness Distribution</em></p>
+                    <p>Cybersecurity analysts across Southeast Asia have raised alarms over a significant uptick in ransomware attacks targeting critical infrastructure sectors, including public utilities, transportation networks, and government data systems. In the past eighteen months, documented incidents in the region have increased by an estimated 42 percent, with threat actors increasingly prioritizing entities whose operational continuity is essential to national security and public safety.</p>
+                    <p>Indonesian institutions have not been immune to this trend. A number of government agencies and state-owned enterprise networks reported suspicious activity consistent with initial-stage ransomware deployment in the first quarter of 2026, though full-scale encryption attacks were mitigated in most documented cases through rapid incident response protocols. Cybersecurity agencies have noted that threat actors are leveraging publicly known vulnerabilities in widely deployed enterprise software, combined with social engineering techniques targeting government employees with administrative access to critical systems.</p>
+                    <p>Law enforcement agencies, including Polri's Cyber Crime Unit (Dittipidsiber), have intensified coordination with international partners including INTERPOL's Cybercrime Directorate and the U.S. Federal Bureau of Investigation to attribute attacks and disrupt threat actor infrastructure. Three suspects connected to a regional ransomware syndicate were apprehended in early 2026 following a joint operation conducted under the ASEAN Cybercrime Operations Desk framework.</p>
+                    <p>Cybersecurity experts emphasize that the primary vulnerability vector for government institutions remains human error: specifically, employees clicking on phishing links, using unsecured personal devices on institutional networks, or failing to apply software patches in a timely manner. Security awareness training programs targeting government personnel at all levels are identified as the most cost-effective mitigation measure against ransomware risk.</p>
+                    <p>DS-ATA and the Embassy Regional Security Office recommend the following immediate measures for all Embassy-affiliated personnel and Indonesian government partners: enable multi-factor authentication on all institutional accounts; report any suspicious email activity to the Embassy IT Security Officer within one hour of detection; do not connect personal devices to Embassy or Embassy-affiliated networks; and participate in the upcoming Embassy-hosted Security Awareness Briefing scheduled for July 2026.</p>
+                </div>
+
+                <div class="section-label">Indonesian Translation</div>
+                <div class="doc-block">
+                    <h4>Serangan Ransomware terhadap Infrastruktur Kritis: Asia Tenggara dalam Bidikan</h4>
+                    <p><em>Laporan Pemantauan Keamanan — Untuk Distribusi Kesadaran Resmi</em></p>
+                    <p>Para analis keamanan siber di seluruh Asia Tenggara telah membunyikan alarm atas lonjakan signifikan serangan ransomware yang menyasar sektor infrastruktur kritis, termasuk utilitas publik, jaringan transportasi, dan sistem data pemerintahan. Dalam delapan belas bulan terakhir, insiden yang terdokumentasi di kawasan ini meningkat sekitar 42 persen, dengan pelaku ancaman yang semakin memprioritaskan entitas yang keberlangsungan operasionalnya sangat penting bagi keamanan nasional dan keselamatan publik.</p>
+                    <p>Institusi-institusi Indonesia tidak luput dari tren ini. Sejumlah lembaga pemerintah dan jaringan perusahaan BUMN melaporkan aktivitas mencurigakan yang konsisten dengan tahap awal penerapan ransomware pada kuartal pertama 2026, meskipun serangan enkripsi skala penuh berhasil diantisipasi di sebagian besar kasus yang terdokumentasi melalui protokol respons insiden yang cepat. Badan-badan keamanan siber mencatat bahwa pelaku ancaman memanfaatkan kerentanan yang sudah diketahui publik dalam perangkat lunak korporat yang banyak digunakan, dikombinasikan dengan teknik rekayasa sosial yang menyasar pegawai pemerintah dengan akses administratif ke sistem-sistem kritis.</p>
+                    <p>Instansi penegak hukum, termasuk Direktorat Tindak Pidana Siber Polri (Dittipidsiber), telah mengintensifkan koordinasi dengan mitra internasional termasuk Direktorat Kejahatan Siber INTERPOL dan Biro Investigasi Federal Amerika Serikat untuk mengidentifikasi pelaku dan melumpuhkan infrastruktur ancaman. Tiga tersangka yang terkait dengan sindikat ransomware regional ditangkap pada awal 2026 menyusul operasi gabungan yang dilaksanakan dalam kerangka ASEAN Cybercrime Operations Desk.</p>
+                    <p>Para pakar keamanan siber menekankan bahwa vektor kerentanan utama bagi institusi pemerintah tetap berupa kesalahan manusia: secara spesifik, pegawai yang mengklik tautan phishing, menggunakan perangkat pribadi yang tidak aman pada jaringan institusional, atau gagal menerapkan pembaruan perangkat lunak tepat waktu. Program pelatihan kesadaran keamanan yang menyasar personel pemerintah di semua tingkatan diidentifikasi sebagai langkah mitigasi paling efektif dari segi biaya terhadap risiko ransomware.</p>
+                    <p>DS-ATA dan Kantor Keamanan Regional Kedutaan merekomendasikan langkah-langkah segera berikut bagi seluruh personel yang berafiliasi dengan Kedutaan dan mitra pemerintah Indonesia: aktifkan autentikasi multi-faktor pada semua akun institusional; laporkan aktivitas email mencurigakan kepada Petugas Keamanan TI Kedutaan dalam waktu satu jam setelah terdeteksi; jangan menghubungkan perangkat pribadi ke jaringan Kedutaan atau jaringan yang terafiliasi dengan Kedutaan; dan ikuti Pengarahan Kesadaran Keamanan yang diselenggarakan Kedutaan yang dijadwalkan pada Juli 2026.</p>
+                </div>
+
+                <div class="section-label">Terminology Table</div>
+                <table class="term-table">
+                    <tr><th>English Term</th><th>Indonesian Equivalent</th><th>Notes</th></tr>
+                    <tr><td>Ransomware Attack</td><td>Serangan Ransomware</td><td>Loanword retained (no standard ID equiv.)</td></tr>
+                    <tr><td>Critical Infrastructure</td><td>Infrastruktur Kritis</td><td>BSSN official terminology</td></tr>
+                    <tr><td>Threat Actor</td><td>Pelaku Ancaman</td><td>Cybersecurity field term</td></tr>
+                    <tr><td>Encryption Attack</td><td>Serangan Enkripsi</td><td>Technical/cybersecurity</td></tr>
+                    <tr><td>Incident Response Protocol</td><td>Protokol Respons Insiden</td><td>BSSN/CSIRT standard term</td></tr>
+                    <tr><td>Social Engineering</td><td>Rekayasa Sosial</td><td>Established ID cybersecurity term</td></tr>
+                    <tr><td>Phishing</td><td>Phishing</td><td>Loanword; no functional ID replacement</td></tr>
+                    <tr><td>Multi-factor Authentication</td><td>Autentikasi Multi-faktor</td><td>Technical standard term</td></tr>
+                    <tr><td>Software Patch</td><td>Pembaruan Perangkat Lunak</td><td>More accessible than "patch"</td></tr>
+                    <tr><td>Cybercrime Directorate (INTERPOL)</td><td>Direktorat Kejahatan Siber (INTERPOL)</td><td>Official institutional name</td></tr>
+                    <tr><td>Attribution</td><td>Identifikasi Pelaku</td><td>Adapted; "atribusi" less understood</td></tr>
+                    <tr><td>Security Awareness Training</td><td>Pelatihan Kesadaran Keamanan</td><td>DS-ATA program term</td></tr>
+                    <tr><td>Mitigation Measure</td><td>Langkah Mitigasi</td><td>Risk management register</td></tr>
+                    <tr><td>Operational Continuity</td><td>Keberlangsungan Operasional</td><td>Business/gov continuity term</td></tr>
+                    <tr><td>State-owned Enterprise</td><td>BUMN (Badan Usaha Milik Negara)</td><td>Standard Indonesian acronym</td></tr>
+                </table>
+
+                <div class="section-label">Translator Notes</div>
+                <div class="note-block"><strong>Loanwords in cybersecurity:</strong> Terms like "ransomware," "phishing," and "malware" are retained as loanwords rather than translated. Indonesian cybersecurity authorities (BSSN) use these terms in official communications, and attempting to translate them would create unfamiliar neologisms that could confuse specialist readers.</div>
+                <div class="note-block"><strong>"Attribution":</strong> The cybersecurity term "to attribute attacks" (to link attacks to specific actors) was rendered as "mengidentifikasi pelaku" (to identify perpetrators) rather than the direct loan "atribusi," which is understood within technical circles but less accessible in a document intended for broader government distribution.</div>
+                <div class="note-block"><strong>Dittipidsiber:</strong> The official Indonesian name and acronym were used in place of the English gloss on first occurrence in the Indonesian version, as Indonesian readers would recognize the Indonesian designation more readily. The English version retains the English gloss with the Indonesian acronym in parentheses.</div>
+            </div>
+
+            <!-- ==========================================================
+            PROJECT 4 — Course Announcement
+            ========================================================== -->
+            <div id="p4" class="project-section">
+
+                <div class="doc-header">
+                    <div class="doc-header-left">
+                        <div class="doc-ref"><span class="gold">●</span> DS-ATA / Project 04 · Administrative Translation</div>
+                        <div class="doc-title">Participant Course Announcement</div>
+                        <div class="doc-badges">
+                            <span class="badge badge-amber">Written Translation</span>
+                            <span class="badge badge-blue">Official Notice</span>
+                            <span class="badge badge-teal">EN → ID</span>
+                        </div>
+                    </div>
+                    <div class="doc-header-right">
+                        <span class="classification"><span class="gold">◆</span> UNCLASSIFIED / FOR OFFICIAL USE</span>
+                    </div>
+                </div>
+
+                <div class="section-label">English Source Document</div>
+                <div class="doc-block">
+                    <h4>Official Course Announcement</h4>
+                    <p><strong>Course:</strong> Advanced Investigative Interview Techniques (AIIT)<br>
+                        <strong>Hosted by:</strong> DS-ATA Program, U.S. Embassy Jakarta, in coordination with Polri Criminal Investigation Division (Bareskrim)<br>
+                        <strong>Date:</strong> September 15–19, 2026<br>
+                        <strong>Venue:</strong> Bareskrim Training Center, Jakarta Selatan</p>
+                    <h4>Eligibility Requirements</h4>
+                    <p>This course is open to active Polri investigators holding the rank of Second Lieutenant (Ipda) through Lieutenant Colonel (AKBP), currently assigned to criminal investigation units at the provincial or national level. Nominees must have a minimum of two (2) years of investigative experience and must not have attended an AIIT-equivalent course within the preceding three years. Nominees with English proficiency at a conversational level or above are strongly encouraged; however, consecutive interpretation will be provided throughout the course.</p>
+                    <h4>Schedule</h4>
+                    <p>Day 1 (Monday, September 15): Administrative registration, course orientation, and introduction to interview frameworks. Day 2 (Tuesday, September 16): Cognitive interview techniques and memory enhancement protocols. Day 3 (Wednesday, September 17): Behavioral analysis, deception detection, and statement analysis. Day 4 (Thursday, September 18): Practical interview simulations with role players; peer and instructor feedback sessions. Day 5 (Friday, September 19): Written assessment, course review, certificate presentation ceremony (16:00 WIB).</p>
+                    <h4>Venue and Logistics</h4>
+                    <p>The course will be held at the Bareskrim Training Center, Jl. Trunojoyo No. 3, Jakarta Selatan. Participants from outside the Greater Jakarta area are eligible to apply for subsidized billeting at the Bareskrim Guest Facilities. Requests for billeting must be submitted with the pre-course documentation package. Ground transportation from the Bareskrim complex to the course venue will be arranged for all registered participants.</p>
+                    <h4>Dress Code</h4>
+                    <p>Participants are required to wear the Class B service uniform (PDL) for all practical exercise sessions. Business attire or Class A service uniform is required for the certificate presentation ceremony. Civilian participants, if any, are required to wear professional business attire throughout the course duration.</p>
+                    <h4>Required Documents</h4>
+                    <p>Participants must submit the following to their nominating unit's administrative office no later than August 29, 2026: completed DS-ATA Course Registration Form (Form DS-ATA/REG-2026); valid institutional ID and copy of most recent rank certificate; pre-course medical clearance from an authorized medical officer; and written approval from immediate supervisor. Incomplete submissions will not be processed.</p>
+                    <h4>Attendance Policy</h4>
+                    <p>Attendance at all scheduled sessions is mandatory. Participants who accumulate absences exceeding 10% of total course hours will be administratively withdrawn and will not be eligible for certification. Exceptions for medical emergencies must be documented and approved by the DS-ATA Program Coordinator no later than 24 hours after the missed session.</p>
+                    <h4>Safety Reminders</h4>
+                    <p>Personal firearms are not permitted inside the training facility. All participants are required to secure their service weapons at the Bareskrim armory upon arrival. The use of recording devices during instruction sessions is prohibited without prior written authorization from the DS-ATA Program Coordinator. Participants are reminded to adhere to all Embassy and Bareskrim facility security protocols at all times.</p>
+                </div>
+
+                <div class="section-label">Indonesian Translation</div>
+                <div class="doc-block">
+                    <h4>Pengumuman Kursus Resmi</h4>
+                    <p><strong>Kursus:</strong> Teknik Wawancara Investigatif Lanjutan (AIIT)<br>
+                        <strong>Penyelenggara:</strong> Program DS-ATA, Kedutaan Besar AS Jakarta, bekerja sama dengan Badan Reserse Kriminal Polri (Bareskrim)<br>
+                        <strong>Tanggal:</strong> 15–19 September 2026<br>
+                        <strong>Tempat:</strong> Pusat Pelatihan Bareskrim, Jakarta Selatan</p>
+                    <h4>Persyaratan Kelayakan</h4>
+                    <p>Kursus ini terbuka bagi penyidik Polri aktif berpangkat Inspektur Polisi Dua (Ipda) hingga Ajun Komisaris Besar Polisi (AKBP), yang saat ini bertugas di satuan reserse kriminal tingkat provinsi atau nasional. Peserta yang dinominasikan harus memiliki pengalaman penyidikan minimal dua (2) tahun dan tidak boleh pernah mengikuti kursus setara AIIT dalam tiga tahun terakhir. Peserta dengan kemampuan bahasa Inggris tingkat percakapan atau di atasnya sangat dianjurkan; namun demikian, interpretasi konsekutif akan disediakan selama kursus berlangsung.</p>
+                    <h4>Jadwal</h4>
+                    <p>Hari ke-1 (Senin, 15 September): Pendaftaran administratif, orientasi kursus, dan pengantar kerangka wawancara. Hari ke-2 (Selasa, 16 September): Teknik wawancara kognitif dan protokol peningkatan memori. Hari ke-3 (Rabu, 17 September): Analisis perilaku, deteksi kebohongan, dan analisis pernyataan. Hari ke-4 (Kamis, 18 September): Simulasi wawancara praktik dengan pemeran; sesi umpan balik rekan dan instruktur. Hari ke-5 (Jumat, 19 September): Penilaian tertulis, tinjauan kursus, upacara penyerahan sertifikat (pukul 16.00 WIB).</p>
+                    <h4>Venue dan Logistik</h4>
+                    <p>Kursus akan diselenggarakan di Pusat Pelatihan Bareskrim, Jl. Trunojoyo No. 3, Jakarta Selatan. Peserta dari luar wilayah Jabodetabek berhak mengajukan permohonan akomodasi bersubsidi di Fasilitas Tamu Bareskrim. Permohonan akomodasi harus disertakan dalam paket dokumentasi pra-kursus. Transportasi darat dari kompleks Bareskrim ke venue kursus akan disediakan bagi seluruh peserta yang terdaftar.</p>
+                    <h4>Ketentuan Pakaian</h4>
+                    <p>Peserta wajib mengenakan Pakaian Dinas Lapangan (PDL) untuk seluruh sesi latihan praktik. Pakaian dinas harian atau PDH wajib dikenakan pada upacara penyerahan sertifikat. Peserta sipil, apabila ada, wajib mengenakan pakaian bisnis formal selama durasi kursus berlangsung.</p>
+                    <h4>Dokumen yang Diperlukan</h4>
+                    <p>Peserta wajib menyerahkan dokumen berikut kepada kantor administrasi satuan penominasi paling lambat 29 Agustus 2026: Formulir Pendaftaran Kursus DS-ATA yang telah dilengkapi (Formulir DS-ATA/REG-2026); KTA institusional yang masih berlaku beserta salinan surat keterangan pangkat terkini; surat izin medis pra-kursus dari perwira medis yang berwenang; dan persetujuan tertulis dari atasan langsung. Berkas yang tidak lengkap tidak akan diproses.</p>
+                    <h4>Kebijakan Kehadiran</h4>
+                    <p>Kehadiran di seluruh sesi yang dijadwalkan bersifat wajib. Peserta yang mengakumulasi ketidakhadiran melebihi 10% dari total jam kursus akan ditarik secara administratif dan tidak berhak mendapatkan sertifikasi. Pengecualian untuk kondisi darurat medis harus didokumentasikan dan mendapat persetujuan dari Koordinator Program DS-ATA paling lambat 24 jam setelah sesi yang terlewat.</p>
+                    <h4>Pengingat Keselamatan</h4>
+                    <p>Senjata api pribadi tidak diperkenankan di dalam fasilitas pelatihan. Seluruh peserta wajib menyimpan senjata dinas mereka di gudang senjata Bareskrim setibanya di lokasi. Penggunaan perangkat perekam selama sesi instruksi dilarang tanpa otorisasi tertulis sebelumnya dari Koordinator Program DS-ATA. Peserta diingatkan untuk mematuhi seluruh protokol keamanan fasilitas Kedutaan dan Bareskrim setiap saat.</p>
+                </div>
+
+                <div class="section-label">Terminology Notes</div>
+                <div class="note-block"><strong>Rank system adaptation:</strong> Indonesian police ranks (Ipda, AKBP) were retained in their Indonesian acronym forms with the full name provided on first occurrence. The English source provided English-language equivalents which were replaced in the Indonesian translation with the official Indonesian rank designations, as Indonesian readers would not recognize the English-translated rank names.</div>
+                <div class="note-block"><strong>Dress code:</strong> "Class B service uniform" was rendered as "Pakaian Dinas Lapangan (PDL)" and "Class A" as "PDH" (Pakaian Dinas Harian), consistent with official Polri uniform regulations (Peraturan Kapolri), as these are the recognized Indonesian designations for the equivalent uniform classes.</div>
+                <div class="note-block"><strong>"Billeting" again:</strong> As in Project 2, "billeting" was rendered as "akomodasi" (accommodation). "Subsidi akomodasi" was used rather than "billeting bersubsidi" to avoid an awkward loanword compound.</div>
+            </div>
+
+            <!-- ==========================================================
+            PROJECT 5 — Interpretation Simulation
+            ========================================================== -->
+            <div id="p5" class="project-section">
+
+                <div class="doc-header">
+                    <div class="doc-header-left">
+                        <div class="doc-ref"><span class="gold">●</span> DS-ATA / Project 05 · Consecutive Interpretation</div>
+                        <div class="doc-title">Consecutive Interpretation Simulation Transcript</div>
+                        <div class="doc-badges">
+                            <span class="badge badge-amber">Consecutive Interpretation</span>
+                            <span class="badge badge-blue">RSO · DS-ATA · Polri</span>
+                            <span class="badge badge-teal">EN ⇄ ID</span>
+                        </div>
+                    </div>
+                    <div class="doc-header-right">
+                        <span class="classification"><span class="gold">◆</span> UNCLASSIFIED / FOR OFFICIAL USE</span>
+                    </div>
+                </div>
+
+                <div class="overview-grid">
+                    <div class="meta-card"><div class="label">Scenario</div><div class="value">Pre-training coordination meeting</div></div>
+                    <div class="meta-card"><div class="label">Setting</div><div class="value">RSO Conference Room, U.S. Embassy Jakarta</div></div>
+                    <div class="meta-card"><div class="label">Participants</div><div class="value">RSO, DS-ATA Coordinator, Polri General, Interpreter</div></div>
+                    <div class="meta-card"><div class="label">Exchanges</div><div class="value">50 consecutive interpretation exchanges</div></div>
+                </div>
+
+                <div class="section-label">Legend</div>
+                <div class="legend-wrap">
+                    <span class="speaker-pill sp-rso">RSO — Regional Security Officer</span>
+                    <span class="speaker-pill sp-ata">ATA — DS-ATA Coordinator</span>
+                    <span class="speaker-pill sp-inp">INP — Polri General</span>
+                    <span class="speaker-pill sp-int">INT — Interpreter Note</span>
+                </div>
+
+                <div class="section-label">Interpretation Transcript</div>
+                <table class="dialogue-table">
+                    <tr><th style="width:9%">Speaker</th><th style="width:42%">English Utterance</th><th style="width:42%">Indonesian Interpretation</th><th style="width:7%">#</th></tr>
+                    <tr><td><span class="speaker-pill sp-rso">RSO</span></td><td>Good morning, General. Thank you for making time for us today. We have quite a bit to cover regarding the upcoming training cycle.</td><td>Selamat pagi, Jenderal. Terima kasih telah meluangkan waktu untuk kami hari ini. Kami memiliki cukup banyak hal yang perlu dibahas mengenai siklus pelatihan yang akan datang.</td><td>1</td></tr>
+                    <tr><td><span class="speaker-pill sp-inp">INP</span></td><td>Sama-sama. Kami juga menantikan kerja sama yang produktif. Ada beberapa hal dari pihak kami yang ingin kami sampaikan.</td><td>Likewise. We are also looking forward to productive cooperation. There are several matters on our side that we would like to raise as well.</td><td>2</td></tr>
+                    <tr><td><span class="speaker-pill sp-rso">RSO</span></td><td>Of course. We want this to be a two-way conversation. Perhaps we can begin with the participant nomination list for the August course.</td><td>Tentu saja. Kami ingin ini menjadi diskusi dua arah. Mungkin kita bisa mulai dengan daftar nominasi peserta untuk kursus bulan Agustus.</td><td>3</td></tr>
+                    <tr><td><span class="speaker-pill sp-inp">INP</span></td><td>Baik. Kami telah meninjau daftar tersebut. Secara keseluruhan sudah sesuai, namun ada dua nama yang kami usulkan untuk diganti karena alasan penugasan operasional.</td><td>Very well. We have reviewed the list. It is generally satisfactory; however, there are two names we would like to substitute due to operational assignment reasons.</td><td>4</td></tr>
+                    <tr><td><span class="speaker-pill sp-ata">ATA</span></td><td>That's certainly manageable. Can you let us know which positions they're in so we can confirm they meet the eligibility criteria?</td><td>Tentu saja hal itu dapat diatur. Bisakah Bapak memberi tahu posisi mereka agar kami dapat mengkonfirmasi bahwa mereka memenuhi kriteria kelayakan?</td><td>5</td></tr>
+                    <tr><td><span class="speaker-pill sp-inp">INP</span></td><td>Keduanya dari Densus 88, berpangkat Iptu. Pengalaman investigatif mereka sudah memenuhi syarat. Kami akan segera mengirimkan berkas nominasi resmi.</td><td>Both are from Detachment 88, holding the rank of First Inspector. Their investigative experience meets the requirements. We will send the formal nomination files promptly.</td><td>6</td></tr>
+                    <tr><td><span class="speaker-pill sp-int">INT</span><div class="int-note">Note: "Iptu" (Inspektur Polisi Satu) rendered as "First Inspector" — closest English functional equivalent in law enforcement context.</div></td><td></td><td></td><td></td></tr>
+                    <tr><td><span class="speaker-pill sp-rso">RSO</span></td><td>Thank you. Now, I'd like to address the interpretation arrangements for the course. We've found in past training cycles that having two interpreters rotating is significantly better for quality.</td><td>Terima kasih. Sekarang, saya ingin membahas pengaturan interpretasi untuk kursus ini. Berdasarkan siklus pelatihan sebelumnya, kami menemukan bahwa memiliki dua juru bahasa yang bergiliran jauh lebih baik bagi kualitas interpretasi.</td><td>7</td></tr>
+                    <tr><td><span class="speaker-pill sp-inp">INP</span></td><td>Kami setuju. Interpretasi yang akurat sangat krusial, terutama saat instruksi teknis dan sesi taktis. Kesalahan dalam interpretasi dapat berdampak serius pada pemahaman dan keselamatan.</td><td>We agree. Accurate interpretation is absolutely critical, especially during technical instruction and tactical sessions. Errors in interpretation can have serious consequences for understanding and safety.</td><td>8</td></tr>
+                    <tr><td><span class="speaker-pill sp-ata">ATA</span></td><td>We've already identified two qualified candidates. Both have prior experience with law enforcement training interpretation and are familiar with DS-ATA terminology.</td><td>Kami telah mengidentifikasi dua kandidat yang memenuhi syarat. Keduanya memiliki pengalaman sebelumnya dalam interpretasi pelatihan penegak hukum dan sudah familiar dengan terminologi DS-ATA.</td><td>9</td></tr>
+                    <tr><td><span class="speaker-pill sp-inp">INP</span></td><td>Bagus sekali. Apakah mereka sudah melalui proses vetting keamanan dari pihak Kedutaan? Kami juga perlu memastikan mereka melalui verifikasi dari sisi Polri.</td><td>Excellent. Have they already gone through the security vetting process from the Embassy's side? We also need to ensure they undergo verification from the Polri side.</td><td>10</td></tr>
+                    <tr><td><span class="speaker-pill sp-rso">RSO</span></td><td>Yes, both have current Public Trust certifications on file with the Embassy. We're happy to share the documentation with your security division for their records.</td><td>Ya, keduanya memiliki sertifikasi Public Trust yang masih berlaku yang tersimpan di arsip Kedutaan. Kami dengan senang hati akan berbagi dokumentasi tersebut dengan divisi keamanan Bapak untuk catatan mereka.</td><td>11</td></tr>
+                    <tr><td><span class="speaker-pill sp-int">INT</span><div class="int-note">Note: "Public Trust certification" retained in English in the Indonesian interpretation, as this is a specific U.S. government security clearance category with no direct Indonesian equivalent. A brief gloss ("sertifikasi kepercayaan publik") was added internally for context.</div></td><td></td><td></td><td></td></tr>
+                    <tr><td><span class="speaker-pill sp-inp">INP</span></td><td>Kami apresiasi transparansi ini. Satu hal lagi — apakah materi teknis kursus akan tersedia dalam versi bahasa Indonesia sebelum kursus dimulai?</td><td>We appreciate this transparency. One more point — will the technical course materials be available in Indonesian before the course begins?</td><td>12</td></tr>
+                    <tr><td><span class="speaker-pill sp-ata">ATA</span></td><td>Yes, all participant workbooks will be bilingual. We aim to distribute them at least two weeks before the course start date so participants can review the terminology in advance.</td><td>Ya, semua buku kerja peserta akan dalam format dwibahasa. Kami bertujuan mendistribusikannya setidaknya dua minggu sebelum tanggal mulai kursus agar peserta dapat meninjau terminologi terlebih dahulu.</td><td>13</td></tr>
+                    <tr><td><span class="speaker-pill sp-inp">INP</span></td><td>Sangat membantu. Terminologi teknis dalam bahasa Inggris sering menjadi hambatan. Persiapan awal akan meningkatkan pemahaman dan efektivitas pelatihan secara keseluruhan.</td><td>That is very helpful. English technical terminology is often a barrier. Advance preparation will improve understanding and overall training effectiveness.</td><td>14</td></tr>
+                    <tr><td><span class="speaker-pill sp-rso">RSO</span></td><td>I agree completely. I want to move to the venue arrangements. Is the Bareskrim training facility confirmed for the August dates?</td><td>Saya sepenuhnya setuju. Saya ingin beralih ke pengaturan venue. Apakah fasilitas pelatihan Bareskrim sudah dikonfirmasi untuk tanggal-tanggal di bulan Agustus?</td><td>15</td></tr>
+                    <tr><td><span class="speaker-pill sp-inp">INP</span></td><td>Sudah dikonfirmasi. Fasilitas akan sepenuhnya tersedia, termasuk ruang kelas, area simulasi, dan lapangan tembak tertutup untuk sesi latihan tembak.</td><td>It is confirmed. The facility will be fully available, including classrooms, simulation areas, and the indoor range for any firearms training sessions.</td><td>16</td></tr>
+                    <tr><td><span class="speaker-pill sp-ata">ATA</span></td><td>That's great news. Will the indoor range accommodate the DS-ATA range safety protocol setup, including the required safety lanes and officer positioning?</td><td>Kabar yang sangat baik. Apakah lapangan tembak tertutup tersebut dapat mengakomodasi pengaturan protokol keselamatan lapangan tembak DS-ATA, termasuk jalur keselamatan yang diperlukan dan posisi petugas?</td><td>17</td></tr>
+                    <tr><td><span class="speaker-pill sp-inp">INP</span></td><td>Kami belum familiar dengan spesifikasi teknis DS-ATA. Apakah mungkin tim teknis Anda melakukan survei fasilitas sebelum kursus dimulai?</td><td>We are not fully familiar with the DS-ATA technical specifications. Would it be possible for your technical team to conduct a facility survey before the course begins?</td><td>18</td></tr>
+                    <tr><td><span class="speaker-pill sp-rso">RSO</span></td><td>Absolutely. We'll schedule a site visit with our range safety officer for the week of July 21. We'll provide a written assessment within three days of the visit.</td><td>Tentu saja. Kami akan menjadwalkan kunjungan lokasi bersama perwira keselamatan lapangan tembak kami untuk minggu tanggal 21 Juli. Kami akan memberikan penilaian tertulis dalam tiga hari setelah kunjungan.</td><td>19</td></tr>
+                    <tr><td><span class="speaker-pill sp-inp">INP</span></td><td>Terima kasih. Itu akan sangat membantu koordinasi dari pihak kami. Kami akan pastikan personel yang tepat tersedia untuk menemani tim Anda selama survei.</td><td>Thank you. That will greatly assist coordination on our end. We will ensure the appropriate personnel are available to accompany your team during the survey.</td><td>20</td></tr>
+                    <tr><td><span class="speaker-pill sp-ata">ATA</span></td><td>I also want to flag that we'll need dedicated parking or vehicle access for the DS-ATA training van during the full course period.</td><td>Saya juga ingin menyampaikan bahwa kami memerlukan parkir khusus atau akses kendaraan untuk van pelatihan DS-ATA selama periode kursus penuh.</td><td>21</td></tr>
+                    <tr><td><span class="speaker-pill sp-inp">INP</span></td><td>Tidak ada masalah. Kami akan mengalokasikan tempat parkir khusus di area terbatas Bareskrim. Perwira penghubung kami akan mengurus izin akses kendaraan.</td><td>No problem at all. We will allocate a dedicated parking space in the restricted area of Bareskrim. Our liaison officer will handle the vehicle access permits.</td><td>22</td></tr>
+                    <tr><td><span class="speaker-pill sp-rso">RSO</span></td><td>Perfect. Now, regarding catering — we have forty participants and ten instructors. Is the Bareskrim cafeteria able to accommodate that volume?</td><td>Sempurna. Sekarang, mengenai katering — kami memiliki empat puluh peserta dan sepuluh instruktur. Apakah kafetaria Bareskrim mampu mengakomodasi jumlah tersebut?</td><td>23</td></tr>
+                    <tr><td><span class="speaker-pill sp-inp">INP</span></td><td>Untuk peserta sebanyak itu, kafetaria kami cukup memadai. Namun untuk instruktur asing, mungkin ada preferensi menu tertentu yang perlu kami akomodasi.</td><td>For that number of participants, our cafeteria is adequate. However, for the international instructors, there may be specific menu preferences we need to accommodate.</td><td>24</td></tr>
+                    <tr><td><span class="speaker-pill sp-int">INT</span><div class="int-note">Note: "Instruktur asing" (foreign instructors) interpreted as "international instructors" — slightly softened phrasing more appropriate in a diplomatic meeting context.</div></td><td></td><td></td><td></td></tr>
+                    <tr><td><span class="speaker-pill sp-ata">ATA</span></td><td>We'll provide dietary requirements in advance. Most of our instructors are adaptable, but a couple have specific halal requirements which I understand should not be an issue here.</td><td>Kami akan memberikan persyaratan menu terlebih dahulu. Sebagian besar instruktur kami adaptif, namun beberapa memiliki persyaratan halal khusus, yang saya percaya tidak akan menjadi masalah di sini.</td><td>25</td></tr>
+                    <tr><td><span class="speaker-pill sp-inp">INP</span></td><td>Sama sekali tidak ada masalah. Seluruh fasilitas katering Bareskrim sudah bersertifikasi halal. Itu bukan kendala.</td><td>Absolutely no issue. All Bareskrim catering facilities are halal-certified. That is not a constraint at all.</td><td>26</td></tr>
+                    <tr><td><span class="speaker-pill sp-rso">RSO</span></td><td>Excellent. I appreciate the cooperation. Let me shift to the feedback we received from the last training cycle. I want to make sure we address the concerns raised.</td><td>Luar biasa. Saya menghargai kerja sama ini. Izinkan saya beralih ke umpan balik yang kami terima dari siklus pelatihan terakhir. Saya ingin memastikan kami menangani kekhawatiran yang disampaikan.</td><td>27</td></tr>
+                    <tr><td><span class="speaker-pill sp-inp">INP</span></td><td>Kami juga menerima laporan dari peserta kami. Secara umum positif, namun ada masukan mengenai kecepatan penyampaian materi teknis yang dirasakan terlalu cepat.</td><td>We also received reports from our participants. Generally positive, but there was feedback regarding the pace of technical instruction delivery, which was felt to be too fast.</td><td>28</td></tr>
+                    <tr><td><span class="speaker-pill sp-ata">ATA</span></td><td>We heard the same. We've already adjusted the pacing for the upcoming course and built in more recap sessions at the end of each technical module.</td><td>Kami juga menerima masukan serupa. Kami sudah menyesuaikan tempo untuk kursus yang akan datang dan menambahkan sesi rekapitulasi di akhir setiap modul teknis.</td><td>29</td></tr>
+                    <tr><td><span class="speaker-pill sp-inp">INP</span></td><td>Itu langkah yang tepat. Satu masukan lain dari peserta kami: mereka menyarankan agar studi kasus yang digunakan mencerminkan konteks Indonesia lebih banyak, bukan hanya kasus dari Amerika atau Eropa.</td><td>That is the right step. One other piece of feedback from our participants: they suggested the case studies used should reflect Indonesian contexts more — not only cases from the United States or Europe.</td><td>30</td></tr>
+                    <tr><td><span class="speaker-pill sp-rso">RSO</span></td><td>That's a very valid point. We've been working on incorporating regional case studies. Can Polri assist by providing anonymized case summaries from your operational history?</td><td>Itu poin yang sangat valid. Kami telah berupaya mengintegrasikan studi kasus regional. Apakah Polri dapat membantu dengan menyediakan ringkasan kasus yang dianonimkan dari sejarah operasional Anda?</td><td>31</td></tr>
+                    <tr><td><span class="speaker-pill sp-inp">INP</span></td><td>Kami terbuka untuk itu, namun perlu melalui proses persetujuan internal. Divisi hukum kami harus meninjau apakah kasus-kasus tertentu dapat dibagikan, bahkan dalam bentuk anonim.</td><td>We are open to that, but it would need to go through an internal approval process. Our legal division would need to review whether specific cases can be shared, even in anonymized form.</td><td>32</td></tr>
+                    <tr><td><span class="speaker-pill sp-ata">ATA</span></td><td>Understood. We can work within whatever timeline and process Polri requires. Even three or four well-documented cases would significantly enrich the curriculum.</td><td>Dipahami. Kami dapat menyesuaikan dengan jadwal dan proses apa pun yang diperlukan Polri. Bahkan tiga atau empat kasus yang terdokumentasi dengan baik sudah akan sangat memperkaya kurikulum.</td><td>33</td></tr>
+                    <tr><td><span class="speaker-pill sp-inp">INP</span></td><td>Kami akan upayakan. Target realistis adalah dua kasus untuk kursus Agustus dan dua lagi untuk siklus berikutnya. Kami akan koordinasikan dengan divisi hukum minggu ini.</td><td>We will make the effort. A realistic target would be two cases for the August course and two more for the following cycle. We will coordinate with the legal division this week.</td><td>34</td></tr>
+                    <tr><td><span class="speaker-pill sp-rso">RSO</span></td><td>That would be wonderful. I want to also briefly address the media relations aspect. There's been some external interest in the DS-ATA program, and we need to ensure a consistent messaging approach.</td><td>Itu akan sangat baik. Saya juga ingin secara singkat membahas aspek hubungan media. Ada beberapa ketertarikan eksternal terhadap program DS-ATA, dan kami perlu memastikan pendekatan pesan yang konsisten.</td><td>35</td></tr>
+                    <tr><td><span class="speaker-pill sp-inp">INP</span></td><td>Kami memahami kepekaan ini. Dari sisi Polri, segala komunikasi eksternal mengenai kerja sama dengan Kedutaan harus melalui Divisi Humas Polri terlebih dahulu.</td><td>We understand this sensitivity. From the Polri side, all external communication regarding cooperation with the Embassy must go through the Polri Public Relations Division first.</td><td>36</td></tr>
+                    <tr><td><span class="speaker-pill sp-ata">ATA</span></td><td>That's exactly our approach too. All media inquiries will be routed through the Embassy Public Affairs Section. The key message is bilateral cooperation in professional law enforcement capacity building.</td><td>Itulah pula pendekatan kami. Semua pertanyaan media akan diteruskan melalui Seksi Urusan Publik Kedutaan. Pesan utamanya adalah kerja sama bilateral dalam pengembangan kapasitas penegak hukum profesional.</td><td>37</td></tr>
+                    <tr><td><span class="speaker-pill sp-inp">INP</span></td><td>Setuju. Framing yang tepat sangat penting untuk memastikan program ini dipahami sebagai kemitraan yang setara, bukan sebagai bantuan satu arah.</td><td>Agreed. The right framing is very important to ensure the program is understood as an equal partnership, not as one-way assistance.</td><td>38</td></tr>
+                    <tr><td><span class="speaker-pill sp-int">INT</span><div class="int-note">Note: "Bantuan satu arah" (one-directional assistance) was interpreted as "one-way assistance" to preserve the diplomatic nuance — the General is gently pushing back against a dependency framing. The interpreter maintained the indirect, face-saving register appropriate between senior officials.</div></td><td></td><td></td><td></td></tr>
+                    <tr><td><span class="speaker-pill sp-rso">RSO</span></td><td>I completely agree, and I want to assure you that's exactly how we see it. This is a partnership built on mutual respect and shared security objectives.</td><td>Saya sepenuhnya setuju, dan saya ingin memastikan bahwa itulah cara kami memandangnya. Ini adalah kemitraan yang dibangun atas dasar saling menghormati dan tujuan keamanan bersama.</td><td>39</td></tr>
+                    <tr><td><span class="speaker-pill sp-inp">INP</span></td><td>Terima kasih atas pernyataan itu. Hal tersebut penting bagi kami secara institusional maupun secara personal.</td><td>Thank you for that statement. It matters to us both institutionally and personally.</td><td>40</td></tr>
+                    <tr><td><span class="speaker-pill sp-ata">ATA</span></td><td>One last operational item — we need to finalize the emergency protocols for the course. Specifically, who is the medical officer on call and what is the evacuation procedure if a training incident occurs?</td><td>Satu hal operasional terakhir — kami perlu menyelesaikan protokol darurat untuk kursus ini. Khususnya, siapa dokter yang bertugas dan apa prosedur evakuasi jika terjadi insiden selama pelatihan?</td><td>41</td></tr>
+                    <tr><td><span class="speaker-pill sp-inp">INP</span></td><td>Bareskrim memiliki tenaga medis organik yang bertugas setiap hari. Untuk evakuasi darurat, kami menggunakan jalur langsung ke RS Polri Kramat Jati — waktu tempuh sekitar 15 menit.</td><td>Bareskrim has an organic medical officer on duty every day. For emergency evacuation, we use the direct route to RS Polri Kramat Jati — approximately 15 minutes' travel time.</td><td>42</td></tr>
+                    <tr><td><span class="speaker-pill sp-int">INT</span><div class="int-note">Note: "Tenaga medis organik" (organic medical personnel) — a Polri/military administrative term for in-house, institutionally assigned medical staff as opposed to contracted external providers. Interpreted as "organic medical officer" to preserve the technical register.</div></td><td></td><td></td><td></td></tr>
+                    <tr><td><span class="speaker-pill sp-rso">RSO</span></td><td>Excellent. We'll add RS Polri to our emergency contacts list. I'd also like to request a written emergency response plan from Bareskrim for Embassy records.</td><td>Luar biasa. Kami akan menambahkan RS Polri ke daftar kontak darurat kami. Saya juga ingin meminta rencana respons darurat tertulis dari Bareskrim untuk arsip Kedutaan.</td><td>43</td></tr>
+                    <tr><td><span class="speaker-pill sp-inp">INP</span></td><td>Bisa kami siapkan. Kami akan mengirimkan dokumen tersebut dalam tiga hari kerja. Apakah format standar Bareskrim dapat diterima, atau ada format khusus yang Kedutaan perlukan?</td><td>We can prepare that. We will send the document within three business days. Is the standard Bareskrim format acceptable, or does the Embassy require a specific format?</td><td>44</td></tr>
+                    <tr><td><span class="speaker-pill sp-ata">ATA</span></td><td>The standard Bareskrim format is perfectly fine. We just need it to cover the key elements — chain of command, medical response, and communication protocols in an emergency.</td><td>Format standar Bareskrim sangat baik. Kami hanya perlu dokumen itu mencakup elemen-elemen utama — rantai komando, respons medis, dan protokol komunikasi dalam keadaan darurat.</td><td>45</td></tr>
+                    <tr><td><span class="speaker-pill sp-inp">INP</span></td><td>Dipahami. Kami akan pastikan ketiga elemen tersebut tercakup secara eksplisit. Jika ada pertanyaan tambahan dari tim Anda, perwira penghubung kami siap dihubungi.</td><td>Understood. We will ensure all three elements are covered explicitly. If your team has additional questions, our liaison officer is available to be contacted.</td><td>46</td></tr>
+                    <tr><td><span class="speaker-pill sp-rso">RSO</span></td><td>Thank you, General. I think we've covered all major agenda items. Unless there's anything else from your side, I'd like to propose we conclude and follow up by email within the week.</td><td>Terima kasih, Jenderal. Saya rasa kami telah membahas semua poin agenda utama. Kecuali ada hal lain dari pihak Bapak, saya ingin mengusulkan agar kita mengakhiri pertemuan dan menindaklanjuti melalui email dalam minggu ini.</td><td>47</td></tr>
+                    <tr><td><span class="speaker-pill sp-inp">INP</span></td><td>Satu hal terakhir dari sisi kami — kami ingin mengusulkan agar di akhir kursus ada sesi informal antara instruktur DS-ATA dan perwira senior Polri. Bukan sesi formal, hanya untuk mempererat hubungan.</td><td>One final point from our side — we would like to propose that at the end of the course there be an informal session between the DS-ATA instructors and senior Polri officers. Not a formal session, just to strengthen the relationship.</td><td>48</td></tr>
+                    <tr><td><span class="speaker-pill sp-rso">RSO</span></td><td>I think that's a wonderful idea and very much in the spirit of what we're trying to build together. We'll work it into the final day schedule.</td><td>Saya rasa itu ide yang luar biasa dan sangat mencerminkan semangat dari apa yang ingin kita bangun bersama. Kami akan memasukkannya ke dalam jadwal hari terakhir.</td><td>49</td></tr>
+                    <tr><td><span class="speaker-pill sp-inp">INP</span></td><td>Terima kasih. Kami menantikan kursus yang sukses dan kerja sama yang berkelanjutan. Semoga pertemuan hari ini menjadi pondasi yang kuat.</td><td>Thank you. We look forward to a successful course and continued cooperation. May today's meeting serve as a strong foundation.</td><td>50</td></tr>
+                </table>
+
+                <div class="section-label">Interpretation Notes — Key Challenges</div>
+                <div class="note-block"><strong>Rank rendering (Exchange 6):</strong> "Iptu" (Inspektur Polisi Satu) has no standard English translation. "First Inspector" was used as a functional equivalent consistent with how DS-ATA training documents have previously described Polri ranks to American personnel. A parenthetical gloss would be added in any written transcript.</div>
+                <div class="note-block"><strong>Face-saving register (Exchange 38):</strong> The General's use of "bantuan satu arah" (one-directional assistance) is a diplomatically indirect way of pushing back against a donor-recipient framing. The interpreter preserved the diplomatic indirectness of the original, avoiding over-literalism that might have sharpened the critique beyond what was intended.</div>
+                <div class="note-block"><strong>"Instruktur asing" → "international instructors" (Exchange 24):</strong> The Indonesian "asing" (foreign/alien) carries a stronger othering connotation than "international." In a diplomatic setting between institutional equals, "international instructors" is the contextually appropriate rendering.</div>
+                <div class="note-block"><strong>Consecutive vs. simultaneous (general):</strong> In consecutive interpretation, complete units of meaning — not individual sentences — are the unit of interpretation. Several exchanges above involve multi-sentence utterances that were held in memory and rendered as coherent wholes, using note-taking conventions for key figures, names, and action items.</div>
+            </div>
+
+        </div><!-- /main -->
+    </div><!-- /portfolio-wrap -->
+
+    <script>
+        function show(id, btn) {
+            document.querySelectorAll('.project-section').forEach(function(s) {
+                s.classList.remove('active');
+            });
+            document.querySelectorAll('.nav-item').forEach(function(b) {
+                b.classList.remove('active');
+            });
+            document.getElementById(id).classList.add('active');
+            btn.classList.add('active');
+            // Scroll main to top when switching projects
+            document.querySelector('.main').scrollTop = 0;
+        }
+    </script>
+
+</body>
+</html>
